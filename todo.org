@@ -2,6 +2,8 @@
 
 * [X] initial project icon
 CLOSED: [2022-07-05 Tue 12:43]
-* [ ] initial player
-* [ ] initial movement (grid-y?)
+* [X] initial player
+CLOSED: [2022-07-05 Tue 14:42]
+* [X] initial movement (grid-y?)
+CLOSED: [2022-07-05 Tue 14:43]
 * [ ] initial ai for movement (target/goal?)
