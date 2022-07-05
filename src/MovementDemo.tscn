@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Char.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/SimpleTile.tscn" type="PackedScene" id=2]
+
+[node name="MovementDemo" type="Node2D"]
+
+[node name="SimpleTile" parent="." instance=ExtResource( 2 )]
+
+[node name="Char" parent="." instance=ExtResource( 1 )]
+position = Vector2( 96, 96 )
