@@ -1,0 +1,7 @@
+#+title: Todo
+
+* [X] initial project icon
+CLOSED: [2022-07-05 Tue 12:43]
+* [ ] initial player
+* [ ] initial movement (grid-y?)
+* [ ] initial ai for movement (target/goal?)
