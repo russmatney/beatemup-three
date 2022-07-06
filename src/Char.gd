@@ -9,7 +9,10 @@ func _ready():
 
 
 func _process(_delta):
-  pass
+  for i in get_slide_count():
+    var collision = get_slide_collision(i)
+    print("player coll", collision)
+
 
 func _physics_process(_delta):
   velocity = Trols.move_dir() * speed
