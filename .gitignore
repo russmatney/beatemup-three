@@ -4,7 +4,6 @@
 tmp/
 
 .import/
-*.import
 
 .clj-kondo/
 .lsp/
