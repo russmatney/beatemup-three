@@ -19,6 +19,11 @@ config/icon="res://icon.png"
 Notif="*res://src/Notif.gd"
 Trols="*res://src/Trols.gd"
 
+[global]
+
+layer=false
+layers=false
+
 [input]
 
 move_left={
@@ -45,6 +50,11 @@ move_down={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="characters"
+2d_physics/layer_2="floor-tiles"
 
 [physics]
 

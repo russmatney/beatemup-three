@@ -2,21 +2,22 @@ extends Node2D
 
 onready var tm = $TileMap
 
+var detectors = []
+
 enum {NONE, BLUE_LIGHT, BLUE_DARK, RED_LIGHT, RED_DARK}
 
-func _ready():
-  Notif.notif("some notif")
-  print(tm)
-  var c = tm.get_cell(0, 0)
-  print(c)
-
-  var ts = tm.tile_set
-  print(ts)
-  print(ts.get_tiles_ids())
-
-
 func _process(_delta):
-  # check for collisions/tiles to flip
+  for detector in detectors:
+    # var extents = detector.get_shape().get_extents()
+    # print("extents", extents)
 
-  tm.set_cell(0, 0, RED_LIGHT)
-  tm.set_cell(0, 1, RED_DARK)
+    var detector_pos:Vector2 = detector.global_position
+    var cell:Vector2 = tm.world_to_map(detector_pos)
+
+    tm.set_cell(cell.x, cell.y, RED_LIGHT if fmod(cell.x + cell.y, 2) == 0 else RED_DARK)
+
+func add_active_body(body):
+  detectors.append(body)
+
+func remove_active_body(body):
+  detectors.erase(body)
