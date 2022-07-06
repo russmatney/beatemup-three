@@ -10,7 +10,12 @@ var to_reset = {}
 # cells to mark active
 var to_mark = {}
 
-enum {NONE, BLUE_LIGHT, BLUE_DARK, RED_LIGHT, RED_DARK}
+# correspond to the index of the tiles in the tilemap's tileset
+enum {NONE,
+    BLUE_LIGHT, BLUE_DARK, RED_LIGHT, RED_DARK,
+    ORANGE_LIGHT, ORANGE_DARK, GREEN_LIGHT, GREEN_DARK}
+# convenient for supporting various color types
+enum {BLUE, RED, ORANGE, GREEN}
 
 func _is_even(i: int) -> bool:
   return fmod(i, 2) == 0
@@ -32,18 +37,11 @@ func _process(_delta):
 
   for v in to_reset.keys():
     if not to_mark.has(v):
-      # reset this cell to blue
-      var curr_idx: int = tm.get_cellv(v)
-      var new_idx: int = BLUE_LIGHT if _is_even(v.x + v.y) else BLUE_DARK
-      if curr_idx != new_idx:
-        tm.set_cellv(v, new_idx)
+      mark_tile(v, BLUE)
       to_reset.erase(v)
 
   for v in to_mark.keys():
-    var curr_idx: int = tm.get_cellv(v)
-    var new_idx: int = RED_LIGHT if _is_even(v.x + v.y) else RED_DARK
-    if curr_idx != new_idx:
-      tm.set_cellv(v, new_idx)
+    mark_tile(v, RED)
     to_mark.erase(v)
     # store to be reset on the next pass (unless it is marked again)
     to_reset[v] = true
@@ -53,3 +51,25 @@ func add_active_body(body):
 
 func remove_active_body(body):
   detectors.erase(body.get_instance_id())
+
+func mark_tile(v: Vector2, color: int = BLUE):
+    var colord = color_to_tileset_color(color)
+    var new_tile_idx: int = color_for_cell(v, colord["light"], colord["dark"])
+    var curr_tile_idx: int = tm.get_cellv(v)
+    if curr_tile_idx != new_tile_idx:
+      tm.set_cellv(v, new_tile_idx)
+
+func color_for_cell(v: Vector2, light: int, dark: int) -> int:
+      return light if _is_even(v.x + v.y) else dark
+
+func color_to_tileset_color(color: int) -> Dictionary:
+    match color:
+        BLUE:
+            return {"light": BLUE_LIGHT, "dark": BLUE_DARK}
+        RED:
+            return {"light": RED_LIGHT, "dark": RED_DARK}
+        ORANGE:
+            return {"light": ORANGE_LIGHT, "dark": ORANGE_DARK}
+        GREEN:
+            return {"light": GREEN_LIGHT, "dark": GREEN_DARK}
+    return {}
