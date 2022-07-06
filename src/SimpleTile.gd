@@ -22,18 +22,17 @@ func _is_even(i: int) -> bool:
 
 func _process(_delta):
   for detector in detectors.values():
-    # TODO check if detector is still alive?
-    # TODO consider letting the detector/something else determine what to indicate on the map?
-    if "extents" in detector:
-      var first_cell = tm.world_to_map(detector.global_position - detector.extents)
-      var last_cell = tm.world_to_map(detector.global_position + detector.extents)
-      for x in range(first_cell.x, last_cell.x + 1):
-        for y in range(first_cell.y, last_cell.y + 1):
-          to_mark[Vector2(x, y)] = true
+    # TODO check if detector is still alive? (b/c things can die)
+    if detector.has_method("overlapping_cells"):
+      var cells = detector.overlapping_cells(tm)
+      var color = detector.mark_color if "mark_color" in detector else RED
+      for cell in cells:
+          to_mark[cell] = color
     else:
-      print("detector without extents!")
+      print("detector without overlapping_cells support!")
       var cell = tm.world_to_map(detector.global_position)
-      to_mark[cell] = true
+      var color = detector.mark_color if "mark_color" in detector else RED
+      to_mark[cell] = color
 
   for v in to_reset.keys():
     if not to_mark.has(v):
@@ -41,7 +40,7 @@ func _process(_delta):
       to_reset.erase(v)
 
   for v in to_mark.keys():
-    mark_tile(v, RED)
+    mark_tile(v, to_mark[v])
     to_mark.erase(v)
     # store to be reset on the next pass (unless it is marked again)
     to_reset[v] = true
