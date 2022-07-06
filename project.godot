@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "TileMap",
+"class": "DetectableTileMap",
+"language": "GDScript",
+"path": "res://src/DetectableTileMap.gd"
+}, {
 "base": "Area2D",
 "class": "TileDetector",
 "language": "GDScript",
 "path": "res://src/TileDetector.gd"
 } ]
 _global_script_class_icons={
+"DetectableTileMap": "",
 "TileDetector": ""
 }
 

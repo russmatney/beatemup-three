@@ -1,7 +1,7 @@
-class_name TileDetector
 extends Area2D
+class_name TileDetector
 
-# copy-pastaed from SimpleTile.gd
+# copy-pastaed from DetectableTileMap.gd
 enum color {BLUE, RED, ORANGE, GREEN}
 export(color) var mark_color = color.RED
 
@@ -9,8 +9,8 @@ onready var collision_shape = $CollisionShape2D
 
 func _on_body_entered(body: Node):
   if body is TileMap:
-    if body.get_parent().has_method("add_active_body"):
-      body.get_parent().add_active_body(self)
+    if body.has_method("add_active_body"):
+      body.add_active_body(self)
 
 # Returns an array of vector2s - the overlapping tilemap cell coordinates
 func overlapping_cells(tm: TileMap) -> Array:

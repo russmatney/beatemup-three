@@ -1,6 +1,5 @@
-extends Node2D
-
-onready var tm = $TileMap
+extends TileMap
+class_name DetectableTileMap
 
 # A dictionary by instance_id
 var detectors = {}
@@ -24,13 +23,13 @@ func _process(_delta):
   for detector in detectors.values():
     # TODO check if detector is still alive? (b/c things can die)
     if detector.has_method("overlapping_cells"):
-      var cells = detector.overlapping_cells(tm)
+      var cells = detector.overlapping_cells(self)
       var color = detector.mark_color if "mark_color" in detector else RED
       for cell in cells:
           to_mark[cell] = color
     else:
       print("detector without overlapping_cells support!")
-      var cell = tm.world_to_map(detector.global_position)
+      var cell = world_to_map(detector.global_position)
       var color = detector.mark_color if "mark_color" in detector else RED
       to_mark[cell] = color
 
@@ -54,9 +53,9 @@ func remove_active_body(body):
 func mark_tile(v: Vector2, color: int = BLUE):
     var colord = color_to_tileset_color(color)
     var new_tile_idx: int = color_for_cell(v, colord["light"], colord["dark"])
-    var curr_tile_idx: int = tm.get_cellv(v)
+    var curr_tile_idx: int = get_cellv(v)
     if curr_tile_idx != new_tile_idx:
-      tm.set_cellv(v, new_tile_idx)
+      set_cellv(v, new_tile_idx)
 
 func color_for_cell(v: Vector2, light: int, dark: int) -> int:
       return light if _is_even(v.x + v.y) else dark
