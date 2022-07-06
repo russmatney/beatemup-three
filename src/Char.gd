@@ -7,10 +7,13 @@ enum face_dir {LEFT, RIGHT}
 var facing = face_dir.LEFT
 
 onready var animated_sprite = $AnimatedSprite
+onready var facing_detector = $FacingDetector
+var facing_detector_x = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
   Notif.notif("ready")
+  facing_detector_x = facing_detector.transform.origin.x
 
 
 func _process(_delta):
@@ -21,10 +24,16 @@ func _process(_delta):
   var move_vector: Vector2 = Trols.move_dir()
   if move_vector.x > 0:
     facing = face_dir.LEFT
-    animated_sprite.flip_h = false
   elif move_vector.x < 0:
     facing = face_dir.RIGHT
-    animated_sprite.flip_h = true
+
+  match facing:
+      face_dir.LEFT:
+          animated_sprite.flip_h = false
+          facing_detector.transform.origin.x = facing_detector_x
+      face_dir.RIGHT:
+          animated_sprite.flip_h = true
+          facing_detector.transform.origin.x = -facing_detector_x
 
   if move_vector.length() == 0:
     animated_sprite.animation = "idle"
