@@ -19,6 +19,11 @@ config/icon="res://icon.png"
 Notif="*res://src/Notif.gd"
 Trols="*res://src/Trols.gd"
 
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
 [global]
 
 layer=false
