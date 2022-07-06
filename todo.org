@@ -6,4 +6,5 @@ CLOSED: [2022-07-05 Tue 12:43]
 CLOSED: [2022-07-05 Tue 14:42]
 * [X] initial movement (grid-y?)
 CLOSED: [2022-07-05 Tue 14:43]
+* [ ] highlight 'facing' tiles
 * [ ] initial ai for movement (target/goal?)
