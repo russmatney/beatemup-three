@@ -14,3 +14,6 @@ func move_dir():
     v_diff.y -= 1
 
   return v_diff.normalized()
+
+func is_attack(event):
+  return event.is_action_pressed("attack")
