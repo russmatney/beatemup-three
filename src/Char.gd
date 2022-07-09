@@ -65,7 +65,7 @@ func _process(_delta):
 
 ### physics_process #####################################################################
 
-const DECELERATION = 1000
+const DECELERATION = 100
 
 func _physics_process(delta):
   var move_vector: Vector2 = get_move_vector()
@@ -73,7 +73,6 @@ func _physics_process(delta):
     velocity = move_vector * speed
 
   velocity = velocity.move_toward(Vector2(), DECELERATION * delta)
-  # velocity.x = velocity.move_toward(Vector2(), DECELERATION * delta).x
 
   velocity = move_and_slide(velocity)
 
@@ -164,12 +163,14 @@ func kick():
 
 var stunned_time = 0.3
 var knocked_back_time = 0.5
+export(int) var PUNCH_FORCE = 20
+export(int) var KICK_FORCE = 100
 
 func take_punch(attacker):
   reset_combo()
   face_attacker(attacker)
   stunned = true
-  # TODO apply punch
+  apply_attack(attacker, PUNCH_FORCE)
   yield(get_tree().create_timer(stunned_time), "timeout")
   stunned = false
 
@@ -177,12 +178,19 @@ func take_kick(attacker):
   reset_combo()
   face_attacker(attacker)
   knocked_back = true
-  # TODO apply kick
+  apply_attack(attacker, KICK_FORCE)
   yield(get_tree().create_timer(knocked_back_time), "timeout")
   knocked_back = false
 
+func apply_attack(attacker, attack_force):
+  var force = Vector2(1, 0) * attack_force
+  if attacker.position.x > get_global_position().x:
+    # attacker is on the right, so x should be negative
+    force = force * -1
+  print("applying kick force", force)
+  velocity += force
+
 func face_attacker(attacker):
-  print("facing attacker", attacker.position, get_global_position())
   if attacker.position.x > get_global_position().x:
     facing = face_dir.RIGHT
   elif attacker.position.x < get_global_position().x:
