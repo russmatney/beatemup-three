@@ -9,3 +9,8 @@ CLOSED: [2022-07-05 Tue 14:43]
 * [X] highlight 'facing' tiles
 CLOSED: [2022-07-06 Wed 13:30]
 * [ ] initial ai for movement (target/goal?)
+* [ ] basic combat system
+** [ ] Simple combos: punch-punch-kick
+** [ ] Punch -> Stun, small knockback
+** [ ] Kick -> Knockdown, big knockback
+** [ ] Hitboxes: feet based

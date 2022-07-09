@@ -8,13 +8,17 @@ var facing = face_dir.LEFT
 
 onready var animated_sprite = $AnimatedSprite
 onready var facing_detector = $FacingDetector
-var facing_detector_x = 0
+
+onready var punchbox = $Punchbox
+onready var kickbox = $Kickbox
+onready var hurtbox = $Hurtbox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
   Notif.notif("ready")
-  facing_detector_x = facing_detector.transform.origin.x
 
+func flip_area(area: Area2D):
+  area.transform.origin.x *= -1
 
 func _process(_delta):
   for i in get_slide_count():
@@ -22,18 +26,26 @@ func _process(_delta):
     print("player coll", collision)
 
   var move_vector: Vector2 = Trols.move_dir()
+  var old_facing = facing
   if move_vector.x > 0:
     facing = face_dir.LEFT
   elif move_vector.x < 0:
     facing = face_dir.RIGHT
 
-  match facing:
-      face_dir.LEFT:
-          animated_sprite.flip_h = false
-          facing_detector.transform.origin.x = facing_detector_x
-      face_dir.RIGHT:
-          animated_sprite.flip_h = true
-          facing_detector.transform.origin.x = -facing_detector_x
+  if old_facing != facing:
+      match facing:
+          face_dir.LEFT:
+              animated_sprite.flip_h = false
+              flip_area(facing_detector)
+              flip_area(punchbox)
+              flip_area(kickbox)
+              flip_area(hurtbox)
+          face_dir.RIGHT:
+              animated_sprite.flip_h = true
+              flip_area(facing_detector)
+              flip_area(punchbox)
+              flip_area(kickbox)
+              flip_area(hurtbox)
 
   if move_vector.length() == 0:
     animated_sprite.animation = "idle"
