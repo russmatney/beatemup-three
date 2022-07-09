@@ -40,10 +40,6 @@ func update_facing(dir: int):
   face_area(hurtbox)
 
 func _process(_delta):
-  for i in get_slide_count():
-    var collision = get_slide_collision(i)
-    print("player coll", collision)
-
   var move_vector: Vector2 = get_move_vector()
   var old_facing = facing
   if move_vector.x > 0:
@@ -108,6 +104,8 @@ signal kick
 func can_attack():
   return not punching and not kicking and not stunned and not knocked_back
 
+var attack_queue = 0
+
 func attack():
   if can_attack():
     if combo_count >= 2:
@@ -120,14 +118,24 @@ func attack():
       # restart the combo timer.
       combo_timer.start(combo_timeout)
   else:
-    print("dead input, TODO handle combo-queuing")
-    # TODO queue punch/kick
+    if punching or kicking:
+      if attack_queue < 1:
+        attack_queue += 1
+      else:
+        print("refusing to queue more attacks")
+    elif stunned or knocked_back:
+      print("dead input, attack input while stunned/knocked_back")
+    else:
+      print("some other dead input on attack")
+
 
 func _on_ComboTimer_timeout():
   reset_combo()
 
+# Resets the combo and the queue
 func reset_combo():
   combo_count = 0
+  attack_queue = 0
 
 func punch():
   punching = true
@@ -143,6 +151,9 @@ func punch():
 
   yield(get_tree().create_timer(punch_cooldown), "timeout")
   punching = false
+  if attack_queue > 0:
+    attack_queue -= 1
+    attack()
 
 func kick():
   kicking = true
@@ -170,6 +181,8 @@ func take_punch(attacker):
   reset_combo()
   face_attacker(attacker)
   stunned = true
+  # TODO consider only knocking back on punch if they are close
+  # i.e. don't punch them out of punch-range
   apply_attack(attacker, PUNCH_FORCE)
   yield(get_tree().create_timer(stunned_time), "timeout")
   stunned = false
@@ -187,7 +200,6 @@ func apply_attack(attacker, attack_force):
   if attacker.position.x > get_global_position().x:
     # attacker is on the right, so x should be negative
     force = force * -1
-  print("applying kick force", force)
   velocity += force
 
 func face_attacker(attacker):
