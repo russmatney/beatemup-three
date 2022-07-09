@@ -27,13 +27,13 @@ _global_script_class_icons={
 [application]
 
 config/name="BeatEmUpThree"
-run/main_scene="res://src/MovementDemo.tscn"
+run/main_scene="res://src/demos/MovementDemo.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Notif="*res://src/Notif.gd"
-Trols="*res://src/Trols.gd"
+Notif="*res://src/autoloads/Notif.gd"
+Trols="*res://src/autoloads/Trols.gd"
 
 [display]
 
