@@ -25,7 +25,7 @@ func get_move_vector():
 
 ### process #####################################################################
 
-func face_area(area: Area2D):
+func flip_transform(area):
   match facing:
     face_dir.LEFT:
       area.transform.origin.x = -abs(area.transform.origin.x)
@@ -34,10 +34,11 @@ func face_area(area: Area2D):
 
 func update_facing(dir: int):
   animated_sprite.flip_h = dir == face_dir.LEFT
-  face_area(facing_detector)
-  face_area(punchbox)
-  face_area(kickbox)
-  face_area(hurtbox)
+  flip_transform(animated_sprite)
+  flip_transform(facing_detector)
+  flip_transform(punchbox)
+  flip_transform(kickbox)
+  flip_transform(hurtbox)
 
 func _process(_delta):
   var move_vector: Vector2 = get_move_vector()
@@ -54,6 +55,10 @@ func _process(_delta):
     animated_sprite.animation = "stunned"
   elif knocked_back:
     animated_sprite.animation = "knocked_back"
+  elif kicking:
+    animated_sprite.animation = "kick"
+  elif punching:
+    animated_sprite.animation = "punch"
   elif move_vector.length() > 0:
     animated_sprite.animation = "walk"
   else:
