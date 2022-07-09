@@ -8,9 +8,15 @@ CLOSED: [2022-07-05 Tue 14:42]
 CLOSED: [2022-07-05 Tue 14:43]
 * [X] highlight 'facing' tiles
 CLOSED: [2022-07-06 Wed 13:30]
-* [ ] initial ai for movement (target/goal?)
-* [ ] basic combat system
-** [ ] Simple combos: punch-punch-kick
-** [ ] Punch -> Stun, small knockback
-** [ ] Kick -> Knockdown, big knockback
-** [ ] Hitboxes: feet based
+* [X] basic combat system
+** [X] Simple combos: punch-punch-kick
+** [X] Punch -> Stun, small knockback
+** [X] Kick -> Knockdown, big knockback
+** [X] Hitboxes: feet based
+* [ ] combat animations
+- [ ] punch
+- [ ] kick
+- [ ] stunned
+- [ ] knocked_back
+* [ ] initial movement ai
+* [ ] initial combat ai
