@@ -3,5 +3,10 @@
  :tasks
  {:requires ([bb-godot.tasks :as tasks])
   :enter    (println "Running task:" (:name (current-task)))
-  watch     tasks/watch
-  pixels    tasks/pixels}}
+
+  watch  tasks/watch
+  pixels tasks/pixels
+
+  install-addons
+  (tasks/install-addons
+    {"behavior_tree" "kagenash1/godot-behavior-tree/addons/behavior_tree"})}}
