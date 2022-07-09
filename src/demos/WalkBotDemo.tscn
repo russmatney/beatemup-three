@@ -17,13 +17,13 @@ script = ExtResource( 3 )
 
 [node name="Char" parent="." instance=ExtResource( 1 )]
 position = Vector2( 205, 43 )
-combo_timeout = 0.5
+combo_timeout = 1.0
 
 [node name="Char2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 100, 142 )
 is_player = true
-combo_timeout = 0.5
+combo_timeout = 1.0
 
 [node name="Char3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 181, 259 )
-combo_timeout = 0.5
+combo_timeout = 1.0

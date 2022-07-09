@@ -25,8 +25,19 @@ func get_move_vector():
 
 ### process #####################################################################
 
-func flip_area(area: Area2D):
-  area.transform.origin.x *= -1
+func face_area(area: Area2D):
+  match facing:
+    face_dir.LEFT:
+      area.transform.origin.x = -abs(area.transform.origin.x)
+    face_dir.RIGHT:
+      area.transform.origin.x = abs(area.transform.origin.x)
+
+func update_facing(dir: int):
+  animated_sprite.flip_h = dir == face_dir.LEFT
+  face_area(facing_detector)
+  face_area(punchbox)
+  face_area(kickbox)
+  face_area(hurtbox)
 
 func _process(_delta):
   for i in get_slide_count():
@@ -36,36 +47,34 @@ func _process(_delta):
   var move_vector: Vector2 = get_move_vector()
   var old_facing = facing
   if move_vector.x > 0:
-    facing = face_dir.LEFT
-  elif move_vector.x < 0:
     facing = face_dir.RIGHT
+  elif move_vector.x < 0:
+    facing = face_dir.LEFT
 
   if old_facing != facing:
-      match facing:
-          face_dir.LEFT:
-              animated_sprite.flip_h = false
-              flip_area(facing_detector)
-              flip_area(punchbox)
-              flip_area(kickbox)
-              flip_area(hurtbox)
-          face_dir.RIGHT:
-              animated_sprite.flip_h = true
-              flip_area(facing_detector)
-              flip_area(punchbox)
-              flip_area(kickbox)
-              flip_area(hurtbox)
+    update_facing(facing)
 
-  if move_vector.length() == 0:
-    animated_sprite.animation = "idle"
-  else:
+  if stunned:
+    animated_sprite.animation = "stunned"
+  elif knocked_back:
+    animated_sprite.animation = "knocked_back"
+  elif move_vector.length() > 0:
     animated_sprite.animation = "walk"
+  else:
+    animated_sprite.animation = "idle"
 
 ### physics_process #####################################################################
 
-func _physics_process(_delta):
+const DECELERATION = 1000
+
+func _physics_process(delta):
   var move_vector: Vector2 = get_move_vector()
   if not punching and not kicking and not stunned and not knocked_back:
     velocity = move_vector * speed
+
+  velocity = velocity.move_toward(Vector2(), DECELERATION * delta)
+  # velocity.x = velocity.move_toward(Vector2(), DECELERATION * delta).x
+
   velocity = move_and_slide(velocity)
 
 ### unhandled_input #####################################################################
@@ -74,12 +83,11 @@ func _unhandled_input(event):
   if is_player and Trols.is_attack(event):
     attack()
 
-### combat #####################################################################
+### attacking #####################################################################
 
 var stunned = false
 var knocked_back = false
 
-var punch_count = 0
 var punching = false
 var punch_windup = 0.1
 var punch_cooldown = 0.2
@@ -91,29 +99,38 @@ var kick_cooldown = 0.3
 var in_punchbox = []
 var in_kickbox = []
 
-# TODO add $ComboTimer node
 onready var combo_timer = $ComboTimer
-export(float) var combo_timeout := 0.5
+export(float) var combo_timeout := 1
+var combo_count = 0
 
 signal punch
 signal kick
 
-func attack():
-  # can-attack?
-  # punch or kick?
-  # cancel attack if hit before/during windup?
-
-  if punch_count >= 2:
-    kick()
-  else:
-    punch()
-
 func can_attack():
-  return not stunned and not knocked_back
+  return not punching and not kicking and not stunned and not knocked_back
+
+func attack():
+  if can_attack():
+    if combo_count >= 2:
+      reset_combo()
+      kick()
+    else:
+      combo_count += 1
+      punch()
+
+      # restart the combo timer.
+      combo_timer.start(combo_timeout)
+  else:
+    print("dead input, TODO handle combo-queuing")
+    # TODO queue punch/kick
+
+func _on_ComboTimer_timeout():
+  reset_combo()
+
+func reset_combo():
+  combo_count = 0
 
 func punch():
-  # TODO cut off with some queue (so we don't wait for the finish before continuing the combo)
-  punch_count += 1
   punching = true
   yield(get_tree().create_timer(punch_windup), "timeout")
 
@@ -122,28 +139,60 @@ func punch():
 
     for ch in in_punchbox:
       print("punching: ", ch)
+      if ch.has_method("take_punch"):
+        ch.take_punch(self)
 
   yield(get_tree().create_timer(punch_cooldown), "timeout")
   punching = false
 
 func kick():
-  punch_count = 0
   kicking = true
   yield(get_tree().create_timer(kick_windup), "timeout")
 
   if not stunned and not knocked_back:
     emit_signal("kick", self)
+
     for ch in in_kickbox:
-      print("kickbox: ", ch)
+      print("kicking: ", ch)
+      if ch.has_method("take_kick"):
+        ch.take_kick(self)
 
   yield(get_tree().create_timer(kick_cooldown), "timeout")
   kicking = false
+
+### defending? #####################################################################
+
+var stunned_time = 0.3
+var knocked_back_time = 0.5
+
+func take_punch(attacker):
+  reset_combo()
+  face_attacker(attacker)
+  stunned = true
+  # TODO apply punch
+  yield(get_tree().create_timer(stunned_time), "timeout")
+  stunned = false
+
+func take_kick(attacker):
+  reset_combo()
+  face_attacker(attacker)
+  knocked_back = true
+  # TODO apply kick
+  yield(get_tree().create_timer(knocked_back_time), "timeout")
+  knocked_back = false
+
+func face_attacker(attacker):
+  print("facing attacker", attacker.position, get_global_position())
+  if attacker.position.x > get_global_position().x:
+    facing = face_dir.RIGHT
+  elif attacker.position.x < get_global_position().x:
+    facing = face_dir.LEFT
+  update_facing(facing)
 
 ### hitbox signals ##########################################################
 
 func _on_Punchbox_area_entered(area):
   if area.is_in_group("hurtboxes") and area != hurtbox:
-    print("area entered punchbox ", area, " ", area.get_parent())
     in_punchbox.append(area.get_parent())
 
 func _on_Punchbox_area_exited(area):

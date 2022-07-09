@@ -171,9 +171,12 @@ margin_right = 32.0
 margin_bottom = -32.0
 text = "Debug"
 
+[node name="ComboTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="StandingDetector" to="StandingDetector" method="_on_body_entered"]
 [connection signal="body_entered" from="FacingDetector" to="FacingDetector" method="_on_body_entered"]
 [connection signal="area_entered" from="Punchbox" to="." method="_on_Punchbox_area_entered"]
 [connection signal="area_exited" from="Punchbox" to="." method="_on_Punchbox_area_exited"]
 [connection signal="area_entered" from="Kickbox" to="." method="_on_Kickbox_area_entered"]
 [connection signal="area_exited" from="Kickbox" to="." method="_on_Kickbox_area_exited"]
+[connection signal="timeout" from="ComboTimer" to="." method="_on_ComboTimer_timeout"]
