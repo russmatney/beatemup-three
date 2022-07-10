@@ -20,12 +20,10 @@ func _tick(agent: Node, _blackboard: Blackboard) -> bool:
   var time: float
   var direction = Vector2()
   var current_pos = agent.get_global_position()
-  print("current_pos", current_pos)
 
   var closest_point
   var closest_point_distance
   for point in agent.patrol_points:
-    print("point in patrol points ", point)
     var dist = current_pos.distance_to(point)
     if not closest_point or dist < closest_point_distance:
       closest_point_distance = dist

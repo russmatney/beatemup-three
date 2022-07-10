@@ -90,8 +90,12 @@ const DECELERATION = 100
 
 func _physics_process(delta):
   var move_vector: Vector2 = get_move_vector()
-  if not punching and not kicking and not stunned and not knocked_back:
-    velocity = move_vector * speed
+
+  if punching or kicking or stunned or knocked_back:
+    move_vector = Vector2()
+
+  # note, constant velocity here
+  velocity = move_vector * speed
 
   velocity = velocity.move_toward(Vector2(), DECELERATION * delta)
 
