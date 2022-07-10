@@ -6,6 +6,7 @@
 [node name="Goon" type="Node2D"]
 
 [node name="Char" parent="." instance=ExtResource( 2 )]
+combo_timeout = 1.0
 
 [node name="GoonBehaviorTree" parent="." instance=ExtResource( 1 )]
 is_active = true

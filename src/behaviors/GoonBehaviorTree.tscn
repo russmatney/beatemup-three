@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/behaviors/WalkRight.gd" type="Script" id=1]
 [ext_resource path="res://addons/behavior_tree/src/behavior_tree.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/behaviors/Punch.gd" type="Script" id=8]
 [ext_resource path="res://src/behaviors/isKicking.gd" type="Script" id=9]
 [ext_resource path="res://src/behaviors/isPunching.gd" type="Script" id=10]
+[ext_resource path="res://src/behaviors/TurnAround.gd" type="Script" id=11]
 
 [node name="GoonBehaviorTree" type="Node"]
 script = ExtResource( 2 )
@@ -34,18 +35,24 @@ debug = true
 script = ExtResource( 6 )
 debug = true
 
-[node name="isPunching" type="Node" parent="root selector/WanderRandomSelector"]
+[node name="isNotPunching" type="Node" parent="root selector/WanderRandomSelector"]
 script = ExtResource( 10 )
 debug = true
+reverse = true
 
-[node name="Punch" type="Node" parent="root selector/WanderRandomSelector/isPunching"]
+[node name="Punch" type="Node" parent="root selector/WanderRandomSelector/isNotPunching"]
 script = ExtResource( 8 )
 debug = true
 
-[node name="isKicking" type="Node" parent="root selector/WanderRandomSelector"]
+[node name="isNotKicking" type="Node" parent="root selector/WanderRandomSelector"]
 script = ExtResource( 9 )
 debug = true
+reverse = true
 
-[node name="Kick" type="Node" parent="root selector/WanderRandomSelector/isKicking"]
+[node name="Kick" type="Node" parent="root selector/WanderRandomSelector/isNotKicking"]
 script = ExtResource( 7 )
+debug = true
+
+[node name="TurnAround" type="Node" parent="root selector/WanderRandomSelector"]
+script = ExtResource( 11 )
 debug = true

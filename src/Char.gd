@@ -38,6 +38,7 @@ func flip_transform(area):
 
 
 func update_facing(dir: int):
+  facing = dir
   animated_sprite.flip_h = dir == face_dir.LEFT
   flip_transform(animated_sprite)
   flip_transform(facing_detector)
@@ -49,13 +50,14 @@ func update_facing(dir: int):
 func _process(_delta):
   var move_vector: Vector2 = get_move_vector()
   var old_facing = facing
+  var new_facing = facing
   if move_vector.x > 0:
-    facing = face_dir.RIGHT
+    new_facing = face_dir.RIGHT
   elif move_vector.x < 0:
-    facing = face_dir.LEFT
+    new_facing = face_dir.LEFT
 
-  if old_facing != facing:
-    update_facing(facing)
+  if old_facing != new_facing:
+    update_facing(new_facing)
 
   if stunned:
     animated_sprite.animation = "stunned"
@@ -230,11 +232,12 @@ func apply_attack(attacker, attack_force):
 
 
 func face_attacker(attacker):
+  var new_facing = facing
   if attacker.position.x > get_global_position().x:
-    facing = face_dir.RIGHT
+    new_facing = face_dir.RIGHT
   elif attacker.position.x < get_global_position().x:
-    facing = face_dir.LEFT
-  update_facing(facing)
+    new_facing = face_dir.LEFT
+  update_facing(new_facing)
 
 
 ### hitbox signals ##########################################################
