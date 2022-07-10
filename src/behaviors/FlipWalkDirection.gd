@@ -16,12 +16,16 @@ func _tick(agent: Node, _blackboard: Blackboard) -> bool:
   var current_position = agent.get_global_position()
 
   if current_position.y - threshold <= y_min_bound:
-    agent.move_in_dir.y *= -1
+    if agent.move_in_dir.y < 0:
+      agent.move_in_dir.y *= -1
   elif current_position.y + threshold >= y_max_bound:
-    agent.move_in_dir.y *= -1
+    if agent.move_in_dir.y > 0:
+      agent.move_in_dir.y *= -1
   elif current_position.x - threshold <= x_min_bound:
-    agent.move_in_dir.x *= -1
+    if agent.move_in_dir.x < 0:
+      agent.move_in_dir.x *= -1
   elif current_position.x - threshold >= x_max_bound:
-    agent.move_in_dir.x *= -1
+    if agent.move_in_dir.x > 0:
+      agent.move_in_dir.x *= -1
 
   return succeed()
