@@ -13,10 +13,27 @@ CLOSED: [2022-07-06 Wed 13:30]
 ** [X] Punch -> Stun, small knockback
 ** [X] Kick -> Knockdown, big knockback
 ** [X] Hitboxes: feet based
-* [ ] combat animations
-- [ ] punch
-- [ ] kick
-- [ ] stunned
-- [ ] knocked_back
+* [X] combat animations
+CLOSED: [2022-07-09 Sat 16:42]
+- [X] punch
+- [X] kick
+- [X] stunned
+- [X] knocked_back
 * [ ] initial movement ai
 * [ ] initial combat ai
+* [ ] health
+* [ ] player death/rebirth
+* [ ] initial UI
+- [ ] health bar
+- [ ] lives
+- [ ] time
+- [ ] notifs
+- [ ] current combatant
+* [ ] initial sound
+- [ ] punch
+- [ ] kick
+- [ ] take_punch
+- [ ] take_kick
+- [ ] death
+- [ ] walk?
+* [ ] enemy waves
