@@ -3,7 +3,7 @@ extends KinematicBody2D
 var velocity = Vector2()
 var speed = 200
 
-enum face_dir {LEFT, RIGHT}
+enum face_dir { LEFT, RIGHT }
 var facing = face_dir.LEFT
 
 export(bool) var is_player = false
@@ -17,13 +17,17 @@ onready var hurtbox = $Hurtbox
 
 ### ready #####################################################################
 
+
 func _ready():
   Notif.notif("ready")
+
 
 func get_move_vector():
   return Trols.move_dir() if is_player else Vector2()
 
+
 ### process #####################################################################
+
 
 func flip_transform(area):
   match facing:
@@ -32,6 +36,7 @@ func flip_transform(area):
     face_dir.RIGHT:
       area.transform.origin.x = abs(area.transform.origin.x)
 
+
 func update_facing(dir: int):
   animated_sprite.flip_h = dir == face_dir.LEFT
   flip_transform(animated_sprite)
@@ -39,6 +44,7 @@ func update_facing(dir: int):
   flip_transform(punchbox)
   flip_transform(kickbox)
   flip_transform(hurtbox)
+
 
 func _process(_delta):
   var move_vector: Vector2 = get_move_vector()
@@ -64,9 +70,11 @@ func _process(_delta):
   else:
     animated_sprite.animation = "idle"
 
+
 ### physics_process #####################################################################
 
 const DECELERATION = 100
+
 
 func _physics_process(delta):
   var move_vector: Vector2 = get_move_vector()
@@ -77,11 +85,14 @@ func _physics_process(delta):
 
   velocity = move_and_slide(velocity)
 
+
 ### unhandled_input #####################################################################
+
 
 func _unhandled_input(event):
   if is_player and Trols.is_attack(event):
     attack()
+
 
 ### attacking #####################################################################
 
@@ -106,10 +117,13 @@ var combo_count = 0
 signal punch
 signal kick
 
+
 func can_attack():
   return not punching and not kicking and not stunned and not knocked_back
 
+
 var attack_queue = 0
+
 
 func attack():
   if can_attack():
@@ -137,17 +151,19 @@ func attack():
 func _on_ComboTimer_timeout():
   reset_combo()
 
+
 # Resets the combo and the queue
 func reset_combo():
   combo_count = 0
   attack_queue = 0
+
 
 func punch():
   punching = true
   yield(get_tree().create_timer(punch_windup), "timeout")
 
   if not stunned and not knocked_back:
-    emit_signal("punch", self) # maybe just for metrics/ui?
+    emit_signal("punch", self)  # maybe just for metrics/ui?
 
     for ch in in_punchbox:
       print("punching: ", ch)
@@ -159,6 +175,7 @@ func punch():
   if attack_queue > 0:
     attack_queue -= 1
     attack()
+
 
 func kick():
   kicking = true
@@ -175,12 +192,14 @@ func kick():
   yield(get_tree().create_timer(kick_cooldown), "timeout")
   kicking = false
 
+
 ### defending? #####################################################################
 
 var stunned_time = 0.3
 var knocked_back_time = 0.5
 export(int) var PUNCH_FORCE = 20
 export(int) var KICK_FORCE = 100
+
 
 func take_punch(attacker):
   reset_combo()
@@ -192,6 +211,7 @@ func take_punch(attacker):
   yield(get_tree().create_timer(stunned_time), "timeout")
   stunned = false
 
+
 func take_kick(attacker):
   reset_combo()
   face_attacker(attacker)
@@ -200,12 +220,14 @@ func take_kick(attacker):
   yield(get_tree().create_timer(knocked_back_time), "timeout")
   knocked_back = false
 
+
 func apply_attack(attacker, attack_force):
   var force = Vector2(1, 0) * attack_force
   if attacker.position.x > get_global_position().x:
     # attacker is on the right, so x should be negative
     force = force * -1
   velocity += force
+
 
 func face_attacker(attacker):
   if attacker.position.x > get_global_position().x:
@@ -214,18 +236,23 @@ func face_attacker(attacker):
     facing = face_dir.LEFT
   update_facing(facing)
 
+
 ### hitbox signals ##########################################################
+
 
 func _on_Punchbox_area_entered(area):
   if area.is_in_group("hurtboxes") and area != hurtbox:
     in_punchbox.append(area.get_parent())
 
+
 func _on_Punchbox_area_exited(area):
   in_punchbox.erase(area.get_parent())
+
 
 func _on_Kickbox_area_entered(area):
   if area.is_in_group("hurtboxes") and area != hurtbox:
     in_kickbox.append(area.get_parent())
+
 
 func _on_Kickbox_area_exited(area):
   in_kickbox.erase(area.get_parent())

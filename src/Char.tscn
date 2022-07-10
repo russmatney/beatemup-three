@@ -4,17 +4,21 @@
 [ext_resource path="res://src/Char.gd" type="Script" id=2]
 [ext_resource path="res://src/TileDetector.gd" type="Script" id=3]
 
-[sub_resource type="AtlasTexture" id=22]
+[sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 80, 64 )
+region = Rect2( 240, 0, 80, 64 )
 
-[sub_resource type="AtlasTexture" id=23]
+[sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 1 )
-region = Rect2( 80, 0, 80, 64 )
+region = Rect2( 320, 0, 80, 64 )
 
-[sub_resource type="AtlasTexture" id=24]
+[sub_resource type="AtlasTexture" id=31]
 atlas = ExtResource( 1 )
-region = Rect2( 160, 0, 80, 64 )
+region = Rect2( 400, 0, 80, 64 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 1 )
+region = Rect2( 480, 0, 80, 64 )
 
 [sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 1 )
@@ -32,27 +36,23 @@ region = Rect2( 720, 0, 80, 64 )
 atlas = ExtResource( 1 )
 region = Rect2( 800, 0, 80, 64 )
 
-[sub_resource type="AtlasTexture" id=29]
+[sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 1 )
-region = Rect2( 240, 0, 80, 64 )
+region = Rect2( 0, 0, 80, 64 )
 
-[sub_resource type="AtlasTexture" id=30]
+[sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 1 )
-region = Rect2( 320, 0, 80, 64 )
+region = Rect2( 80, 0, 80, 64 )
 
-[sub_resource type="AtlasTexture" id=31]
+[sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 1 )
-region = Rect2( 400, 0, 80, 64 )
-
-[sub_resource type="AtlasTexture" id=32]
-atlas = ExtResource( 1 )
-region = Rect2( 480, 0, 80, 64 )
+region = Rect2( 160, 0, 80, 64 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
 "loop": true,
-"name": "idle",
+"name": "walk",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 25 ) ],
@@ -75,9 +75,9 @@ animations = [ {
 "name": "kick",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
 "loop": true,
-"name": "walk",
+"name": "idle",
 "speed": 5.0
 } ]
 
@@ -166,13 +166,6 @@ position = Vector2( 40, 15 )
 modulate = Color( 0.733333, 0.176471, 0.0156863, 1 )
 self_modulate = Color( 0.733333, 0.176471, 0.0156863, 1 )
 shape = SubResource( 21 )
-
-[node name="DebugText" type="RichTextLabel" parent="."]
-margin_left = -32.0
-margin_top = -72.0
-margin_right = 32.0
-margin_bottom = -32.0
-text = "Debug"
 
 [node name="ComboTimer" type="Timer" parent="."]
 one_shot = true

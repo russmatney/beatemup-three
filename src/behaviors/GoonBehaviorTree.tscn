@@ -1,0 +1,51 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/behaviors/WalkRight.gd" type="Script" id=1]
+[ext_resource path="res://addons/behavior_tree/src/behavior_tree.gd" type="Script" id=2]
+[ext_resource path="res://addons/behavior_tree/src/btnodes/composites/bt_selector.gd" type="Script" id=3]
+[ext_resource path="res://src/behaviors/DetectsPlayer.gd" type="Script" id=4]
+[ext_resource path="res://addons/behavior_tree/src/btnodes/composites/bt_random_selector.gd" type="Script" id=5]
+[ext_resource path="res://src/behaviors/IdleForABit.gd" type="Script" id=6]
+[ext_resource path="res://src/behaviors/Kick.gd" type="Script" id=7]
+[ext_resource path="res://src/behaviors/Punch.gd" type="Script" id=8]
+[ext_resource path="res://src/behaviors/isKicking.gd" type="Script" id=9]
+[ext_resource path="res://src/behaviors/isPunching.gd" type="Script" id=10]
+
+[node name="GoonBehaviorTree" type="Node"]
+script = ExtResource( 2 )
+
+[node name="root selector" type="Node" parent="."]
+script = ExtResource( 3 )
+debug = true
+
+[node name="DetectsPlayer" type="Node" parent="root selector"]
+script = ExtResource( 4 )
+debug = true
+
+[node name="WalkRight2" type="Node" parent="root selector/DetectsPlayer"]
+script = ExtResource( 1 )
+debug = true
+
+[node name="WanderRandomSelector" type="Node" parent="root selector"]
+script = ExtResource( 5 )
+debug = true
+
+[node name="IdleForABit" type="Node" parent="root selector/WanderRandomSelector"]
+script = ExtResource( 6 )
+debug = true
+
+[node name="isPunching" type="Node" parent="root selector/WanderRandomSelector"]
+script = ExtResource( 10 )
+debug = true
+
+[node name="Punch" type="Node" parent="root selector/WanderRandomSelector/isPunching"]
+script = ExtResource( 8 )
+debug = true
+
+[node name="isKicking" type="Node" parent="root selector/WanderRandomSelector"]
+script = ExtResource( 9 )
+debug = true
+
+[node name="Kick" type="Node" parent="root selector/WanderRandomSelector/isKicking"]
+script = ExtResource( 7 )
+debug = true

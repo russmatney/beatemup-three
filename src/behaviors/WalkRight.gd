@@ -10,4 +10,4 @@ func _tick(agent: Node, blackboard: Blackboard) -> bool:
 
   print("walking right?, tick, tick", agent, blackboard)
 
-  return succeed()
+  return fail()
