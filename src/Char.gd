@@ -3,6 +3,9 @@ extends KinematicBody2D
 var velocity = Vector2()
 var speed = 200
 
+var move_in_dir = Vector2()
+var patrol_points = []
+
 enum face_dir { LEFT, RIGHT }
 var facing = face_dir.LEFT
 
@@ -21,9 +24,16 @@ onready var hurtbox = $Hurtbox
 func _ready():
   Notif.notif("ready")
 
+  patrol_points.append(get_global_position())
+
 
 func get_move_vector():
-  return Trols.move_dir() if is_player else Vector2()
+  if is_player:
+    return Trols.move_dir()
+  elif move_in_dir:
+    return move_in_dir.normalized()
+  else:
+    return Vector2()
 
 
 ### process #####################################################################

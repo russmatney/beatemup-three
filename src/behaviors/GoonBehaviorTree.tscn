@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/behaviors/WalkRight.gd" type="Script" id=1]
 [ext_resource path="res://addons/behavior_tree/src/behavior_tree.gd" type="Script" id=2]
@@ -11,48 +11,47 @@
 [ext_resource path="res://src/behaviors/isKicking.gd" type="Script" id=9]
 [ext_resource path="res://src/behaviors/isPunching.gd" type="Script" id=10]
 [ext_resource path="res://src/behaviors/TurnAround.gd" type="Script" id=11]
+[ext_resource path="res://src/behaviors/WalkInDirection.gd" type="Script" id=12]
 
 [node name="GoonBehaviorTree" type="Node"]
 script = ExtResource( 2 )
 
 [node name="root selector" type="Node" parent="."]
 script = ExtResource( 3 )
-debug = true
 
 [node name="DetectsPlayer" type="Node" parent="root selector"]
 script = ExtResource( 4 )
-debug = true
 
 [node name="WalkRight2" type="Node" parent="root selector/DetectsPlayer"]
 script = ExtResource( 1 )
-debug = true
 
 [node name="WanderRandomSelector" type="Node" parent="root selector"]
 script = ExtResource( 5 )
-debug = true
 
 [node name="IdleForABit" type="Node" parent="root selector/WanderRandomSelector"]
 script = ExtResource( 6 )
-debug = true
+is_active = false
 
 [node name="isNotPunching" type="Node" parent="root selector/WanderRandomSelector"]
 script = ExtResource( 10 )
-debug = true
+is_active = false
 reverse = true
 
 [node name="Punch" type="Node" parent="root selector/WanderRandomSelector/isNotPunching"]
 script = ExtResource( 8 )
-debug = true
 
 [node name="isNotKicking" type="Node" parent="root selector/WanderRandomSelector"]
 script = ExtResource( 9 )
-debug = true
+is_active = false
 reverse = true
 
 [node name="Kick" type="Node" parent="root selector/WanderRandomSelector/isNotKicking"]
 script = ExtResource( 7 )
-debug = true
 
 [node name="TurnAround" type="Node" parent="root selector/WanderRandomSelector"]
 script = ExtResource( 11 )
+is_active = false
+
+[node name="WalkInDirection" type="Node" parent="root selector/WanderRandomSelector"]
+script = ExtResource( 12 )
 debug = true
