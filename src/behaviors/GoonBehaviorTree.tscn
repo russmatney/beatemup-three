@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/behaviors/WalkRight.gd" type="Script" id=1]
 [ext_resource path="res://addons/behavior_tree/src/behavior_tree.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/behaviors/WalkInDirection.gd" type="Script" id=12]
 [ext_resource path="res://addons/behavior_tree/src/btnodes/composites/bt_parallel.gd" type="Script" id=13]
 [ext_resource path="res://src/behaviors/AtBoundary.gd" type="Script" id=14]
+[ext_resource path="res://src/behaviors/StunnedOrKnockedBack.gd" type="Script" id=15]
 [ext_resource path="res://src/behaviors/FlipWalkDirection.gd" type="Script" id=16]
 
 [node name="GoonBehaviorTree" type="Node"]
@@ -28,39 +29,43 @@ script = ExtResource( 4 )
 [node name="WalkRight2" type="Node" parent="root selector/DetectsPlayer"]
 script = ExtResource( 1 )
 
-[node name="WanderRandomSelector" type="Node" parent="root selector"]
+[node name="NotStunnedOrKnockedBack" type="Node" parent="root selector"]
+script = ExtResource( 15 )
+reverse = true
+
+[node name="WanderRandomSelector" type="Node" parent="root selector/NotStunnedOrKnockedBack"]
 script = ExtResource( 5 )
 
-[node name="IdleForABit" type="Node" parent="root selector/WanderRandomSelector"]
+[node name="IdleForABit" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector"]
 script = ExtResource( 6 )
 
-[node name="isNotPunching" type="Node" parent="root selector/WanderRandomSelector"]
+[node name="isNotPunching" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector"]
 script = ExtResource( 10 )
 reverse = true
 
-[node name="Punch" type="Node" parent="root selector/WanderRandomSelector/isNotPunching"]
+[node name="Punch" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector/isNotPunching"]
 script = ExtResource( 8 )
 
-[node name="isNotKicking" type="Node" parent="root selector/WanderRandomSelector"]
+[node name="isNotKicking" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector"]
 script = ExtResource( 9 )
 reverse = true
 
-[node name="Kick" type="Node" parent="root selector/WanderRandomSelector/isNotKicking"]
+[node name="Kick" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector/isNotKicking"]
 script = ExtResource( 7 )
 
-[node name="TurnAround" type="Node" parent="root selector/WanderRandomSelector"]
+[node name="TurnAround" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector"]
 script = ExtResource( 11 )
 
-[node name="Patrol" type="Node" parent="root selector/WanderRandomSelector"]
+[node name="Patrol" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector"]
 script = ExtResource( 13 )
 
-[node name="WalkInDirection" type="Node" parent="root selector/WanderRandomSelector/Patrol"]
+[node name="WalkInDirection" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector/Patrol"]
 script = ExtResource( 12 )
 allowed_wander_distance = 1000.0
 
-[node name="AtBoundary" type="Node" parent="root selector/WanderRandomSelector/Patrol"]
+[node name="AtBoundary" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector/Patrol"]
 script = ExtResource( 14 )
 
-[node name="FlipWalkDirection" type="Node" parent="root selector/WanderRandomSelector/Patrol/AtBoundary"]
+[node name="FlipWalkDirection" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector/Patrol/AtBoundary"]
 script = ExtResource( 16 )
 debug = true
