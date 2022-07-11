@@ -1,8 +1,9 @@
-extends BTLeaf
+extends BTConditional
 
+export(float) var min_complete_distance = 20
 
-# Take the attack slot
-func _tick(agent, blackboard):
+# Have we reached our claimed attack slot?
+func _pre_tick(agent, blackboard):
   var attack_map
   if blackboard.has_data("attack_map"):
     attack_map = blackboard.get_data("attack_map")
@@ -23,9 +24,9 @@ func _tick(agent, blackboard):
 
   if not agent_claimed_slot:
     print("warning, expected slot claimed for agent, but none found")
-    return failed()
+    assert(agent_claimed_slot)
 
-  # TODO face the target the whole time! even whem moving backwards
-  agent.approach_target(agent_claimed_slot.get_global_position())
+  var distance_from_slot = agent.get_global_position().distance_to(agent_claimed_slot.get_global_position())
 
-  return succeed()
+  if distance_from_slot <= min_complete_distance:
+    verified = true

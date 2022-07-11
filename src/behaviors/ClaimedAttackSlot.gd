@@ -1,8 +1,9 @@
-extends BTLeaf
+extends BTConditional
+
+# handles attack slots with a dict from attack_slot.object_id -> attacker.object-id
 
 
-# Take the attack slot
-func _tick(agent, blackboard):
+func _pre_tick(agent: Node, blackboard: Blackboard) -> void:
   var attack_map
   if blackboard.has_data("attack_map"):
     attack_map = blackboard.get_data("attack_map")
@@ -18,14 +19,8 @@ func _tick(agent, blackboard):
   for slot in target_slots:
     var attacker_with_claim_id = attack_map.get(slot.get_instance_id())
     if attacker_with_claim_id and attacker_with_claim_id == agent.get_instance_id():
-      agent_claimed_slot = slot
+      agent_claimed_slot = true
       break
 
-  if not agent_claimed_slot:
-    print("warning, expected slot claimed for agent, but none found")
-    return failed()
-
-  # TODO face the target the whole time! even whem moving backwards
-  agent.approach_target(agent_claimed_slot.get_global_position())
-
-  return succeed()
+  if agent_claimed_slot:
+    verified = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/behaviors/ApproachTarget.gd" type="Script" id=1]
 [ext_resource path="res://addons/behavior_tree/src/behavior_tree.gd" type="Script" id=2]
@@ -19,8 +19,15 @@
 [ext_resource path="res://src/behaviors/CanAttackTarget.gd" type="Script" id=17]
 [ext_resource path="res://src/behaviors/isApproachComplete.gd" type="Script" id=18]
 [ext_resource path="res://src/behaviors/Attack.gd" type="Script" id=19]
-[ext_resource path="res://src/behaviors/InTargetAttackSlot.gd" type="Script" id=20]
+[ext_resource path="res://src/behaviors/CanClaimAttackSlot.gd" type="Script" id=20]
 [ext_resource path="res://src/behaviors/EnterTargetAttackSlot.gd" type="Script" id=21]
+[ext_resource path="res://addons/behavior_tree/src/btnodes/composites/bt_sequence.gd" type="Script" id=22]
+[ext_resource path="res://addons/behavior_tree/src/btnodes/leaves/bt_wait.gd" type="Script" id=23]
+[ext_resource path="res://src/behaviors/ClaimAttackSlot.gd" type="Script" id=24]
+[ext_resource path="res://src/behaviors/ClaimedAttackSlot.gd" type="Script" id=25]
+[ext_resource path="res://src/behaviors/StopWalking.gd" type="Script" id=26]
+[ext_resource path="res://addons/behavior_tree/src/btnodes/decorators/bt_always.gd" type="Script" id=27]
+[ext_resource path="res://src/behaviors/EnterSlotComplete.gd" type="Script" id=28]
 
 [node name="GoonBehaviorTree" type="Node"]
 script = ExtResource( 2 )
@@ -30,36 +37,81 @@ script = ExtResource( 3 )
 
 [node name="DetectsTarget" type="Node" parent="root selector"]
 script = ExtResource( 4 )
-debug = true
 
-[node name="Approach or attack" type="Node" parent="root selector/DetectsTarget"]
+[node name="AlwaysSucceed" type="Node" parent="root selector/DetectsTarget"]
+script = ExtResource( 27 )
+always_what = 1
+
+[node name="Approach or Attack" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed"]
 script = ExtResource( 3 )
-debug = true
 
-[node name="isApproachNotComplete" type="Node" parent="root selector/DetectsTarget/Approach or attack"]
+[node name="ApproachOrStop" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack"]
+script = ExtResource( 3 )
+
+[node name="ApproachIsNotComplete" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ApproachOrStop"]
 script = ExtResource( 18 )
 debug = true
 reverse = true
-approach_complete_distance = 50.0
+approach_complete_distance = 130.0
 
-[node name="ApproachTarget" type="Node" parent="root selector/DetectsTarget/Approach or attack/isApproachNotComplete"]
+[node name="ApproachTarget" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ApproachOrStop/ApproachIsNotComplete"]
 script = ExtResource( 1 )
 debug = true
 
-[node name="CanAttackTarget" type="Node" parent="root selector/DetectsTarget/Approach or attack"]
+[node name="AlwaysFail" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ApproachOrStop"]
+script = ExtResource( 27 )
+
+[node name="StopWalking" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ApproachOrStop/AlwaysFail"]
+script = ExtResource( 26 )
+debug = true
+
+[node name="HasClaimedAttackSlot" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack"]
+script = ExtResource( 25 )
+debug = true
+abort_tree = true
+
+[node name="EnterSlotOrStop" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/HasClaimedAttackSlot"]
+script = ExtResource( 3 )
+debug = true
+
+[node name="EnterSlotComplete" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/HasClaimedAttackSlot/EnterSlotOrStop"]
+script = ExtResource( 28 )
+debug = true
+
+[node name="EnterAttackSlot" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/HasClaimedAttackSlot/EnterSlotOrStop/EnterSlotComplete"]
+script = ExtResource( 21 )
+debug = true
+
+[node name="AlwaysFail" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/HasClaimedAttackSlot/EnterSlotOrStop"]
+script = ExtResource( 27 )
+
+[node name="StopWalking" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/HasClaimedAttackSlot/EnterSlotOrStop/AlwaysFail"]
+script = ExtResource( 26 )
+debug = true
+
+[node name="CanAttackTarget" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack"]
 script = ExtResource( 17 )
 debug = true
 
-[node name="Attack" type="Node" parent="root selector/DetectsTarget/Approach or attack/CanAttackTarget"]
+[node name="PauseAndAttack" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/CanAttackTarget"]
+script = ExtResource( 22 )
+debug = true
+
+[node name="Wait (TODO dukes up)" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/CanAttackTarget/PauseAndAttack"]
+script = ExtResource( 23 )
+debug = true
+wait_time = 2.0
+
+[node name="Attack" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/CanAttackTarget/PauseAndAttack"]
 script = ExtResource( 19 )
 debug = true
 
-[node name="InTargetAttackSlot" type="Node" parent="root selector/DetectsTarget/Approach or attack"]
+[node name="CanClaimAttackSlot" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack"]
 script = ExtResource( 20 )
 debug = true
 
-[node name="EnterTargetAttackSlot" type="Node" parent="root selector/DetectsTarget/Approach or attack/InTargetAttackSlot"]
-script = ExtResource( 21 )
+[node name="ClaimAttackSlot" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/CanClaimAttackSlot"]
+script = ExtResource( 24 )
 debug = true
 
 [node name="NotStunnedOrKnockedBack" type="Node" parent="root selector"]

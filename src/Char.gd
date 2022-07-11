@@ -14,6 +14,10 @@ export(bool) var is_player = false
 # some target this agent wants to attack
 # assigned in behaviors/DetectsPlayer
 var target
+onready var attack_slot_a = $AttackSlotA
+onready var attack_slot_b = $AttackSlotB
+func attack_slots():
+  return [attack_slot_a, attack_slot_b]
 
 onready var animated_sprite = $AnimatedSprite
 onready var facing_detector = $FacingDetector
@@ -30,6 +34,7 @@ func _ready():
 
   patrol_points.append(get_global_position())
 
+  print("attack_slots", attack_slots())
 
 func get_move_vector():
   if is_player:
@@ -39,8 +44,10 @@ func get_move_vector():
   else:
     return Vector2()
 
-func approach_target():
-  if target:
+func approach_target(position = null):
+  if position:
+    move_in_dir = get_global_position().direction_to(position).normalized()
+  elif target:
     # if target is valid
     move_in_dir = get_global_position().direction_to(target.get_global_position()).normalized()
   else:

@@ -22,15 +22,12 @@ script = ExtResource( 3 )
 modulate = Color( 1, 0.713726, 0, 1 )
 position = Vector2( 100, 142 )
 is_player = true
-combo_timeout = 1.0
 
 [node name="Char" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 237, 338 )
-combo_timeout = 1.0
 
 [node name="Char2" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 154, 241 )
-combo_timeout = 1.0
 
 [node name="Goon" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 374, 144 )
