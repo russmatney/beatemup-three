@@ -30,11 +30,9 @@ onready var hurtbox = $Hurtbox
 
 
 func _ready():
-  Notif.notif("ready")
-
   patrol_points.append(get_global_position())
 
-func get_move_vector():
+func get_intended_move_vector():
   if is_player:
     return Trols.move_dir()
   elif move_in_dir:
@@ -64,7 +62,7 @@ func flip_transform(area):
 
 func update_facing(dir: int):
   facing = dir
-  animated_sprite.flip_h = dir == face_dir.LEFT
+  animated_sprite.flip_h = facing == face_dir.LEFT
   flip_transform(animated_sprite)
   flip_transform(facing_detector)
   flip_transform(punchbox)
@@ -73,7 +71,7 @@ func update_facing(dir: int):
 
 
 func _process(_delta):
-  var move_vector: Vector2 = get_move_vector()
+  var move_vector: Vector2 = get_intended_move_vector()
   var old_facing = facing
   var new_facing = facing
   if move_vector.x > 0:
@@ -104,14 +102,17 @@ const DECELERATION = 100
 
 
 func _physics_process(delta):
-  var move_vector: Vector2 = get_move_vector()
+  var intended_move_vector: Vector2 = get_intended_move_vector()
 
   if punching or kicking or stunned or knocked_back:
-    move_vector = Vector2()
+    intended_move_vector = Vector2()
 
-  # note, constant velocity here
-  velocity = move_vector * speed
+  if not stunned and not knocked_back:
+    # only move with intent when not stunned/blocked
+    # note, constant velocity here
+    velocity = intended_move_vector * speed
 
+  # decelerate
   velocity = velocity.move_toward(Vector2(), DECELERATION * delta)
 
   velocity = move_and_slide(velocity)
@@ -255,7 +256,7 @@ func take_kick(attacker):
 
 func apply_attack(attacker, attack_force):
   var force = Vector2(1, 0) * attack_force
-  if attacker.position.x > get_global_position().x:
+  if attacker.get_global_position().x > get_global_position().x:
     # attacker is on the right, so x should be negative
     force = force * -1
   velocity += force
@@ -263,9 +264,9 @@ func apply_attack(attacker, attack_force):
 
 func face_attacker(attacker):
   var new_facing = facing
-  if attacker.position.x > get_global_position().x:
+  if attacker.get_global_position().x > get_global_position().x:
     new_facing = face_dir.RIGHT
-  elif attacker.position.x < get_global_position().x:
+  elif attacker.get_global_position().x < get_global_position().x:
     new_facing = face_dir.LEFT
   update_facing(new_facing)
 

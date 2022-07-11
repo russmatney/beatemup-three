@@ -32,9 +32,6 @@ func _pre_tick(agent: Node, blackboard: Blackboard) -> void:
         smallest_dist = dist
         closest_open_slot = slot
 
-  if not closest_open_slot:
-    print("warning! expected open slot, but none was available")
-
   if already_owned_slot_id and already_owned_slot_id != closest_open_slot.get_instance_id():
     # we should switch to the closer slot
     verified = true

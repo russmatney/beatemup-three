@@ -35,13 +35,13 @@
 [node name="GoonBehaviorTree" type="Node"]
 script = ExtResource( 2 )
 is_active = true
-debug = true
 
 [node name="root selector" type="Node" parent="."]
 script = ExtResource( 3 )
 
 [node name="DetectsTarget" type="Node" parent="root selector"]
 script = ExtResource( 4 )
+target_group = "player"
 
 [node name="AlwaysSucceed" type="Node" parent="root selector/DetectsTarget"]
 script = ExtResource( 27 )
@@ -70,21 +70,17 @@ script = ExtResource( 1 )
 [node name="AlwaysFail" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ApproachOrStop"]
 script = ExtResource( 27 )
 
-[node name="ApproachComplete, StopWalking" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ApproachOrStop/AlwaysFail"]
+[node name="ApproachComplete, StopWalking (does this break knockback\?)" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ApproachOrStop/AlwaysFail"]
 script = ExtResource( 26 )
-debug = true
 
 [node name="ClaimSlotOrWait" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack"]
 script = ExtResource( 3 )
-debug = true
 
 [node name="CheckIfCloserSlot" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait"]
 script = ExtResource( 32 )
-debug = true
 
 [node name="ClaimCloserSlot" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/CheckIfCloserSlot"]
 script = ExtResource( 24 )
-debug = true
 
 [node name="HasClaimedAttackSlot" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait"]
 script = ExtResource( 25 )
@@ -94,53 +90,46 @@ script = ExtResource( 22 )
 
 [node name="FaceTarget" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence"]
 script = ExtResource( 29 )
-debug = true
 
-[node name="MeanderInSlotOrAttack" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence"]
+[node name="RopeADope" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence"]
 script = ExtResource( 3 )
-debug = true
 
-[node name="CheckEnteredSlot" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/MeanderInSlotOrAttack"]
+[node name="CheckEnteredSlot" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/RopeADope"]
 script = ExtResource( 28 )
-debug = true
 reverse = true
 
-[node name="BTRepeatUntil" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/MeanderInSlotOrAttack/CheckEnteredSlot"]
+[node name="BTRepeatUntil" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/RopeADope/CheckEnteredSlot"]
 script = ExtResource( 31 )
 until_what = 1
 
-[node name="EnterAttackSlot" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/MeanderInSlotOrAttack/CheckEnteredSlot/BTRepeatUntil"]
+[node name="EnterAttackSlot" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/RopeADope/CheckEnteredSlot/BTRepeatUntil"]
 script = ExtResource( 21 )
 
-[node name="PauseAndAttack" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/MeanderInSlotOrAttack"]
+[node name="PauseAndAttack" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/RopeADope"]
 script = ExtResource( 22 )
-debug = true
 
-[node name="CanAttackTarget" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/MeanderInSlotOrAttack/PauseAndAttack"]
+[node name="CanAttackTarget" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/RopeADope/PauseAndAttack"]
 script = ExtResource( 17 )
-debug = true
 
-[node name="noop" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/MeanderInSlotOrAttack/PauseAndAttack/CanAttackTarget"]
+[node name="noop" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/RopeADope/PauseAndAttack/CanAttackTarget"]
 script = ExtResource( 30 )
 
-[node name="Wait (Dukes up)" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/MeanderInSlotOrAttack/PauseAndAttack"]
+[node name="Wait (Dukes up)" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/RopeADope/PauseAndAttack"]
 script = ExtResource( 23 )
 debug = true
-wait_time = 2.0
+wait_time = 1.0
 
-[node name="BTRandomSelector" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/MeanderInSlotOrAttack/PauseAndAttack"]
+[node name="BTRandomSelector" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/RopeADope/PauseAndAttack"]
 script = ExtResource( 5 )
 
-[node name="Attack or maybe combo\?" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/MeanderInSlotOrAttack/PauseAndAttack/BTRandomSelector"]
+[node name="Attack or maybe combo\?" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/RopeADope/PauseAndAttack/BTRandomSelector"]
 script = ExtResource( 19 )
-debug = true
 
-[node name="Kick" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/MeanderInSlotOrAttack/PauseAndAttack/BTRandomSelector"]
+[node name="Kick" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/RopeADope/PauseAndAttack/BTRandomSelector"]
 script = ExtResource( 7 )
 
 [node name="NotStunnedOrKnockedBack" type="Node" parent="root selector"]
 script = ExtResource( 15 )
-debug = true
 reverse = true
 
 [node name="WanderRandomSelector" type="Node" parent="root selector/NotStunnedOrKnockedBack"]

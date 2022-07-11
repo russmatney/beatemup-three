@@ -26,6 +26,8 @@ func _pre_tick(agent: Node, _blackboard: Blackboard) -> void:
 
   if closest_target:
     agent.target = closest_target
+    # TODO consider a pause and 'tell' here
+    # mark the blackboard, then check it in a next step
     verified = true
   else:
     verified = false
