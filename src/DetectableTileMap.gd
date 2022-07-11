@@ -17,7 +17,7 @@ enum {NONE,
 enum {BLUE, RED, ORANGE, GREEN}
 
 func _is_even(i: int) -> bool:
-  return fmod(i, 2) == 0
+  return i % 2 == 0
 
 func _process(_delta):
   for detector in detectors.values():
@@ -58,7 +58,7 @@ func mark_tile(v: Vector2, color: int = BLUE):
       set_cellv(v, new_tile_idx)
 
 func color_for_cell(v: Vector2, light: int, dark: int) -> int:
-      return light if _is_even(v.x + v.y) else dark
+      return light if _is_even(int(v.x) + int(v.y)) else dark
 
 func color_to_tileset_color(color: int) -> Dictionary:
     match color:
