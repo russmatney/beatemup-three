@@ -11,6 +11,10 @@ var facing = face_dir.LEFT
 
 export(bool) var is_player = false
 
+# some target this agent wants to attack
+# assigned in behaviors/DetectsPlayer
+var target
+
 onready var animated_sprite = $AnimatedSprite
 onready var facing_detector = $FacingDetector
 
@@ -35,6 +39,12 @@ func get_move_vector():
   else:
     return Vector2()
 
+func approach_target():
+  if target:
+    # if target is valid
+    move_in_dir = get_global_position().direction_to(target.get_global_position()).normalized()
+  else:
+    print("no target to approach!")
 
 ### process #####################################################################
 
@@ -125,6 +135,7 @@ var kick_cooldown = 0.3
 
 var in_punchbox = []
 var in_kickbox = []
+var in_detectbox = []
 
 onready var combo_timer = $ComboTimer
 export(float) var combo_timeout := 1
@@ -261,15 +272,21 @@ func _on_Punchbox_area_entered(area):
   if area.is_in_group("hurtboxes") and area != hurtbox:
     in_punchbox.append(area.get_parent())
 
-
 func _on_Punchbox_area_exited(area):
   in_punchbox.erase(area.get_parent())
-
 
 func _on_Kickbox_area_entered(area):
   if area.is_in_group("hurtboxes") and area != hurtbox:
     in_kickbox.append(area.get_parent())
 
-
 func _on_Kickbox_area_exited(area):
   in_kickbox.erase(area.get_parent())
+
+func _on_Detectbox_area_entered(area:Area2D):
+  # TODO perhaps hurtboxes isn't the right group for this?
+  # likely fine for now
+  if area.is_in_group("hurtboxes") and area != hurtbox:
+    in_detectbox.append(area.get_parent())
+
+func _on_Detectbox_area_exited(area:Area2D):
+  in_detectbox.erase(area.get_parent())

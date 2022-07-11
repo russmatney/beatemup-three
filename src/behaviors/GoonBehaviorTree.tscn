@@ -1,9 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://src/behaviors/WalkRight.gd" type="Script" id=1]
+[ext_resource path="res://src/behaviors/ApproachTarget.gd" type="Script" id=1]
 [ext_resource path="res://addons/behavior_tree/src/behavior_tree.gd" type="Script" id=2]
 [ext_resource path="res://addons/behavior_tree/src/btnodes/composites/bt_selector.gd" type="Script" id=3]
-[ext_resource path="res://src/behaviors/DetectsPlayer.gd" type="Script" id=4]
+[ext_resource path="res://src/behaviors/DetectsTarget.gd" type="Script" id=4]
 [ext_resource path="res://addons/behavior_tree/src/btnodes/composites/bt_random_selector.gd" type="Script" id=5]
 [ext_resource path="res://src/behaviors/IdleForABit.gd" type="Script" id=6]
 [ext_resource path="res://src/behaviors/Kick.gd" type="Script" id=7]
@@ -16,6 +16,11 @@
 [ext_resource path="res://src/behaviors/AtBoundary.gd" type="Script" id=14]
 [ext_resource path="res://src/behaviors/StunnedOrKnockedBack.gd" type="Script" id=15]
 [ext_resource path="res://src/behaviors/FlipWalkDirection.gd" type="Script" id=16]
+[ext_resource path="res://src/behaviors/CanAttackTarget.gd" type="Script" id=17]
+[ext_resource path="res://src/behaviors/isApproachComplete.gd" type="Script" id=18]
+[ext_resource path="res://src/behaviors/Attack.gd" type="Script" id=19]
+[ext_resource path="res://src/behaviors/InTargetAttackSlot.gd" type="Script" id=20]
+[ext_resource path="res://src/behaviors/EnterTargetAttackSlot.gd" type="Script" id=21]
 
 [node name="GoonBehaviorTree" type="Node"]
 script = ExtResource( 2 )
@@ -23,14 +28,43 @@ script = ExtResource( 2 )
 [node name="root selector" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="DetectsPlayer" type="Node" parent="root selector"]
+[node name="DetectsTarget" type="Node" parent="root selector"]
 script = ExtResource( 4 )
+debug = true
 
-[node name="WalkRight2" type="Node" parent="root selector/DetectsPlayer"]
+[node name="Approach or attack" type="Node" parent="root selector/DetectsTarget"]
+script = ExtResource( 3 )
+debug = true
+
+[node name="isApproachNotComplete" type="Node" parent="root selector/DetectsTarget/Approach or attack"]
+script = ExtResource( 18 )
+debug = true
+reverse = true
+approach_complete_distance = 50.0
+
+[node name="ApproachTarget" type="Node" parent="root selector/DetectsTarget/Approach or attack/isApproachNotComplete"]
 script = ExtResource( 1 )
+debug = true
+
+[node name="CanAttackTarget" type="Node" parent="root selector/DetectsTarget/Approach or attack"]
+script = ExtResource( 17 )
+debug = true
+
+[node name="Attack" type="Node" parent="root selector/DetectsTarget/Approach or attack/CanAttackTarget"]
+script = ExtResource( 19 )
+debug = true
+
+[node name="InTargetAttackSlot" type="Node" parent="root selector/DetectsTarget/Approach or attack"]
+script = ExtResource( 20 )
+debug = true
+
+[node name="EnterTargetAttackSlot" type="Node" parent="root selector/DetectsTarget/Approach or attack/InTargetAttackSlot"]
+script = ExtResource( 21 )
+debug = true
 
 [node name="NotStunnedOrKnockedBack" type="Node" parent="root selector"]
 script = ExtResource( 15 )
+debug = true
 reverse = true
 
 [node name="WanderRandomSelector" type="Node" parent="root selector/NotStunnedOrKnockedBack"]

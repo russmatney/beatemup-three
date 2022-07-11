@@ -19,8 +19,11 @@ CLOSED: [2022-07-09 Sat 16:42]
 - [X] kick
 - [X] stunned
 - [X] knocked_back
-* [ ] initial movement ai
+* [X] initial movement ai
+CLOSED: [2022-07-11 Mon 09:31]
 * [ ] initial combat ai
+- [ ] walk around target
+- [ ] approach in-front or behind
 * [ ] health
 * [ ] player death/rebirth
 * [ ] initial UI
