@@ -140,8 +140,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Notif="*res://src/autoloads/Notif.gd"
 Trols="*res://src/autoloads/Trols.gd"
+HUD="*res://src/autoloads/HUD.gd"
 
 [display]
 

@@ -32,6 +32,9 @@ onready var hurtbox = $Hurtbox
 func _ready():
   patrol_points.append(get_global_position())
 
+  if is_player:
+    HUD.set_player_status(self)
+
 func get_intended_move_vector():
   if is_player:
     return Trols.move_dir()
@@ -174,11 +177,11 @@ func attack():
       if attack_queue < 1:
         attack_queue += 1
       else:
-        print("refusing to queue more attacks")
+        print("refusing to queue more attacks", self)
     elif stunned or knocked_back:
-      print("dead input, attack input while stunned/knocked_back")
+      print("dead input, attack input while stunned/knocked_back", self)
     else:
-      print("some other dead input on attack")
+      print("some other dead input on attack", self)
 
 
 func _on_ComboTimer_timeout():
@@ -230,11 +233,12 @@ func kick():
 
 var stunned_time = 0.3
 var knocked_back_time = 0.5
-export(int) var PUNCH_FORCE = 20
-export(int) var KICK_FORCE = 100
+export(int) var PUNCH_FORCE = 50
+export(int) var KICK_FORCE = 500
 
 
 func take_punch(attacker):
+  HUD.notif("Punch!!")
   reset_combo()
   face_attacker(attacker)
   stunned = true
@@ -246,6 +250,7 @@ func take_punch(attacker):
 
 
 func take_kick(attacker):
+  HUD.notif("Kick!!")
   reset_combo()
   face_attacker(attacker)
   knocked_back = true
@@ -255,6 +260,13 @@ func take_kick(attacker):
 
 
 func apply_attack(attacker, attack_force):
+  if attacker.is_player:
+    HUD.set_enemy_status(self)
+    HUD.set_player_status(attacker)
+  else:
+    HUD.set_player_status(self)
+    HUD.set_enemy_status(attacker)
+
   var force = Vector2(1, 0) * attack_force
   if attacker.get_global_position().x > get_global_position().x:
     # attacker is on the right, so x should be negative

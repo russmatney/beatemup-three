@@ -39,6 +39,12 @@ is_active = true
 [node name="root selector" type="Node" parent="."]
 script = ExtResource( 3 )
 
+[node name="StunnedOrKnockedBack" type="Node" parent="root selector"]
+script = ExtResource( 15 )
+
+[node name="noop" type="Node" parent="root selector/StunnedOrKnockedBack"]
+script = ExtResource( 30 )
+
 [node name="DetectsTarget" type="Node" parent="root selector"]
 script = ExtResource( 4 )
 target_group = "player"
