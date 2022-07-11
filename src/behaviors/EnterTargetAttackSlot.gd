@@ -1,5 +1,6 @@
 extends BTLeaf
 
+export(float) var min_complete_distance = 20
 
 # Take the attack slot
 func _tick(agent, blackboard):
@@ -28,4 +29,9 @@ func _tick(agent, blackboard):
   agent.approach_target(agent_claimed_slot.get_global_position())
   agent.face_attacker(agent.target)
 
-  return succeed()
+  var distance_from_slot = agent.get_global_position().distance_to(agent_claimed_slot.get_global_position())
+
+  if distance_from_slot <= min_complete_distance:
+    return succeed()
+  else:
+    return fail()
