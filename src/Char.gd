@@ -234,7 +234,7 @@ func take_punch(attacker):
   stunned = true
   # TODO consider only knocking back on punch if they are close
   # i.e. don't punch them out of punch-range
-  apply_attack(attacker, PUNCH_FORCE)
+  apply_attack(attacker, attacker.PUNCH_FORCE)
   yield(get_tree().create_timer(stunned_time), "timeout")
   stunned = false
 
@@ -243,7 +243,7 @@ func take_kick(attacker):
   reset_combo()
   face_attacker(attacker)
   knocked_back = true
-  apply_attack(attacker, KICK_FORCE)
+  apply_attack(attacker, attacker.KICK_FORCE)
   yield(get_tree().create_timer(knocked_back_time), "timeout")
   knocked_back = false
 
