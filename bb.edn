@@ -9,4 +9,8 @@
 
   install-addons
   (tasks/install-addons
-    {"behavior_tree" "kagenash1/godot-behavior-tree/addons/behavior_tree"})}}
+    {"behavior_tree" "kagenash1/godot-behavior-tree/addons/behavior_tree"})
+
+  install-script-templates
+  (tasks/install-script-templates
+    #{"kagenash1/godot-behavior-tree/script_templates"})}}
