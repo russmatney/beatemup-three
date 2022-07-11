@@ -1,12 +1,14 @@
-extends BTLeaf
+extends BTConditional
 
-func _tick(agent: Node, blackboard: Blackboard) -> bool:
+func _pre_tick(agent: Node, blackboard: Blackboard) -> void:
   var attack_map
   if blackboard.has_data("attack_map"):
     attack_map = blackboard.get_data("attack_map")
   else:
     attack_map = {}
   # TODO probably create the attack map earlier than this, and assert in here
+
+  verified = false
 
   var target_slots
   if agent.target and agent.target.has_method("attack_slots"):
@@ -32,13 +34,10 @@ func _tick(agent: Node, blackboard: Blackboard) -> bool:
 
   if not closest_open_slot:
     print("warning! expected open slot, but none was available")
-    return failed()
 
-  if already_owned_slot_id != closest_open_slot.get_instance_id():
-    # we're switching to the closer slot
-    attack_map.erase(already_owned_slot_id)
-
-  attack_map[closest_open_slot.get_instance_id()] = agent.get_instance_id()
-  blackboard.set_data("attack_map", attack_map)
-
-  return succeed()
+  if already_owned_slot_id and already_owned_slot_id != closest_open_slot.get_instance_id():
+    # we should switch to the closer slot
+    verified = true
+  elif not already_owned_slot_id and closest_open_slot:
+    # or we don't have a slot, and one is available
+    verified = true

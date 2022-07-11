@@ -34,8 +34,6 @@ func _ready():
 
   patrol_points.append(get_global_position())
 
-  print("attack_slots", attack_slots())
-
 func get_move_vector():
   if is_player:
     return Trols.move_dir()
