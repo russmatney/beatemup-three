@@ -28,5 +28,7 @@ func _pre_tick(agent, blackboard):
 
   var distance_from_slot = agent.get_global_position().distance_to(agent_claimed_slot.get_global_position())
 
+  print("distance from slot", distance_from_slot)
+
   if distance_from_slot <= min_complete_distance:
     verified = true

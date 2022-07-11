@@ -15,7 +15,14 @@ func _pre_tick(agent: Node, blackboard: Blackboard) -> void:
 
   var open_slot = false
   for slot in target_slots:
-    if not attack_map.get(slot.get_instance_id()):
+    var attacker_id = attack_map.get(slot.get_instance_id())
+    if attacker_id == agent.get_instance_id():
+      # this agent already has an attack slot
+      # so we can't claim another one
+      verified = false
+      return
+
+    if not attacker_id:
       open_slot = true
       break
 

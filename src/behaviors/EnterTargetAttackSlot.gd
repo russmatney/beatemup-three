@@ -25,7 +25,7 @@ func _tick(agent, blackboard):
     print("warning, expected slot claimed for agent, but none found")
     return failed()
 
-  # TODO face the target the whole time! even whem moving backwards
   agent.approach_target(agent_claimed_slot.get_global_position())
+  agent.face_attacker(agent.target)
 
   return succeed()

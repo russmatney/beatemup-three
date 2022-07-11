@@ -35,31 +35,5 @@ func _tick(agent: Node, blackboard: Blackboard) -> bool:
 
   attack_map[closest_open_slot.get_instance_id()] = agent.get_instance_id()
   blackboard.set_data("attack_map", attack_map)
-  print("claimed attack slot!", attack_map)
 
   return succeed()
-
-
-  # assert(agent.has_method("my_method"))
-
-  # if (blackboard.get_data("not_ready_yet")
-  # or not blackboard.has_data("my_key")):
-  #   return fail()
-
-  # var result = true
-
-  # result = agent.call("my_method", blackboard.get_data("my_key"))
-
-  # # If action is executing, wait for completion and remain in running state
-  # if result is GDScriptFunctionState:
-  #   # Store what the action returns when completed
-  #   result = yield(result, "completed")
-
-  # # If action returns anything but a bool consider it a success
-  # if not result is bool:
-  #   result = true
-
-  # # Once action is complete we return either success or failure.
-  # if result:
-  #   return succeed()
-  # return fail()
