@@ -24,15 +24,21 @@ CLOSED: [2022-07-11 Mon 09:31]
 * [X] initial combat ai
 CLOSED: [2022-07-12 Tue 09:05]
 - [X] approach in-front or behind
-* [ ] initial UI
+* [X] initial UI
+CLOSED: [2022-07-12 Tue 11:42]
 - [X] fonts
-- [ ] health bar
-- [ ] lives
-- [ ] time
-- [ ] notifs
-- [ ] current combatant
-* [ ] health
-* [ ] player death/rebirth
+- [X] health
+- [X] lives
+- [X] time
+- [X] notifs
+- [X] current combatant
+* [X] health
+CLOSED: [2022-07-12 Tue 11:42]
+* [X] player death/rebirth
+CLOSED: [2022-07-12 Tue 11:42]
+* [ ] enemy respawning, squads, waves
+dynamic goon creation (via parameterized signal)
+'level' or some other concept controlling the waves
 * [ ] initial sound
 - [ ] punch
 - [ ] kick
@@ -40,9 +46,16 @@ CLOSED: [2022-07-12 Tue 09:05]
 - [ ] take_kick
 - [ ] death
 - [ ] walk?
-* [ ] improved combat AI
+* [ ] combat fixes
+* [ ] improved combat
+- [ ] clear attack_map from blackboard when goon/player dies
+- [ ] bots should stand away from each other
+- [ ] punching walking bots has no effect (heading across to slot)
+- [ ] bots walking across player to reach far slot?
 - [ ] walk around target
-- [ ] switch to closer targets
+- [ ] reassigning to another target
 - [ ] pause before approaching/chasing
-* [ ] enemy waves
+* [ ] improved char status UI
+- health
+* [ ] improved time/goons remaining UI
 * [ ] include font attributions in game/credits/readme

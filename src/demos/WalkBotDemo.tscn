@@ -24,4 +24,4 @@ position = Vector2( 100, 142 )
 is_player = true
 
 [node name="GoonSquad" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 374, 144 )
+position = Vector2( 369, 136 )

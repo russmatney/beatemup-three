@@ -23,6 +23,11 @@ func _ready():
 func increment_time():
   state.time += 1
 
+# goon count
+
+func set_goons_count(ct: int):
+  hud_scene.set_goons_count(ct)
+
 # notifs
 
 var default_timeout: int = 4

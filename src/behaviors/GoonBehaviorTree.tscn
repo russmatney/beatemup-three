@@ -34,7 +34,6 @@
 
 [node name="GoonBehaviorTree" type="Node"]
 script = ExtResource( 2 )
-is_active = true
 
 [node name="root selector" type="Node" parent="."]
 script = ExtResource( 3 )
@@ -122,7 +121,6 @@ script = ExtResource( 30 )
 
 [node name="Wait (Dukes up)" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/RopeADope/PauseAndAttack"]
 script = ExtResource( 23 )
-debug = true
 wait_time = 1.0
 
 [node name="BTRandomSelector" type="Node" parent="root selector/DetectsTarget/AlwaysSucceed/Approach or Attack/ClaimSlotOrWait/HasClaimedAttackSlot/BTSequence/RopeADope/PauseAndAttack"]
@@ -146,6 +144,7 @@ script = ExtResource( 6 )
 
 [node name="isNotPunching" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector"]
 script = ExtResource( 10 )
+is_active = false
 reverse = true
 
 [node name="Punch" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector/isNotPunching"]
@@ -153,6 +152,7 @@ script = ExtResource( 8 )
 
 [node name="isNotKicking" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector"]
 script = ExtResource( 9 )
+is_active = false
 reverse = true
 
 [node name="Kick" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector/isNotKicking"]
@@ -173,4 +173,3 @@ script = ExtResource( 14 )
 
 [node name="FlipWalkDirection" type="Node" parent="root selector/NotStunnedOrKnockedBack/WanderRandomSelector/Patrol/AtBoundary"]
 script = ExtResource( 16 )
-debug = true

@@ -141,13 +141,14 @@ _global_script_class_icons={
 [application]
 
 config/name="BeatEmUpThree"
-run/main_scene="res://src/demos/WalkBotDemo.tscn"
+run/main_scene="res://src/demos/WavesDemo.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Trols="*res://src/autoloads/Trols.gd"
 HUD="*res://src/autoloads/HUD.gd"
+Util="*res://src/autoloads/Util.gd"
 
 [display]
 

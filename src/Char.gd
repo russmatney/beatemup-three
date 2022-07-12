@@ -189,6 +189,7 @@ var score_combo_count = 0
 
 signal punch
 signal kick
+signal died
 
 func can_attack():
   return not punching and not kicking and not stunned and not knocked_back and not dying and not dead
@@ -236,6 +237,7 @@ func punch():
     emit_signal("punch", self)  # maybe just for metrics/ui?
 
     for ch in in_punchbox:
+      # TODO only punch targetted groups?
       if ch.has_method("take_punch"):
         ch.take_punch(self)
 
@@ -253,12 +255,12 @@ func kick():
     emit_signal("kick", self)
 
     for ch in in_kickbox:
+      # TODO only punch targetted groups?
       if ch.has_method("take_kick"):
         ch.take_kick(self)
 
   yield(get_tree().create_timer(kick_cooldown), "timeout")
   kicking = false
-
 
 ### defending? #####################################################################
 
@@ -365,6 +367,7 @@ func _on_RebornTimer_timeout():
   just_reborn = false
 
 func remove_dead_player():
+  emit_signal("died", self)
   for ch in targetted_by:
     if is_instance_valid(ch):
       ch.target = null
@@ -372,6 +375,7 @@ func remove_dead_player():
   queue_free()
 
 func remove_char():
+  emit_signal("died", self)
   for ch in targetted_by:
     if is_instance_valid(ch):
       ch.target = null
@@ -381,6 +385,7 @@ func remove_char():
 ### hitbox signals ##########################################################
 
 
+# TODO only add targetted groups to the punch/kick boxes?
 func _on_Punchbox_area_entered(area):
   if area.is_in_group("hurtboxes") and area != hurtbox:
     in_punchbox.append(area.get_parent())
