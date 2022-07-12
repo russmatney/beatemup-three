@@ -12,4 +12,8 @@ script = ExtResource( 3 )
 [node name="WaveTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="NextWaveUITimer" type="Timer" parent="."]
+wait_time = 0.4
+
 [connection signal="timeout" from="WaveTimer" to="." method="_on_WaveTimer_timeout"]
+[connection signal="timeout" from="NextWaveUITimer" to="." method="_on_NextWaveUITimer_timeout"]

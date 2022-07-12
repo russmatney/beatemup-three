@@ -363,7 +363,7 @@ func _on_RebornTimer_timeout():
   just_reborn = false
 
 func remove_dead_player():
-  emit_signal("died", self)
+  emit_signal("died")
   for ch in targetted_by:
     if is_instance_valid(ch):
       ch.target = null
@@ -371,7 +371,8 @@ func remove_dead_player():
   queue_free()
 
 func remove_char():
-  emit_signal("died", self)
+  print("emitting died signal")
+  emit_signal("died")
   for ch in targetted_by:
     if is_instance_valid(ch):
       ch.target = null

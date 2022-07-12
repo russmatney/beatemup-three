@@ -23,10 +23,16 @@ func _ready():
 func increment_time():
   state.time += 1
 
-# goon count
+# waves
 
 func set_goons_count(ct: int):
   hud_scene.set_goons_count(ct)
+
+func next_wave_in(t: int):
+  hud_scene.set_time_until_wave(t)
+
+func hide_time_until_wave():
+  hud_scene.hide_time_until_wave()
 
 # notifs
 

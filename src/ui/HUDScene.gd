@@ -4,6 +4,7 @@ var time_count: RichTextLabel
 onready var timer = $Timer
 
 var goons_count: RichTextLabel
+var time_until_wave: RichTextLabel
 
 onready var enemy_status_timer = $EnemyStatusTimer
 export(float) var enemy_status_timeout = 3.0
@@ -19,6 +20,7 @@ var enemy_status
 func _ready():
   time_count = find_node("TimeLabel")
   goons_count = find_node("GoonsCountLabel")
+  time_until_wave = find_node("TimeUntilWaveLabel")
   notif_container = find_node("Notifications")
 
   player_status = find_node("PlayerStatus")
@@ -34,6 +36,13 @@ func set_time(t: int):
 func _on_Timer_timeout():
   HUD.increment_time()
   set_time(HUD.state.time)
+
+func set_time_until_wave(t: int):
+  time_until_wave.bbcode_text = "[right]Next Wave in: " + str(t) + "[/right]"
+  time_until_wave.visible = true
+
+func hide_time_until_wave():
+  time_until_wave.visible = false
 
 ## goon count ############################################################
 
