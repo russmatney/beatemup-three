@@ -7,3 +7,5 @@ tmp/
 
 .clj-kondo/
 .lsp/
+
+assets/sounds/beatemup-three_data/

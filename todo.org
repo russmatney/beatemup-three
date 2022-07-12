@@ -49,20 +49,13 @@ CLOSED: [2022-07-12 Tue 15:24]
   maybe this can be done in the blackboard?
 - [X] reassigning to another target
 - [X] bots can punch each other
-* [ ] initial sound
-- [ ] punch
-- [ ] kick
-- [ ] take_punch
-- [ ] take_kick
-- [ ] death
-- [ ] walk?
-* [ ] combat improvements
-- [ ] punching walking bots has no effect (heading across to slot)
-- [ ] bots walking across player to reach far slot?
-- [ ] walk around target (not across)
-- [ ] pause before approaching/chasing
-- [ ] bots should stand away from each other
-- [ ] punching too early while spawning causes a crash
+* [X] initial sound
+CLOSED: [2022-07-12 Tue 16:32]
+- [X] punch
+- [X] kick
+- [X] take_punch
+- [X] take_kick
+- [X] death
 * [ ] UI fixes
 - spread across screen size properly
 * [ ] improved char status UI
@@ -74,6 +67,13 @@ CLOSED: [2022-07-12 Tue 15:24]
 * [ ] improved time/goons remaining UI
 * [ ] include font attributions in game/credits
 * [ ] title screen
+* [ ] combat improvements
+- [ ] punching walking bots has no effect (heading across to slot)
+- [ ] bots walking across player to reach far slot?
+- [ ] walk around target (not across)
+- [ ] pause before approaching/chasing
+- [ ] bots should stand away from each other
+- [ ] punching too early while spawning causes a crash
 * [ ] moon phase timer and HUD
 * [ ] player growth at full moon, shrink at new moon
 probably subclass the player as a wolf-man
@@ -81,3 +81,6 @@ probably subclass the player as a wolf-man
 * [ ] pause screen
 * [ ] controls screen
 * [ ] offscreen char indicator
+* [ ] improved sound
+- [ ] walking?
+- [ ] music?

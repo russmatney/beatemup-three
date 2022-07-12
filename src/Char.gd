@@ -31,8 +31,16 @@ onready var punchbox = $Punchbox
 onready var kickbox = $Kickbox
 onready var hurtbox = $Hurtbox
 
-### ready #####################################################################
+onready var sound_punch = $SoundPunch
+onready var sound_kick = $SoundKick
+onready var sound_death = $SoundDeath
 
+signal punch
+signal kick
+signal death
+signal died
+
+### ready #####################################################################
 
 func _ready():
   patrol_points.append(get_global_position())
@@ -41,6 +49,10 @@ func _ready():
   if is_player:
     HUD.set_player_status(self)
 
+
+  connect("punch", self, "_on_punch_landed")
+  connect("kick", self, "_on_kick_landed")
+  connect("death", self, "_on_death")
 
 func get_intended_move_vector():
   if is_player:
@@ -53,7 +65,8 @@ func get_intended_move_vector():
 func assign_target(new_target):
   # remove this char from existing_target.targetted_by
   var existing_target = target
-  if existing_target:
+  if existing_target and is_instance_valid(existing_target):
+    # maybe need some other way to deal with this
     existing_target.targetted_by.erase(self)
 
   target = new_target
@@ -155,6 +168,17 @@ func _unhandled_input(event):
   if is_player and Trols.is_attack(event):
     attack()
 
+### sound #################################################################
+
+func _on_punch_landed():
+  sound_punch.play()
+
+func _on_kick_landed():
+  sound_kick.play()
+
+func _on_death():
+  print("on-death sound....")
+  # sound_death.play()
 
 ### attacking #####################################################################
 
@@ -182,10 +206,6 @@ var combo_count = 0
 onready var score_combo_timer = $ScoreComboTimer
 export(float) var score_combo_timeout := 3
 var score_combo_count = 0
-
-signal punch
-signal kick
-signal died
 
 func can_attack():
   return not punching and not kicking and not stunned and not knocked_back and not dying and not dead
@@ -230,11 +250,15 @@ func punch():
   yield(get_tree().create_timer(punch_windup), "timeout")
 
   if not stunned and not knocked_back:
-    emit_signal("punch", self)  # maybe just for metrics/ui?
 
+    var landed = false
     for ch in in_punchbox:
       if ch.has_method("take_punch"):
         ch.take_punch(self)
+        landed = true
+
+    if landed:
+      emit_signal("punch")
 
   yield(get_tree().create_timer(punch_cooldown), "timeout")
   punching = false
@@ -247,12 +271,15 @@ func kick():
   yield(get_tree().create_timer(kick_windup), "timeout")
 
   if not stunned and not knocked_back:
-    emit_signal("kick", self)
-
+    var landed = false
     for ch in in_kickbox:
       # TODO only punch targetted groups?
       if ch.has_method("take_kick"):
         ch.take_kick(self)
+        landed = true
+
+    if landed:
+      emit_signal("kick")
 
   yield(get_tree().create_timer(kick_cooldown), "timeout")
   kicking = false
@@ -330,6 +357,7 @@ func start_dying():
   HUD.notif("Death comes to us all.")
   dying = true
   death_timer.start()
+  emit_signal("death")
 
 func _on_DeathTimer_timeout():
   dying = false
@@ -362,6 +390,7 @@ func _on_RebornTimer_timeout():
   just_reborn = false
 
 func remove_dead_player():
+  # TODO move to 'removed'
   emit_signal("died")
   for ch in targetted_by:
     if is_instance_valid(ch):
