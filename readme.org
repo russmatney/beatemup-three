@@ -1,1 +1,7 @@
 #+title: BeatEmUp3
+
+* credits
+** fonts
+- Roboto-font from link on https://kidscancode.org/godot_recipes/ui/labels/
+- at01 font: https://itch.io/queue/c/733269/godot-pixel-fonts?game_id=707314
+- itch collection of fonts: https://itch.io/c/733269/godot-pixel-fonts
