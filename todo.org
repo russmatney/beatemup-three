@@ -42,10 +42,13 @@ dynamic goon creation (via parameterized signal)
 'level' or some other concept controlling the waves
 * [X] dead, dying animations
 CLOSED: [2022-07-12 Tue 14:29]
-* [ ] combat fixes
-- [ ] clear attack_map from blackboard when goon/player dies
+* [X] combat fixes
+CLOSED: [2022-07-12 Tue 15:24]
+- [X] clear attack_map from blackboard when goon/player dies
   slots are staying claimed, need to unclaim/unassign dead ones
   maybe this can be done in the blackboard?
+- [X] reassigning to another target
+- [X] bots can punch each other
 * [ ] initial sound
 - [ ] punch
 - [ ] kick
@@ -54,12 +57,14 @@ CLOSED: [2022-07-12 Tue 14:29]
 - [ ] death
 - [ ] walk?
 * [ ] combat improvements
-- [ ] bots should stand away from each other
 - [ ] punching walking bots has no effect (heading across to slot)
 - [ ] bots walking across player to reach far slot?
 - [ ] walk around target (not across)
-- [ ] reassigning to another target
 - [ ] pause before approaching/chasing
+- [ ] bots should stand away from each other
+- [ ] punching too early while spawning causes a crash
+* [ ] UI fixes
+- spread across screen size properly
 * [ ] improved char status UI
 - health bar
 - char image
@@ -75,3 +80,4 @@ probably subclass the player as a wolf-man
 * [ ] deploy to web
 * [ ] pause screen
 * [ ] controls screen
+* [ ] offscreen char indicator

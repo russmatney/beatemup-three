@@ -25,7 +25,7 @@ func _ready():
 
 func queue_wave():
   # could move to popping waves off instead of using an index...
-  if next_wave_idx < waves.size() - 1:
+  if next_wave_idx < waves.size():
     next_wave_ui_timer.start()
     wave_timer.start(wave_break_time)
   else:
@@ -49,7 +49,7 @@ func _process(_delta):
 ### launch wave logic #####################################################################
 
 func launch_next_wave():
-  if next_wave_idx < waves.size() - 1:
+  if next_wave_idx < waves.size():
     launch_wave(waves[next_wave_idx])
     next_wave_idx += 1
 
