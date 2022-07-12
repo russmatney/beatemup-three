@@ -9,3 +9,4 @@ tmp/
 .lsp/
 
 assets/sounds/beatemup-three_data/
+dist/
