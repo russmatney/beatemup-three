@@ -24,7 +24,10 @@ func _pre_tick(agent, blackboard):
 
   if not agent_claimed_slot:
     print("warning, expected slot claimed for agent, but none found")
-    assert(agent_claimed_slot)
+    # TODO could loop forever like this, when a closer slot is found but we're still trying
+    # to enter the slot
+    verified = false
+    return
 
   var distance_from_slot = agent.get_global_position().distance_to(agent_claimed_slot.get_global_position())
 
