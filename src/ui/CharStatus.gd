@@ -33,7 +33,7 @@ func show_all_labels():
   health_label.visible = true
   lives_label.visible = true
   # score_label.visible = true
-  # combo_label.visible = true
+  combo_label.visible = true
 
 func show_basic_labels():
   char_name_label.visible = true
@@ -49,7 +49,7 @@ func set_char(ch):
   if ch.is_player:
     set_lives(ch.lives)
     # set_score(ch.score)
-    # set_combos(ch.combos)
+    set_combos(ch.score_combo_count)
     show_all_labels()
 
 func clear_char():
@@ -71,4 +71,4 @@ func set_score(current: int):
   score_label.bbcode_text = "[right]Score: " + str(current) + "[/right]"
 
 func set_combos(current: int):
-  combo_label.bbcode_text = "[right]Combos: " + str(current) + "[/right]"
+  combo_label.bbcode_text = "[right]Combo: " + str(current) + "[/right]"

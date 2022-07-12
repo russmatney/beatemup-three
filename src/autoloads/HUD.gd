@@ -37,23 +37,3 @@ func set_enemy_status(ch):
 
 func set_player_status(ch):
   hud_scene.set_player(ch)
-
-# health
-
-func set_health(current: int, total: int):
-  hud_scene.set_health(current, total)
-
-# lives
-
-func set_lives(val: int):
-  hud_scene.set_health(val)
-
-# score
-
-func set_score(val: int):
-  hud_scene.set_health(val)
-
-# combo
-
-func set_combo(val: int):
-  hud_scene.set_health(val)

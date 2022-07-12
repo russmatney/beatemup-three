@@ -156,20 +156,23 @@ var in_punchbox = []
 var in_kickbox = []
 var in_detectbox = []
 
+# combo_count determines if we should punch or kick
 onready var combo_timer = $ComboTimer
 export(float) var combo_timeout := 1
 var combo_count = 0
 
+# score_combo_count is aesthetic, for display and score
+onready var score_combo_timer = $ScoreComboTimer
+export(float) var score_combo_timeout := 3
+var score_combo_count = 0
+
 signal punch
 signal kick
-
 
 func can_attack():
   return not punching and not kicking and not stunned and not knocked_back
 
-
 var attack_queue = 0
-
 
 func attack():
   if can_attack():
@@ -193,16 +196,13 @@ func attack():
     else:
       print("some other dead input on attack", self)
 
-
 func _on_ComboTimer_timeout():
   reset_combo()
-
 
 # Resets the combo and the queue
 func reset_combo():
   combo_count = 0
   attack_queue = 0
-
 
 func punch():
   punching = true
@@ -212,7 +212,6 @@ func punch():
     emit_signal("punch", self)  # maybe just for metrics/ui?
 
     for ch in in_punchbox:
-      print("punching: ", ch)
       if ch.has_method("take_punch"):
         ch.take_punch(self)
 
@@ -222,7 +221,6 @@ func punch():
     attack_queue -= 1
     attack()
 
-
 func kick():
   kicking = true
   yield(get_tree().create_timer(kick_windup), "timeout")
@@ -231,7 +229,6 @@ func kick():
     emit_signal("kick", self)
 
     for ch in in_kickbox:
-      print("kicking: ", ch)
       if ch.has_method("take_kick"):
         ch.take_kick(self)
 
@@ -271,9 +268,13 @@ func take_kick(attacker):
 
 func apply_attack(attacker, attack_force):
   if attacker.is_player:
+    attacker.score_combo_count += 1
+    attacker.score_combo_timer.start(attacker.score_combo_timeout)
+    HUD.notif("Combo:" + str(attacker.score_combo_count))
     HUD.set_enemy_status(self)
     HUD.set_player_status(attacker)
-  else:
+  elif is_player:
+    score_combo_count = 0
     HUD.set_player_status(self)
     HUD.set_enemy_status(attacker)
 
