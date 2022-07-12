@@ -7,8 +7,30 @@
 [node name="GoonSquad" type="Node2D"]
 
 [node name="Goon" parent="." instance=ExtResource( 2 )]
+position = Vector2( -16, -48 )
 
 [node name="GoonBehaviorTree" parent="Goon" instance=ExtResource( 1 )]
+_blackboard = NodePath("../../Blackboard")
+_agent = NodePath("..")
+
+[node name="Goon2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 72, -48 )
+
+[node name="GoonBehaviorTree" parent="Goon2" instance=ExtResource( 1 )]
+_blackboard = NodePath("../../Blackboard")
+_agent = NodePath("..")
+
+[node name="Goon3" parent="." instance=ExtResource( 2 )]
+position = Vector2( -48, 24 )
+
+[node name="GoonBehaviorTree" parent="Goon3" instance=ExtResource( 1 )]
+_blackboard = NodePath("../../Blackboard")
+_agent = NodePath("..")
+
+[node name="Goon4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 64, 24 )
+
+[node name="GoonBehaviorTree" parent="Goon4" instance=ExtResource( 1 )]
 _blackboard = NodePath("../../Blackboard")
 _agent = NodePath("..")
 

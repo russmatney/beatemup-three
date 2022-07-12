@@ -215,6 +215,14 @@ shape = SubResource( 35 )
 
 [node name="ScoreComboTimer" type="Timer" parent="."]
 wait_time = 3.0
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RebirthTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [connection signal="body_entered" from="StandingDetector" to="StandingDetector" method="_on_body_entered"]
 [connection signal="body_entered" from="FacingDetector" to="FacingDetector" method="_on_body_entered"]
@@ -225,3 +233,6 @@ wait_time = 3.0
 [connection signal="timeout" from="ComboTimer" to="." method="_on_ComboTimer_timeout"]
 [connection signal="area_entered" from="Detectbox" to="." method="_on_Detectbox_area_entered"]
 [connection signal="area_exited" from="Detectbox" to="." method="_on_Detectbox_area_exited"]
+[connection signal="timeout" from="ScoreComboTimer" to="." method="_on_ScoreComboTimer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="timeout" from="RebirthTimer" to="." method="_on_RebornTimer_timeout"]

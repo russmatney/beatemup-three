@@ -19,6 +19,7 @@ var lives = 2
 # some target this agent wants to attack
 # assigned in behaviors/DetectsPlayer
 var target
+var targetted_by = []
 onready var attack_slot_a = $AttackSlotA
 onready var attack_slot_b = $AttackSlotB
 func attack_slots():
@@ -52,6 +53,16 @@ func get_intended_move_vector():
     return move_in_dir.normalized()
   else:
     return Vector2()
+
+func assign_target(new_target):
+  # remove this char from existing_target.targetted_by
+  var existing_target = target
+  if existing_target:
+    existing_target.targetted_by.erase(self)
+
+  target = new_target
+  new_target.targetted_by.append(self)
+
 
 func approach_target(position = null):
   if position:
@@ -95,7 +106,15 @@ func _process(_delta):
   if old_facing != new_facing:
     update_facing(new_facing)
 
-  if stunned:
+  if just_reborn:
+    print("just-reborn")
+    # TODO color/effect
+
+  if dying:
+    animated_sprite.animation = "dying"
+  elif dead:
+    animated_sprite.animation = "dead"
+  elif stunned:
     animated_sprite.animation = "stunned"
   elif knocked_back:
     animated_sprite.animation = "knocked_back"
@@ -113,22 +132,24 @@ func _process(_delta):
 
 const DECELERATION = 100
 
+func can_move_with_intent():
+  return not (stunned or knocked_back or dead or dying or punching or kicking)
 
 func _physics_process(delta):
   var intended_move_vector: Vector2 = get_intended_move_vector()
 
-  if punching or kicking or stunned or knocked_back:
-    intended_move_vector = Vector2()
-
-  if not stunned and not knocked_back:
+  if can_move_with_intent():
     # only move with intent when not stunned/blocked
     # note, constant velocity here
     velocity = intended_move_vector * speed
 
-  # decelerate
-  velocity = velocity.move_toward(Vector2(), DECELERATION * delta)
+  if dead:
+    velocity = Vector2.ZERO
+  else:
+    # decelerate
+    velocity = velocity.move_toward(Vector2(), DECELERATION * delta)
 
-  velocity = move_and_slide(velocity)
+    velocity = move_and_slide(velocity)
 
 
 ### unhandled_input #####################################################################
@@ -170,7 +191,7 @@ signal punch
 signal kick
 
 func can_attack():
-  return not punching and not kicking and not stunned and not knocked_back
+  return not punching and not kicking and not stunned and not knocked_back and not dying and not dead
 
 var attack_queue = 0
 
@@ -182,8 +203,6 @@ func attack():
     else:
       combo_count += 1
       punch()
-
-      # restart the combo timer.
       combo_timer.start(combo_timeout)
   else:
     if punching or kicking:
@@ -198,6 +217,11 @@ func attack():
 
 func _on_ComboTimer_timeout():
   reset_combo()
+
+func _on_ScoreComboTimer_timeout():
+  score_combo_count = 0
+  if is_player:
+    HUD.set_player_status(self)
 
 # Resets the combo and the queue
 func reset_combo():
@@ -243,6 +267,8 @@ var knocked_back_time = 0.5
 export(int) var PUNCH_FORCE = 50
 export(int) var KICK_FORCE = 500
 
+export(int) var punch_damage = 2
+export(int) var kick_damage = 3
 
 func take_punch(attacker):
   HUD.notif("Punch!!")
@@ -251,22 +277,22 @@ func take_punch(attacker):
   stunned = true
   # TODO consider only knocking back on punch if they are close
   # i.e. don't punch them out of punch-range
-  apply_attack(attacker, attacker.PUNCH_FORCE)
+  apply_attack(attacker, attacker.PUNCH_FORCE, attacker.punch_damage)
   yield(get_tree().create_timer(stunned_time), "timeout")
   stunned = false
-
 
 func take_kick(attacker):
   HUD.notif("Kick!!")
   reset_combo()
   face_attacker(attacker)
   knocked_back = true
-  apply_attack(attacker, attacker.KICK_FORCE)
+  apply_attack(attacker, attacker.KICK_FORCE, attacker.kick_damage)
   yield(get_tree().create_timer(knocked_back_time), "timeout")
   knocked_back = false
 
+func apply_attack(attacker, attack_force, attack_damage):
+  current_health -= attack_damage
 
-func apply_attack(attacker, attack_force):
   if attacker.is_player:
     attacker.score_combo_count += 1
     attacker.score_combo_timer.start(attacker.score_combo_timeout)
@@ -284,6 +310,8 @@ func apply_attack(attacker, attack_force):
     force = force * -1
   velocity += force
 
+  if current_health <= 0:
+    start_dying()
 
 func face_attacker(attacker):
   var new_facing = facing
@@ -293,6 +321,62 @@ func face_attacker(attacker):
     new_facing = face_dir.LEFT
   update_facing(new_facing)
 
+var dying = false
+var dead = false
+# how long dead before rebirth
+export(float) var dead_time = 3.0
+var just_reborn = false
+onready var death_timer = $DeathTimer
+onready var rebirth_timer = $RebirthTimer
+
+func start_dying():
+  HUD.notif("Death comes to us all.")
+  dying = true
+  death_timer.start()
+
+func _on_DeathTimer_timeout():
+  dying = false
+  dead = true
+
+  if not is_player:
+    HUD.set_enemy_status(self)
+    remove_char()
+  else:
+    HUD.set_player_status(self)
+
+    if lives > 0:
+      lives -= 1
+      yield(get_tree().create_timer(dead_time), "timeout")
+      rebirth()
+    else:
+      remove_dead_player()
+
+func rebirth():
+  HUD.notif("Resurrection!")
+  current_health = total_health
+  dead = false
+  just_reborn = true
+  HUD.set_player_status(self)
+  rebirth_timer.start()
+
+  # TODO fall/rise/re-position
+
+func _on_RebornTimer_timeout():
+  just_reborn = false
+
+func remove_dead_player():
+  for ch in targetted_by:
+    if is_instance_valid(ch):
+      ch.target = null
+  targetted_by.erase(self)
+  queue_free()
+
+func remove_char():
+  for ch in targetted_by:
+    if is_instance_valid(ch):
+      ch.target = null
+  targetted_by.erase(self)
+  queue_free()
 
 ### hitbox signals ##########################################################
 

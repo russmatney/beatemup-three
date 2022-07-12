@@ -32,7 +32,6 @@ func set_time(t: int):
 
 func _on_Timer_timeout():
   HUD.increment_time()
-  print("timer timing out")
   set_time(HUD.state.time)
 
 
