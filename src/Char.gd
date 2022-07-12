@@ -13,7 +13,6 @@ export(bool) var is_player = false
 
 var current_health
 export(int) var total_health = 5
-export(int) var enemy_total_health = 3
 var lives = 2
 
 # some target this agent wants to attack
@@ -38,12 +37,9 @@ onready var hurtbox = $Hurtbox
 func _ready():
   patrol_points.append(get_global_position())
 
+  current_health = total_health
   if is_player:
     HUD.set_player_status(self)
-    current_health = total_health
-  else:
-    total_health = enemy_total_health
-    current_health = enemy_total_health
 
 
 func get_intended_move_vector():
