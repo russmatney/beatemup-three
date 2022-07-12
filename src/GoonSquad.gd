@@ -24,8 +24,13 @@ func _ready():
   queue_wave()
 
 func queue_wave():
-  next_wave_ui_timer.start()
-  wave_timer.start(wave_break_time)
+  # could move to popping waves off instead of using an index...
+  if next_wave_idx < waves.size() - 1:
+    next_wave_ui_timer.start()
+    wave_timer.start(wave_break_time)
+  else:
+    # TODO handle victory
+    HUD.notif("No more waves!")
 
 func _on_WaveTimer_timeout():
   next_wave_ui_timer.stop()
@@ -47,12 +52,8 @@ func launch_next_wave():
   if next_wave_idx < waves.size() - 1:
     launch_wave(waves[next_wave_idx])
     next_wave_idx += 1
-  else:
-    # TODO handle victory
-    HUD.notif("No more waves!")
 
 func launch_wave(wave_opts):
-  print("launching wave", wave_opts)
   var wave_name = wave_opts.get("name", "Unnamed Wave")
   var count = wave_opts.get("goon_count", 1)
   var goon_opts = wave_opts.get("goon_opts", [])

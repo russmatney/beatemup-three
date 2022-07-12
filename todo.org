@@ -42,6 +42,10 @@ dynamic goon creation (via parameterized signal)
 'level' or some other concept controlling the waves
 * [X] dead, dying animations
 CLOSED: [2022-07-12 Tue 14:29]
+* [ ] combat fixes
+- [ ] clear attack_map from blackboard when goon/player dies
+  slots are staying claimed, need to unclaim/unassign dead ones
+  maybe this can be done in the blackboard?
 * [ ] initial sound
 - [ ] punch
 - [ ] kick
@@ -49,16 +53,25 @@ CLOSED: [2022-07-12 Tue 14:29]
 - [ ] take_kick
 - [ ] death
 - [ ] walk?
-* [ ] combat fixes
-* [ ] improved combat
-- [ ] clear attack_map from blackboard when goon/player dies
+* [ ] combat improvements
 - [ ] bots should stand away from each other
 - [ ] punching walking bots has no effect (heading across to slot)
 - [ ] bots walking across player to reach far slot?
-- [ ] walk around target
+- [ ] walk around target (not across)
 - [ ] reassigning to another target
 - [ ] pause before approaching/chasing
 * [ ] improved char status UI
-- health
+- health bar
+- char image
+- bolder player name
+- combo text effect
+* [ ] better squad goon names
 * [ ] improved time/goons remaining UI
-* [ ] include font attributions in game/credits/readme
+* [ ] include font attributions in game/credits
+* [ ] title screen
+* [ ] moon phase timer and HUD
+* [ ] player growth at full moon, shrink at new moon
+probably subclass the player as a wolf-man
+* [ ] deploy to web
+* [ ] pause screen
+* [ ] controls screen

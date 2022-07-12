@@ -7,11 +7,6 @@ func _pre_tick(agent: Node, _blackboard: Blackboard) -> void:
   assert("in_detectbox" in agent)
   assert("target" in agent)
 
-  if agent.target:
-    # agent already has a target, we'll use that instead
-    verified = true
-    return
-
   var current_pos = agent.get_global_position()
 
   var closest_target
@@ -23,6 +18,8 @@ func _pre_tick(agent: Node, _blackboard: Blackboard) -> void:
       if not closest_target_dist or dist < closest_target_dist:
         closest_target = ch
         closest_target_dist = dist
+
+  # TODO prefer targets with open slots
 
   if closest_target:
     agent.assign_target(closest_target)

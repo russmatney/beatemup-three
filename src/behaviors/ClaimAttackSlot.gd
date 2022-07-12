@@ -20,6 +20,13 @@ func _tick(agent: Node, blackboard: Blackboard) -> bool:
 
   for slot in target_slots:
     var attacker_id = attack_map.get(slot.get_instance_id())
+
+    if attacker_id:
+      var inst = instance_from_id(attacker_id)
+      if not inst:
+        # this attacker is not valid, probably dead
+        attacker_id = null
+
     if attacker_id and attacker_id == agent.get_instance_id():
       already_owned_slot_id = slot.get_instance_id()
 

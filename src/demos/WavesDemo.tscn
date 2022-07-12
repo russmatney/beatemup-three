@@ -13,6 +13,11 @@ total_health = 10
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 
+[node name="Player2" parent="." groups=["player"] instance=ExtResource( 1 )]
+position = Vector2( 322, 132 )
+is_player = true
+total_health = 10
+
 [node name="GoonSquad" parent="." instance=ExtResource( 2 )]
 position = Vector2( 331, -221 )
 wave_break_time = 3.0

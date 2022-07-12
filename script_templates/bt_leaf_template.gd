@@ -5,7 +5,6 @@ extends BTLeaf
 func _pre_tick(agent: Node, blackboard: Blackboard) -> void:
   if not blackboard.get_data("pre_key"):
     blackboard.set_data("not_ready_yet", true)
-    print("Not ready yet.")
     return
 
 

@@ -371,7 +371,6 @@ func remove_dead_player():
   queue_free()
 
 func remove_char():
-  print("emitting died signal")
   emit_signal("died")
   for ch in targetted_by:
     if is_instance_valid(ch):
