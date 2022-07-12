@@ -233,7 +233,6 @@ func punch():
     emit_signal("punch", self)  # maybe just for metrics/ui?
 
     for ch in in_punchbox:
-      # TODO only punch targetted groups?
       if ch.has_method("take_punch"):
         ch.take_punch(self)
 
@@ -262,8 +261,8 @@ func kick():
 
 var stunned_time = 0.3
 var knocked_back_time = 0.5
-export(int) var PUNCH_FORCE = 50
-export(int) var KICK_FORCE = 500
+export(int) var PUNCH_FORCE = 30
+export(int) var KICK_FORCE = 300
 
 export(int) var punch_damage = 2
 export(int) var kick_damage = 3
@@ -381,17 +380,24 @@ func remove_char():
 ### hitbox signals ##########################################################
 
 
-# TODO only add targetted groups to the punch/kick boxes?
 func _on_Punchbox_area_entered(area):
   if area.is_in_group("hurtboxes") and area != hurtbox:
-    in_punchbox.append(area.get_parent())
+    var ch = area.get_parent()
+    if is_player:
+      in_punchbox.append(ch)
+    elif ch.is_in_group("player"):
+      in_punchbox.append(ch)
 
 func _on_Punchbox_area_exited(area):
   in_punchbox.erase(area.get_parent())
 
 func _on_Kickbox_area_entered(area):
   if area.is_in_group("hurtboxes") and area != hurtbox:
-    in_kickbox.append(area.get_parent())
+    var ch = area.get_parent()
+    if is_player:
+      in_kickbox.append(ch)
+    elif ch.is_in_group("player"):
+      in_kickbox.append(ch)
 
 func _on_Kickbox_area_exited(area):
   in_kickbox.erase(area.get_parent())
