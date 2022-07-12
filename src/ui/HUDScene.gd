@@ -3,11 +3,14 @@ extends Control
 var time_count: RichTextLabel
 onready var timer = $Timer
 
+onready var enemy_status_timer = $EnemyStatusTimer
+export(float) var enemy_status_timeout = 3.0
+
 var notif_container
 onready var text_scene = preload("res://src/ui/NotificationText.tscn")
 
-var playerStatus
-var enemyStatus
+var player_status
+var enemy_status
 
 ## ready ############################################################
 
@@ -15,8 +18,8 @@ func _ready():
   time_count = find_node("TimeLabel")
   notif_container = find_node("Notifications")
 
-  playerStatus = find_node("PlayerStatus")
-  enemyStatus = find_node("EnemyStatus")
+  player_status = find_node("PlayerStatus")
+  enemy_status = find_node("EnemyStatus")
 
   set_time(0)
   print(timer)
@@ -49,9 +52,14 @@ func create_new_notif(notif):
 ## status ############################################################
 
 func set_enemy(ch):
-  if enemyStatus:
-    enemyStatus.set_char(ch)
+  if enemy_status:
+    enemy_status.set_char(ch)
+    enemy_status_timer.start(enemy_status_timeout)
 
 func set_player(ch):
-  if playerStatus:
-    playerStatus.set_char(ch)
+  if player_status:
+    player_status.set_char(ch)
+
+func _on_EnemyStatusTimer_timeout():
+  if enemy_status:
+    enemy_status.clear_char()

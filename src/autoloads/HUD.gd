@@ -1,31 +1,59 @@
 # HUD.gd
 extends CanvasLayer
 
-var hud_scene = "res://src/ui/HUDScene.tscn"
-var scene
+var hud_scene_res = "res://src/ui/HUDScene.tscn"
+var hud_scene
 var is_ready = false
 
 var state = {"time": 0}
 
-func _ready():
-  if not scene:
-    var s = ResourceLoader.load(hud_scene)
-    scene = s.instance()
-    call_deferred("add_child", scene)
+# ready
 
-  yield(scene, "ready")
+func _ready():
+  if not hud_scene:
+    var s = ResourceLoader.load(hud_scene_res)
+    hud_scene = s.instance()
+    call_deferred("add_child", hud_scene)
+
+  yield(hud_scene, "ready")
   is_ready = true
+
+# time
 
 func increment_time():
   state.time += 1
 
+# notifs
+
 var default_timeout: int = 4
 
 func notif(message: String, timeout: int = default_timeout):
-  scene.create_new_notif({"message": message, "timeout": timeout})
+  hud_scene.create_new_notif({"message": message, "timeout": timeout})
+
+# char names
 
 func set_enemy_status(ch):
-  scene.set_enemy(ch)
+  hud_scene.set_enemy(ch)
 
 func set_player_status(ch):
-  scene.set_player(ch)
+  hud_scene.set_player(ch)
+
+# health
+
+func set_health(current: int, total: int):
+  hud_scene.set_health(current, total)
+
+# lives
+
+func set_lives(val: int):
+  hud_scene.set_health(val)
+
+# score
+
+func set_score(val: int):
+  hud_scene.set_health(val)
+
+# combo
+
+func set_combo(val: int):
+  hud_scene.set_health(val)

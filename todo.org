@@ -21,17 +21,18 @@ CLOSED: [2022-07-09 Sat 16:42]
 - [X] knocked_back
 * [X] initial movement ai
 CLOSED: [2022-07-11 Mon 09:31]
-* [ ] initial combat ai
-- [ ] walk around target
-- [ ] approach in-front or behind
-* [ ] health
-* [ ] player death/rebirth
+* [X] initial combat ai
+CLOSED: [2022-07-12 Tue 09:05]
+- [X] approach in-front or behind
 * [ ] initial UI
+- [X] fonts
 - [ ] health bar
 - [ ] lives
 - [ ] time
 - [ ] notifs
 - [ ] current combatant
+* [ ] health
+* [ ] player death/rebirth
 * [ ] initial sound
 - [ ] punch
 - [ ] kick
@@ -39,4 +40,9 @@ CLOSED: [2022-07-11 Mon 09:31]
 - [ ] take_kick
 - [ ] death
 - [ ] walk?
+* [ ] improved combat AI
+- [ ] walk around target
+- [ ] switch to closer targets
+- [ ] pause before approaching/chasing
 * [ ] enemy waves
+* [ ] include font attributions in game/credits/readme

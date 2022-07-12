@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/ui/CharStatus.gd" type="Script" id=1]
+[ext_resource path="res://resources/fonts/at10_64.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/ui/NotificationText.tscn" type="PackedScene" id=3]
 
 [node name="CharStatus" type="Control"]
 anchor_right = 1.0
@@ -16,44 +18,49 @@ size_flags_vertical = 3
 
 [node name="CharName" type="RichTextLabel" parent="VBoxContainer"]
 margin_right = 128.0
-margin_bottom = 15.0
+margin_bottom = 52.0
+custom_fonts/normal_font = ExtResource( 2 )
 bbcode_enabled = true
-bbcode_text = "[right]Player Name[/right]"
-text = "Player Name"
+bbcode_text = "[right]Player[/right]"
+text = "Player"
 fit_content_height = true
 
-[node name="Health" type="RichTextLabel" parent="VBoxContainer"]
-margin_top = 19.0
+[node name="Health" parent="VBoxContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 56.0
 margin_right = 128.0
-margin_bottom = 34.0
-bbcode_enabled = true
-bbcode_text = "[right]Health: 10/10[/right]"
-text = "Health: 10/10"
-fit_content_height = true
+margin_bottom = 70.0
+bbcode_text = "[right]Health: 7/10[/right]"
+text = "Health: 7/10"
+scroll_active = false
 
-[node name="Lives" type="RichTextLabel" parent="VBoxContainer"]
-margin_top = 38.0
+[node name="Lives" parent="VBoxContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 74.0
 margin_right = 128.0
-margin_bottom = 53.0
-bbcode_enabled = true
-bbcode_text = "[right]Lives: 1[/right]"
-text = "Lives: 1"
-fit_content_height = true
+margin_bottom = 88.0
+bbcode_text = "[right]Lives: 7[/right]"
+text = "Lives: 7"
+scroll_active = false
 
-[node name="Score" type="RichTextLabel" parent="VBoxContainer"]
-margin_top = 57.0
+[node name="Score" parent="VBoxContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 92.0
 margin_right = 128.0
-margin_bottom = 72.0
-bbcode_enabled = true
-bbcode_text = "[right]Score: 0[/right]"
-text = "Score: 0"
-fit_content_height = true
+margin_bottom = 106.0
+bbcode_text = "[right]Score: 7[/right]"
+text = "Score: 7"
+scroll_active = false
 
-[node name="Combos" type="RichTextLabel" parent="VBoxContainer"]
-margin_top = 76.0
+[node name="Combo" parent="VBoxContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 110.0
 margin_right = 128.0
-margin_bottom = 91.0
-bbcode_enabled = true
-bbcode_text = "[right]Combo: 0[/right]"
-text = "Combo: 0"
-fit_content_height = true
+margin_bottom = 124.0
+bbcode_text = "[right]Combos: 7[/right]"
+text = "Combos: 7"
+scroll_active = false
