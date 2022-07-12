@@ -36,9 +36,12 @@ CLOSED: [2022-07-12 Tue 11:42]
 CLOSED: [2022-07-12 Tue 11:42]
 * [X] player death/rebirth
 CLOSED: [2022-07-12 Tue 11:42]
-* [ ] enemy respawning, squads, waves
+* [X] enemy respawning, squads, waves
+CLOSED: [2022-07-12 Tue 14:09]
 dynamic goon creation (via parameterized signal)
 'level' or some other concept controlling the waves
+* [X] dead, dying animations
+CLOSED: [2022-07-12 Tue 14:29]
 * [ ] initial sound
 - [ ] punch
 - [ ] kick
