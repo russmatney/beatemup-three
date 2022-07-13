@@ -32,13 +32,19 @@ onready var kickbox = $Kickbox
 onready var hurtbox = $Hurtbox
 
 onready var sound_punch = $SoundPunch
+onready var sound_punch_2 = $SoundPunch2
 onready var sound_kick = $SoundKick
 onready var sound_death = $SoundDeath
+onready var sound_combo = $SoundCombo
+onready var sound_combo_2 = $SoundCombo2
+onready var sound_combo_lost = $SoundComboLost
 
 signal punch
 signal kick
 signal death
 signal died
+signal combo
+signal combo_lost
 
 ### ready #####################################################################
 
@@ -49,10 +55,11 @@ func _ready():
   if is_player:
     HUD.set_player_status(self)
 
-
   connect("punch", self, "_on_punch_landed")
   connect("kick", self, "_on_kick_landed")
   connect("death", self, "_on_death")
+  connect("combo", self, "_on_combo")
+  connect("combo_lost", self, "_on_combo_lost")
 
 func get_intended_move_vector():
   if is_player:
@@ -171,14 +178,28 @@ func _unhandled_input(event):
 ### sound #################################################################
 
 func _on_punch_landed():
-  sound_punch.play()
+  if is_player:
+    match randi() % 2:
+      0: sound_punch.play()
+      1: sound_punch_2.play()
 
 func _on_kick_landed():
-  sound_kick.play()
+  if is_player:
+    sound_kick.play()
 
 func _on_death():
-  print("on-death sound....")
-  # sound_death.play()
+  if is_player:
+    sound_death.play()
+
+func _on_combo():
+  if is_player:
+    match randi() % 2:
+      0: sound_combo.play()
+      1: sound_combo_2.play()
+
+func _on_combo_lost():
+  if is_player:
+    sound_combo_lost.play()
 
 ### attacking #####################################################################
 
@@ -238,6 +259,7 @@ func _on_ComboTimer_timeout():
 func _on_ScoreComboTimer_timeout():
   score_combo_count = 0
   if is_player:
+    emit_signal("combo_lost")
     HUD.set_player_status(self)
 
 # Resets the combo and the queue
@@ -319,11 +341,13 @@ func apply_attack(attacker, attack_force, attack_damage):
 
   if attacker.is_player:
     attacker.score_combo_count += 1
+    emit_signal("combo")
     attacker.score_combo_timer.start(attacker.score_combo_timeout)
     HUD.notif("Combo:" + str(attacker.score_combo_count))
     HUD.set_enemy_status(self)
     HUD.set_player_status(attacker)
   elif is_player:
+    emit_signal("combo_lost")
     score_combo_count = 0
     HUD.set_player_status(self)
     HUD.set_enemy_status(attacker)

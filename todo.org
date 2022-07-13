@@ -56,6 +56,8 @@ CLOSED: [2022-07-12 Tue 16:32]
 - [X] take_punch
 - [X] take_kick
 - [X] death
+* [X] deploy to web
+CLOSED: [2022-07-13 Wed 12:33]
 * [ ] initial music
 - [ ] during gameplay
 - [ ] no more waves (victory!)
@@ -88,12 +90,11 @@ lamp posts
 * [ ] moon phase timer and HUD
 * [ ] player growth at full moon, shrink at new moon
 probably subclass the player as a wolf-man
-* [ ] deploy to web
 * [ ] pause screen
-with music
+with music - late night radio
 * [ ] controls screen
-with music
+with music - late night radio
 * [ ] credits screen
-with music
+with music - canon in D
 ** [ ] include font attributions in game/credits
 * [ ] game jam branding

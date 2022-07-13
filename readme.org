@@ -84,7 +84,7 @@ http://creativecommons.org/licenses/by/4.0/
 ** sounds
 *** Boom Bang - start of a wave, or big enemy entering
 "Bjørn Molstad / BareForm"
-*** Gong hit - start of a wave
+*** Gong hit - start of a wave :newwave:
 Growler Music
 https://freesound.org/people/GowlerMusic/sounds/266566/
 *** Cowbell
@@ -129,7 +129,7 @@ https://freesound.org/people/DWSD/sounds/191632/
 *** jhd_hat_2 - punch2
 DWSD - Dan Wray
 https://freesound.org/people/DWSD/sounds/191631/
-*** jhd_hat_3 - little tick, maybe dialog?
+*** jhd_hat_3 - little tick, maybe dialog? :spawngoon:
 DWSD - Dan Wray
 https://freesound.org/people/DWSD/sounds/191630/
 *** jhd_clp_37 - nice clear clap

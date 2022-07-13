@@ -18,19 +18,33 @@ onready var blackboard = $Blackboard
 onready var goon_scene = preload("res://src/Char.tscn")
 onready var goon_behavior_tree = preload("res://src/behaviors/GoonBehaviorTree.tscn")
 
+onready var sound_new_wave = $SoundNewWave
+onready var sound_spawn_goon = $SoundSpawnGoon
+
+onready var music_no_more_waves = $MusicNoMoreWaves
+onready var music_fight = $MusicFight
+onready var music_background = $MusicBackground
+
 ### ready #####################################################################
 
 func _ready():
   queue_wave()
+
+  music_background.play()
 
 func queue_wave():
   # could move to popping waves off instead of using an index...
   if next_wave_idx < waves.size():
     next_wave_ui_timer.start()
     wave_timer.start(wave_break_time)
+    sound_new_wave.play()
   else:
+    music_fight.stop()
+    music_background.stop()
     # TODO handle victory
+    # TODO HUD.banner
     HUD.notif("No more waves!")
+    music_no_more_waves.play()
 
 func _on_WaveTimer_timeout():
   next_wave_ui_timer.stop()
@@ -54,6 +68,9 @@ func launch_next_wave():
     next_wave_idx += 1
 
 func launch_wave(wave_opts):
+  if not music_fight.playing:
+    music_fight.play()
+
   var wave_name = wave_opts.get("name", "Unnamed Wave")
   var count = wave_opts.get("goon_count", 1)
   var goon_opts = wave_opts.get("goon_opts", [])
@@ -68,33 +85,38 @@ func launch_wave(wave_opts):
       var opt_i = i % goon_opts.size()
       opts = goon_opts[opt_i]
 
-    # create goon node
-    var goon_node = goon_scene.instance()
-
-    # merge from wave opts
-    if opts:
-      for k in opts:
-        if k in goon_node:
-          goon_node[k] = opts[k]
-
-    # TODO pick spawn points
-
-    # connect to goon death
-    goon_node.connect("died", self, "_on_goon_died", [goon_node])
-
-    # add to local goon list
-    goons.append(goon_node)
-
-    # add goon
-    add_child(goon_node)
-
-    # add behavior tree to goon (after it has a node_path)
-    add_behavior_tree(goon_node)
+    create_and_add_goon(opts)
 
     HUD.set_goons_count(goons.size())
 
     # wait a blip before adding the next one
     yield(get_tree().create_timer(0.3), "timeout")
+
+func create_and_add_goon(opts = null):
+  # create goon node
+  var goon_node = goon_scene.instance()
+
+  # merge from wave opts
+  if opts:
+    for k in opts:
+      if k in goon_node:
+        goon_node[k] = opts[k]
+
+  # TODO pick spawn points
+
+  # connect to goon death
+  goon_node.connect("died", self, "_on_goon_died", [goon_node])
+
+  # add to local goon list
+  goons.append(goon_node)
+
+  # add goon
+  add_child(goon_node)
+
+  # add behavior tree to goon (after it has a node_path)
+  add_behavior_tree(goon_node)
+
+  sound_spawn_goon.play()
 
 func _on_goon_died(goon):
   goons.erase(goon)
