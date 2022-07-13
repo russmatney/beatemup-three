@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/191613__dwsd__jhd-bd-10.wav-cf3e5f1d19dd1c2b7e5af0a5fa4fd749.sample"
+
+[deps]
+
+source_file="res://assets/sounds/191613__dwsd__jhd-bd-10.wav"
+dest_files=[ "res://.import/191613__dwsd__jhd-bd-10.wav-cf3e5f1d19dd1c2b7e5af0a5fa4fd749.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

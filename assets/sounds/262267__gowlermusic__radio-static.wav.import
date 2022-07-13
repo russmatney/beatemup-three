@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/262267__gowlermusic__radio-static.wav-919c1337fb8437d36438ce56c6179f34.sample"
+
+[deps]
+
+source_file="res://assets/sounds/262267__gowlermusic__radio-static.wav"
+dest_files=[ "res://.import/262267__gowlermusic__radio-static.wav-919c1337fb8437d36438ce56c6179f34.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

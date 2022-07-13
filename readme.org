@@ -1,7 +1,201 @@
 #+title: BeatEmUp3
 
 * credits
+** music
+*** Danger Storm
+https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1500065&Search=Search
+
+#+begin_src credit
+Danger Storm Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0 License
+http://creativecommons.org/licenses/by/3.0/
+#+end_src
+*** Cruising for goblins
+https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1800002&Search=Search
+
+Cruising for Goblins Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0 License
+http://creativecommons.org/licenses/by/3.0/
+*** Bleeping Demo
+"Bleeping Demo" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+*** Voxel Revolution - maybe the victory tune?
+"Voxel Revolution" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+*** Late Night Radio - smooooooth jazzzzz (on a chatty menu screens?)
+"Late Night Radio" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+*** Pleasant Porridge - another potential lobby tune
+"Pleasant Porridge" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+*** Canon in D for 8 bit synths - wedding ending?
+"Canon In D For 8 Bit Synths" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+*** On hold for you - excellent sax-y jazz piece
+"On Hold for You" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+*** SCP-xnx - dark and ominous!
+"SCP-x1x (Gateway to Hell)" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+"SCP-x2x (Unseen Presence)" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+"SCP-x3x (I am Not OK)" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+"SCP-x4x (Mind Leech)" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+*** The Entertainer - after transforming
+"The Entertainer" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+*** dance of the tuba plum fairy
+"Dance of the Tuba Plum Fairy" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+*** Night in Venice - another nice jazz piece
+"Night in Venice" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+*** Gothamalicious - simple loop for most of the gameplay?
+"Gothamlicious" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+*** "Ancient Rite" - another looper for long gameplay?
+"Ancient Rite" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+*** Limit70 - for a driving piece
+"Limit 70" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+** sounds
+*** Boom Bang - start of a wave, or big enemy entering
+"Bjørn Molstad / BareForm"
+*** Gong hit - start of a wave
+Growler Music
+https://freesound.org/people/GowlerMusic/sounds/266566/
+*** Cowbell
+Growler Music
+https://freesound.org/people/GowlerMusic/sounds/364919/
+*** Censor beep
+Growler Music
+https://freesound.org/people/GowlerMusic/sounds/264862/
+*** Drill
+Growler Music
+https://freesound.org/people/GowlerMusic/sounds/262265/
+*** Radio Static
+Growler Music
+https://freesound.org/people/GowlerMusic/sounds/262267/
+*** Drum Kick
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/171104/
+*** jhd_vox_do - maybe a getting-punched sound
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/191643/
+*** jhd_vox_cityskyish - maybe getting kicked?
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/191642/
+*** jhd_vox_blah
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/191640/
+*** jhd_prc_5 - i like this pling, maybe a menu or dialog?
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/191635/
+*** jhd_prc_3 - another pling, maybe for 'go back'
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/191637/
+*** jhd_prc_4 - lesser pling, maybe for dialog or combos?
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/191636/
+*** jhd_cym_1 - kick landed sound
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/191633/
+*** jhd_hat_1 - punch1
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/191632/
+*** jhd_hat_2 - punch2
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/191631/
+*** jhd_hat_3 - little tick, maybe dialog?
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/191630/
+*** jhd_clp_37 - nice clear clap
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/191620/
+*** jhd_clp_28 - nice clear clap
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/191621/
+*** jhd_bd_10 - maybe combo being cleared
+DWSD - Dan Wray
+https://freesound.org/people/DWSD/sounds/191613/
+*** kenney interface sounds
+cco 1.0 universal
+https://www.kenney.nl/assets/interface-sounds
+*** kenney scifi sounds
+cco 1.0 universal
+https://www.kenney.nl/assets/sci-fi-sounds
+*** kenney impact sounds
+cco 1.0 universal
+https://www.kenney.nl/assets/impact-sounds
+*** kenney voice over sounds (fighter)
+cco 1.0 universal
+https://www.kenney.nl/assets/voiceover-pack-fighter
+*** kenney casino audio
+cco 1.0 universal
+https://www.kenney.nl/assets/casino-audio
+*** kenney music jingles (including 8bit synth)
+cco 1.0 universal
+https://www.kenney.nl/assets/music-jingles
+*** kenney digital audio (lasers, fun noises)
+cco 1.0 universal
+https://www.kenney.nl/assets/digital-audio
+*** kenney rpg audio (nice walking, doors, world sounds)
+cco 1.0 universal
+https://www.kenney.nl/assets/rpg-audio
+** art
+*** kenney roguelike modern city
+cco 1.0 universal
+https://www.kenney.nl/assets/roguelike-modern-city
+*** kenney generic items
+cco 1.0 universal
+https://www.kenney.nl/assets/generic-items
+*** kenney roguelike caves/dungeons - mushrooms, skulls, etc
+cco 1.0 universal
+https://www.kenney.nl/assets/roguelike-caves-dungeons
+*** kenney roguelike indoors
+cco 1.0 universal
+https://www.kenney.nl/assets/roguelike-indoors
+*** kenney background elems - trees, clouds, mountains
+https://www.kenney.nl/assets/background-elements
+*** kenney smoke particles
+https://www.kenney.nl/assets/smoke-particles
+** icons
+*** game icons
+cc 3
+https://game-icons.net/
 ** fonts
-- Roboto-font from link on https://kidscancode.org/godot_recipes/ui/labels/
-- at01 font: https://itch.io/queue/c/733269/godot-pixel-fonts?game_id=707314
-- itch collection of fonts: https://itch.io/c/733269/godot-pixel-fonts
+*** Roboto-font from link on https://kidscancode.org/godot_recipes/ui/labels/
+*** at01 font: https://itch.io/queue/c/733269/godot-pixel-fonts?game_id=707314
+*** itch collection of fonts: https://itch.io/c/733269/godot-pixel-fonts
+*** born2bsportyv2
+by japanyoshi
+http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=383
+*** adventurer
+by brian j smith
+http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=195
+*** old wizard
+angel ?
+http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=168

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Bleeping Demo.mp3-bb37b674d06a0c3ce96678ee25e02aa2.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Bleeping Demo.mp3"
+dest_files=[ "res://.import/Bleeping Demo.mp3-bb37b674d06a0c3ce96678ee25e02aa2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

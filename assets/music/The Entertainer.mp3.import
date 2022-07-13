@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Entertainer.mp3-bc4ee3ad457e4b7fdef5fa0e8986dd76.mp3str"
+
+[deps]
+
+source_file="res://assets/music/The Entertainer.mp3"
+dest_files=[ "res://.import/The Entertainer.mp3-bc4ee3ad457e4b7fdef5fa0e8986dd76.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

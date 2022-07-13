@@ -56,6 +56,17 @@ CLOSED: [2022-07-12 Tue 16:32]
 - [X] take_punch
 - [X] take_kick
 - [X] death
+* [ ] initial music
+- [ ] during gameplay
+- [ ] no more waves (victory!)
+* [ ] improved sound
+- [ ] new-wave sounds
+- [ ] player punch, kick
+- [ ] death sound?
+- [ ] add new sounds
+* [ ] drop in art/some shapes
+trees, mushrooms
+lamp posts
 * [ ] UI fixes
 - spread across screen size properly
 * [ ] improved char status UI
@@ -63,9 +74,9 @@ CLOSED: [2022-07-12 Tue 16:32]
 - char image
 - bolder player name
 - combo text effect
+* [ ] offscreen char indicator
 * [ ] better squad goon names
 * [ ] improved time/goons remaining UI
-* [ ] include font attributions in game/credits
 * [ ] title screen
 * [ ] combat improvements
 - [ ] punching walking bots has no effect (heading across to slot)
@@ -79,8 +90,10 @@ CLOSED: [2022-07-12 Tue 16:32]
 probably subclass the player as a wolf-man
 * [ ] deploy to web
 * [ ] pause screen
+with music
 * [ ] controls screen
-* [ ] offscreen char indicator
-* [ ] improved sound
-- [ ] walking?
-- [ ] music?
+with music
+* [ ] credits screen
+with music
+** [ ] include font attributions in game/credits
+* [ ] game jam branding

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/262265__gowlermusic__drill.wav-06a1d2c71879bcb1b6a6a21dbccdcb3e.sample"
+
+[deps]
+
+source_file="res://assets/sounds/262265__gowlermusic__drill.wav"
+dest_files=[ "res://.import/262265__gowlermusic__drill.wav-06a1d2c71879bcb1b6a6a21dbccdcb3e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

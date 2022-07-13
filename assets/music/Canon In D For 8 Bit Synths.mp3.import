@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Canon In D For 8 Bit Synths.mp3-326ac340c9c21903dce8a756a647c868.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Canon In D For 8 Bit Synths.mp3"
+dest_files=[ "res://.import/Canon In D For 8 Bit Synths.mp3-326ac340c9c21903dce8a756a647c868.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
