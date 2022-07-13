@@ -58,14 +58,16 @@ CLOSED: [2022-07-12 Tue 16:32]
 - [X] death
 * [X] deploy to web
 CLOSED: [2022-07-13 Wed 12:33]
-* [ ] initial music
-- [ ] during gameplay
-- [ ] no more waves (victory!)
-* [ ] improved sound
-- [ ] new-wave sounds
-- [ ] player punch, kick
-- [ ] death sound?
-- [ ] add new sounds
+* [X] initial music
+CLOSED: [2022-07-13 Wed 14:59]
+- [X] during gameplay
+- [X] when no more waves (victory!)
+* [X] improved sound
+CLOSED: [2022-07-13 Wed 14:59]
+- [X] new-wave sounds
+- [X] player punch, kick
+- [X] death sound?
+- [X] add new sounds
 * [ ] drop in art/some shapes
 trees, mushrooms
 lamp posts
