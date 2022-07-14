@@ -79,17 +79,19 @@ CLOSED: [2022-07-14 Thu 09:03]
 * [X] camera fixes
 CLOSED: [2022-07-14 Thu 09:04]
 fixed (static) for now
-* [ ] UI fixes
+* [X] UI fixes
+CLOSED: [2022-07-14 Thu 10:24]
 ** [X] spread across screen size properly
 CLOSED: [2022-07-14 Thu 09:41]
-** [ ] banner as an improved notif
+** [X] banner as an improved notif
+CLOSED: [2022-07-14 Thu 10:24]
+* [X] better squad goon names
+CLOSED: [2022-07-14 Thu 10:29]
 * [ ] improved char status UI
 - health bar
 - char image
 - bolder player name
 - combo text effect
-* [ ] offscreen char indicator
-* [ ] better squad goon names
 * [ ] improved time/goons remaining UI
 * [ ] title screen
 * [ ] combat improvements
@@ -114,3 +116,5 @@ with music - late night radio
 * [ ] game jam branding
 * [ ] lighting?
 ** [ ] lamp posts
+* SKIP offscreen char indicator
+CLOSED: [2022-07-14 Thu 10:24]

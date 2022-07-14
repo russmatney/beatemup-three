@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var char_name
+
 var velocity = Vector2()
 var speed = 200
 

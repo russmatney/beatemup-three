@@ -43,7 +43,7 @@ func show_basic_labels():
 
 func set_char(ch):
   character = ch
-  set_char_label(ch.name)
+  set_char_label(ch.char_name if ch.char_name else ch.name)
   set_health(ch.current_health, ch.total_health)
   show_basic_labels()
   if ch.is_player:
