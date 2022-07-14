@@ -88,25 +88,16 @@ CLOSED: [2022-07-14 Thu 10:24]
 * [X] better squad goon names
 CLOSED: [2022-07-14 Thu 10:29]
 * [ ] improved char status UI
-- health bar
-- char image
-- bolder player name
-- combo text effect
+** [X] health bar
+CLOSED: [2022-07-14 Thu 11:13]
+** [ ] char image
+** [ ] bolder player name
+** [ ] combo text effect
 * [ ] improved time/goons remaining UI
 * [ ] title screen
-* [ ] combat improvements
-- [ ] punching walking bots has no effect (heading across to slot)
-- [ ] bots walking across player to reach far slot?
-- [ ] walk around target (not across)
-- [ ] pause before approaching/chasing
-- [ ] bots should stand away from each other
-- [ ] punching too early while spawning causes a crash
 * [ ] life/death improvements
 ** [ ] continues, infinite?
 ** [ ] player getting one-shot after resurrecting?
-* [ ] moon phase timer and HUD
-* [ ] player growth at full moon, shrink at new moon
-probably subclass the player as a wolf-man
 * [ ] pause screen
 with music - late night radio
 * [ ] controls screen
@@ -116,5 +107,16 @@ with music - late night radio
 * [ ] game jam branding
 * [ ] lighting?
 ** [ ] lamp posts
+* [ ] combat improvements
+- [ ] punching walking bots has no effect (heading across to slot)
+- [ ] bots walking across player to reach far slot?
+- [ ] walk around target (not across)
+- [ ] pause before approaching/chasing
+- [ ] bots should stand away from each other
+- [ ] punching too early while spawning causes a crash
+* v2
+** [ ] moon phase timer and HUD
+** [ ] player growth at full moon, shrink at new moon
+probably subclass the player as a wolf-man
 * SKIP offscreen char indicator
 CLOSED: [2022-07-14 Thu 10:24]
