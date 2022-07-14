@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/ui/CharStatus.gd" type="Script" id=1]
 [ext_resource path="res://resources/fonts/at10_64.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/ui/NotificationText.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Theme" id=5]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.832898, 1 )
@@ -25,22 +27,45 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 15.0
+margin_bottom = 15.0
+theme = SubResource( 5 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_right = 260.0
-margin_bottom = 64.0
+margin_bottom = 66.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_right = 128.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 128, 64 )
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 260.0
+margin_bottom = 52.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 48.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="Lives" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 48.0
+margin_bottom = 52.0
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_text = "02"
+text = "02"
+scroll_active = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 52.0
+margin_right = 202.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 150, 48 )
 size_flags_horizontal = 3
 
-[node name="CharName" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 128.0
+[node name="CharName" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 150.0
 margin_bottom = 52.0
 custom_fonts/normal_font = ExtResource( 2 )
 bbcode_enabled = true
@@ -48,60 +73,35 @@ bbcode_text = "Player"
 text = "Player"
 fit_content_height = true
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 132.0
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 206.0
 margin_right = 260.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 128, 64 )
+margin_bottom = 52.0
+rect_min_size = Vector2( 48, 48 )
 size_flags_horizontal = 3
 
-[node name="Lives" parent="VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 3 )]
+[node name="Combo" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 128.0
-margin_bottom = 14.0
-bbcode_text = "[right]Lives: 7[/right]"
-text = "Lives: 7"
+margin_right = 54.0
+margin_bottom = 52.0
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_text = "[right]02[/right]"
+text = "02"
 scroll_active = false
 
-[node name="Score" parent="VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 128.0
-margin_bottom = 32.0
-bbcode_text = "[right]Score: 7[/right]"
-text = "Score: 7"
-scroll_active = false
-
-[node name="Combo" parent="VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 36.0
-margin_right = 128.0
-margin_bottom = 50.0
-bbcode_text = "[right]Combos: 7[/right]"
-text = "Combos: 7"
-scroll_active = false
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 68.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 56.0
 margin_right = 260.0
-margin_bottom = 83.0
-rect_min_size = Vector2( 0, 15 )
+margin_bottom = 66.0
+rect_min_size = Vector2( 0, 10 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer2"]
+[node name="HealthBar" type="TextureProgress" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_right = 260.0
-margin_bottom = 15.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HealthBar" type="TextureProgress" parent="VBoxContainer/HBoxContainer2/CenterContainer"]
-margin_right = 260.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 260, 15 )
+margin_bottom = 10.0
+rect_min_size = Vector2( 260, 10 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 value = 50.0
