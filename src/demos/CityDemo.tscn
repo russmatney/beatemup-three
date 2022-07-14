@@ -40,6 +40,7 @@ tile_data = PoolIntArray( -327685, 8, 196612, -327684, 8, 196613, -262154, 8, 26
 
 [node name="Player" parent="MapYSort" groups=["player"] instance=ExtResource( 2 )]
 is_player = true
+total_health = 10
 
 [node name="GoonSquad" parent="MapYSort" instance=ExtResource( 3 )]
 position = Vector2( 28, -126 )

@@ -10,7 +10,6 @@ font_data = ExtResource( 2 )
 
 [node name="Credits" type="Node2D"]
 script = ExtResource( 1 )
-should_run = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0

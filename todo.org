@@ -95,31 +95,33 @@ CLOSED: [2022-07-14 Thu 11:13]
 CLOSED: [2022-07-14 Thu 11:36]
 ** [X] combo text
 CLOSED: [2022-07-14 Thu 11:36]
-* [ ] credits screen
-** [ ] include sounds, music, font attributions in game/credits
-* [ ] improved time/goons remaining UI
+* [X] credits screen
+CLOSED: [2022-07-14 Thu 12:18]
+** [X] include sounds, music, font attributions in game/credits
+CLOSED: [2022-07-14 Thu 12:18]
 * [ ] title screen
-* [ ] life/death improvements
-** [ ] continues, infinite?
-** [ ] player getting one-shot after resurrecting?
-* [ ] pause screen
-with music - late night radio
 * [ ] controls screen
 with music - late night radio
+* [ ] improved time/goons remaining UI
 * [ ] game jam branding
-* [ ] lighting?
-** [ ] lamp posts
-* [ ] combat improvements
+* v2
+** [ ] life/death improvements
+*** [ ] continues, infinite?
+*** [ ] player getting one-shotted after resurrecting?
+** [ ] pause screen
+with music - late night radio
+** [ ] moon phase timer and HUD
+** [ ] player growth at full moon, shrink at new moon
+probably subclass the player as a wolf-man
+** [ ] lighting?
+*** [ ] lamp posts
+** [ ] combat improvements
 - [ ] punching walking bots has no effect (heading across to slot)
 - [ ] bots walking across player to reach far slot?
 - [ ] walk around target (not across)
 - [ ] pause before approaching/chasing
 - [ ] bots should stand away from each other
 - [ ] punching too early while spawning causes a crash
-* v2
-** [ ] moon phase timer and HUD
-** [ ] player growth at full moon, shrink at new moon
-probably subclass the player as a wolf-man
 * SKIP offscreen char indicator
 CLOSED: [2022-07-14 Thu 10:24]
 * SKIP char image

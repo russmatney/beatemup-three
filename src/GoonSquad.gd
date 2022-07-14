@@ -1,15 +1,14 @@
 extends Node2D
 
-var chuck = {"total_health": 4, "char_name": "Chuck"}
-var chaz = {"total_health": 3, "char_name": "Chaz"}
-var charlie = {"total_health": 5, "char_name": "Charlie"}
-var chester = {"total_health": 1, "char_name": "Chester"}
+var chuck = {"total_health": 4, "char_name": "Chuck", modulate=Color(125.0/255.0, 252.0/255.0, 170.0/255.0, 1)}
+var charlie = {"total_health": 5, "char_name": "Charlie", modulate=Color(252.0/255.0, 14.0/255.0, 14.0/255.0, 1)}
+var chester = {"total_health": 1, "char_name": "Chester", modulate= Color(205.0/255.0, 125.0/255.0, 252.0/255.0, 1)}
 
 var waves = [
-  {"name": "Wave 1", "goon_count": 3, "goon_opts": [chuck, chester]},
-  # {"name": "Wave 2", "goon_count": 1, "goon_opts": [chuck, chaz]},
-  # {"name": "Wave 3", "goon_count": 3, "goon_opts": [chester]},
-  # {"name": "Wave 4", "goon_count": 2, "goon_opts": [charlie]},
+  {"name": "Wave 1", "goon_count": 3, "goon_opts": [chuck, chester, charlie]},
+  {"name": "Wave 2", "goon_count": 2, "goon_opts": [chuck, charlie, chester]},
+  {"name": "Wave 3", "goon_count": 3, "goon_opts": [chester, chuck]},
+  {"name": "Wave 4", "goon_count": 5, "goon_opts": [chuck, charlie, chester]},
 ]
 
 var next_wave_idx = 0
@@ -119,7 +118,7 @@ func create_and_add_goon(opts = null):
 
   # add goon
   if not goon_parent:
-    goon_parent = get_parent().get_parent()
+    goon_parent = get_parent()
 
   if goon_parent:
     goon_parent.add_child(goon_node)

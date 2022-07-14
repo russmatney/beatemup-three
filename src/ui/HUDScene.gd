@@ -1,6 +1,6 @@
 extends Control
 
-onready var credits = $Credits
+var credits_scene = preload("res://src/ui/Credits.tscn")
 
 var time_count: RichTextLabel
 onready var timer = $Timer
@@ -95,5 +95,6 @@ func _on_EnemyStatusTimer_timeout():
 ### credits ###############################################################
 
 func roll_credits():
-  credits.visible = true
+  var credits = credits_scene.instance()
+  add_child(credits)
   credits.roll()

@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/ui/HUDScene.gd" type="Script" id=1]
 [ext_resource path="res://src/ui/CharStatus.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/ui/NotificationText.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/ui/Credits.tscn" type="PackedScene" id=4]
 
 [node name="HUDScene" type="Control"]
 script = ExtResource( 1 )
@@ -115,9 +114,6 @@ autostart = true
 
 [node name="EnemyStatusTimer" type="Timer" parent="."]
 wait_time = 3.0
-
-[node name="Credits" parent="." instance=ExtResource( 4 )]
-visible = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="EnemyStatusTimer" to="." method="_on_EnemyStatusTimer_timeout"]
