@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/ui/Credits.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/at01.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+extra_spacing_top = 10
+font_data = ExtResource( 2 )
+
+[node name="Credits" type="Node2D"]
+script = ExtResource( 1 )
+should_run = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.431373 )
+
+[node name="CreditsContainer" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="Line" type="Label" parent="CreditsContainer"]
+anchor_right = 1.0
+margin_top = 600.0
+margin_bottom = 690.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 1 )
+text = "Credits line"
+align = 1

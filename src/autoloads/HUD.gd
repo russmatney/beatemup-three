@@ -53,3 +53,8 @@ func set_enemy_status(ch):
 
 func set_player_status(ch):
   hud_scene.set_player(ch)
+
+## credits ##################################################################
+
+func roll_credits():
+  hud_scene.roll_credits()

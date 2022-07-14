@@ -87,12 +87,16 @@ CLOSED: [2022-07-14 Thu 09:41]
 CLOSED: [2022-07-14 Thu 10:24]
 * [X] better squad goon names
 CLOSED: [2022-07-14 Thu 10:29]
-* [ ] improved char status UI
+* [X] improved char status UI
+CLOSED: [2022-07-14 Thu 11:36]
 ** [X] health bar
 CLOSED: [2022-07-14 Thu 11:13]
-** [ ] char image
-** [ ] bolder player name
-** [ ] combo text effect
+** [X] player name
+CLOSED: [2022-07-14 Thu 11:36]
+** [X] combo text
+CLOSED: [2022-07-14 Thu 11:36]
+* [ ] credits screen
+** [ ] include sounds, music, font attributions in game/credits
 * [ ] improved time/goons remaining UI
 * [ ] title screen
 * [ ] life/death improvements
@@ -102,8 +106,6 @@ CLOSED: [2022-07-14 Thu 11:13]
 with music - late night radio
 * [ ] controls screen
 with music - late night radio
-* [ ] credits screen
-** [ ] include font attributions in game/credits
 * [ ] game jam branding
 * [ ] lighting?
 ** [ ] lamp posts
@@ -120,3 +122,5 @@ with music - late night radio
 probably subclass the player as a wolf-man
 * SKIP offscreen char indicator
 CLOSED: [2022-07-14 Thu 10:24]
+* SKIP char image
+CLOSED: [2022-07-14 Thu 11:35]

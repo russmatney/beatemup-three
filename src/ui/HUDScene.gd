@@ -1,5 +1,7 @@
 extends Control
 
+onready var credits = $Credits
+
 var time_count: RichTextLabel
 onready var timer = $Timer
 
@@ -89,3 +91,9 @@ func set_player(ch):
 func _on_EnemyStatusTimer_timeout():
   if enemy_status:
     enemy_status.clear_char()
+
+### credits ###############################################################
+
+func roll_credits():
+  credits.visible = true
+  credits.roll()

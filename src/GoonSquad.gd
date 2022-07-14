@@ -7,8 +7,8 @@ var chester = {"total_health": 1, "char_name": "Chester"}
 
 var waves = [
   {"name": "Wave 1", "goon_count": 3, "goon_opts": [chuck, chester]},
-  {"name": "Wave 2", "goon_count": 1, "goon_opts": [chuck, chaz]},
-  {"name": "Wave 3", "goon_count": 3, "goon_opts": [chester]},
+  # {"name": "Wave 2", "goon_count": 1, "goon_opts": [chuck, chaz]},
+  # {"name": "Wave 3", "goon_count": 3, "goon_opts": [chester]},
   # {"name": "Wave 4", "goon_count": 2, "goon_opts": [charlie]},
 ]
 
@@ -51,8 +51,8 @@ func queue_wave():
     HUD.banner("No more waves!")
     HUD.banner("You did it!", 7)
     music_no_more_waves.play()
-    # TODO handle victory:
-    # lock player, queue credits
+    HUD.roll_credits()
+    # lock player ?
 
 func _on_WaveTimer_timeout():
   next_wave_ui_timer.stop()
