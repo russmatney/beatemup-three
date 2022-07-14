@@ -379,6 +379,8 @@ onready var rebirth_timer = $RebirthTimer
 
 func start_dying():
   HUD.notif("Death comes to us all.")
+  if is_player:
+    HUD.banner(str(lives) + " lives remaining!")
   dying = true
   death_timer.start()
   emit_signal("death")

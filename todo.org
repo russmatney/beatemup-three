@@ -80,7 +80,9 @@ CLOSED: [2022-07-14 Thu 09:03]
 CLOSED: [2022-07-14 Thu 09:04]
 fixed (static) for now
 * [ ] UI fixes
-- spread across screen size properly
+** [X] spread across screen size properly
+CLOSED: [2022-07-14 Thu 09:41]
+** [ ] banner as an improved notif
 * [ ] improved char status UI
 - health bar
 - char image
@@ -97,6 +99,9 @@ fixed (static) for now
 - [ ] pause before approaching/chasing
 - [ ] bots should stand away from each other
 - [ ] punching too early while spawning causes a crash
+* [ ] life/death improvements
+** [ ] continues, infinite?
+** [ ] player getting one-shot after resurrecting?
 * [ ] moon phase timer and HUD
 * [ ] player growth at full moon, shrink at new moon
 probably subclass the player as a wolf-man

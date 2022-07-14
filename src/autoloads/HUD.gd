@@ -41,6 +41,11 @@ var default_timeout: int = 4
 func notif(message: String, timeout: int = default_timeout):
   hud_scene.create_new_notif({"message": message, "timeout": timeout})
 
+# banner
+
+func banner(message: String, timeout: int = default_timeout):
+  hud_scene.set_banner({"message": message, "timeout": timeout})
+
 # char names
 
 func set_enemy_status(ch):

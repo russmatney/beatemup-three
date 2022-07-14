@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://resources/fonts/at10_64.tres" type="DynamicFont" id=1]
+
+[node name="BannerText" type="RichTextLabel"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true

@@ -41,10 +41,11 @@ func queue_wave():
   else:
     music_fight.stop()
     music_background.stop()
-    # TODO handle victory
-    # TODO HUD.banner
-    HUD.notif("No more waves!")
+    HUD.banner("No more waves!")
+    HUD.banner("You did it!", 7)
     music_no_more_waves.play()
+    # TODO handle victory:
+    # lock player, queue credits
 
 func _on_WaveTimer_timeout():
   next_wave_ui_timer.stop()
@@ -75,8 +76,7 @@ func launch_wave(wave_opts):
   var count = wave_opts.get("goon_count", 1)
   var goon_opts = wave_opts.get("goon_opts", [])
 
-  # TODO switch to Hud temp title/banner/jumbotron
-  HUD.notif(wave_name)
+  HUD.banner(wave_name)
 
   goon_opts.shuffle()
   for i in range(count):

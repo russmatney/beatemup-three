@@ -9,6 +9,9 @@ var time_until_wave: RichTextLabel
 onready var enemy_status_timer = $EnemyStatusTimer
 export(float) var enemy_status_timeout = 3.0
 
+var banner_container
+onready var banner_text_scene = preload("res://src/ui/BannerText.tscn")
+
 var notif_container
 onready var notif_text_scene = preload("res://src/ui/NotificationText.tscn")
 
@@ -22,6 +25,7 @@ func _ready():
   goons_count = find_node("GoonsCountLabel")
   time_until_wave = find_node("TimeUntilWaveLabel")
   notif_container = find_node("Notifications")
+  banner_container = find_node("Banners")
 
   player_status = find_node("PlayerStatus")
   enemy_status = find_node("EnemyStatus")
@@ -60,6 +64,15 @@ func create_new_notif(notif):
   var node = notif_text_scene.instance()
   node.bbcode_text = "[right]" + notif.message + "[/right]"
   notif_container.add_child(node)
+  remove_node_after(node, timeout)
+
+## banner ############################################################
+
+func set_banner(banner):
+  var timeout = banner.timeout if banner.timeout else HUD.default_timeout
+  var node = banner_text_scene.instance()
+  node.bbcode_text = "[center]" + banner.message + "[/center]"
+  banner_container.add_child(node)
   remove_node_after(node, timeout)
 
 ## status ############################################################
