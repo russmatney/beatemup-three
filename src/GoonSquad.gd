@@ -3,8 +3,8 @@ extends Node2D
 var waves = [
   {"name": "Wave 1", "goon_count": 3, "goon_opts": [{"total_health": 4}, {"total_health": 3}]},
   {"name": "Wave 2", "goon_count": 1, "goon_opts": [{"total_health": 4}]},
-  {"name": "Wave 3", "goon_count": 3, "goon_opts": [{"total_health": 1}]},
-  {"name": "Wave 4", "goon_count": 2, "goon_opts": [{"total_health": 5}]},
+  # {"name": "Wave 3", "goon_count": 3, "goon_opts": [{"total_health": 1}]},
+  # {"name": "Wave 4", "goon_count": 2, "goon_opts": [{"total_health": 5}]},
 ]
 
 var next_wave_idx = 0

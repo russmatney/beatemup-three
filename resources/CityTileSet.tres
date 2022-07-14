@@ -1,8 +1,107 @@
-[gd_resource type="TileSet" load_steps=112 format=2]
+[gd_resource type="TileSet" load_steps=162 format=2]
 
 [ext_resource path="res://assets/tiles/city-red-roof_sheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/tiles/roguelikeCity_magenta.png" type="Texture" id=2]
 [ext_resource path="res://src/tools/TileSetTools.gd" type="Script" id=3]
+
+[sub_resource type="ConvexPolygonShape2D" id=109]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=110]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=111]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=112]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=113]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=114]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=115]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=116]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=117]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=118]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=119]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=120]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=121]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=122]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=123]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=124]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=125]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=126]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=127]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=128]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=129]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=130]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=131]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=135]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=136]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=155]
+points = PoolVector2Array( 14.075, 15.9134, 2.00259, 15.9134, 2.00259, 1.19287, 14.075, 1.19287 )
+
+[sub_resource type="ConvexPolygonShape2D" id=156]
+points = PoolVector2Array( 13.9764, 15.9913, 2.05975, 15.9913, 2.05975, 1.19287, 13.9764, 1.19287 )
+
+[sub_resource type="ConvexPolygonShape2D" id=157]
+points = PoolVector2Array( 14.0335, 16, 2.19478, 16, 2.19478, 1.03708, 14.0335, 1.03708 )
+
+[sub_resource type="ConvexPolygonShape2D" id=170]
+points = PoolVector2Array( 12.5096, 15.916, 3.53708, 15.916, 3.53708, 2.6441, 12.5096, 2.6441 )
+
+[sub_resource type="ConvexPolygonShape2D" id=171]
+points = PoolVector2Array( 12.8939, 13.9532, 2.89323, 13.9532, 2.89323, 4.13953, 12.8939, 4.13953 )
+
+[sub_resource type="ConvexPolygonShape2D" id=172]
+points = PoolVector2Array( 13.7455, 13.8597, 2.34288, 13.8597, 2.34288, 2.27023, 13.7455, 2.27023 )
+
+[sub_resource type="ConvexPolygonShape2D" id=173]
+points = PoolVector2Array( 13.6416, 15.5525, 2.14552, 15.5525, 2.14552, 0.691772, 13.6416, 0.691772 )
+
+[sub_resource type="ConvexPolygonShape2D" id=174]
+points = PoolVector2Array( 13.652, 15.1786, 2.43634, 15.1786, 2.43634, 1.25256, 13.652, 1.25256 )
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 0, 16, 16, 16, 16, 0 )
@@ -111,6 +210,57 @@ points = PoolVector2Array( 0, 0, 0, 16, 16, 16, 16, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=36]
 points = PoolVector2Array( 0, 0, 0, 16, 16, 16, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=150]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=151]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=152]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=153]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=154]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=158]
+points = PoolVector2Array( 12.5826, 15.9771, 3.49792, 15.9771, 3.49792, 8.57477, 12.5826, 8.57477 )
+
+[sub_resource type="ConvexPolygonShape2D" id=159]
+points = PoolVector2Array( 12.2939, 16, 3.65784, 16, 3.65784, 8.46262, 12.2939, 8.46262 )
+
+[sub_resource type="ConvexPolygonShape2D" id=160]
+points = PoolVector2Array( 12.2296, 16, 3.70563, 16, 3.70563, 8.46262, 12.2296, 8.46262 )
+
+[sub_resource type="ConvexPolygonShape2D" id=161]
+points = PoolVector2Array( 11.7166, 16, 4.31421, 16, 4.31421, 9.35986, 11.7166, 9.35986 )
+
+[sub_resource type="ConvexPolygonShape2D" id=162]
+points = PoolVector2Array( 11.7644, 16, 4.24988, 16, 4.24988, 9.13556, 11.7644, 9.13556 )
+
+[sub_resource type="ConvexPolygonShape2D" id=163]
+points = PoolVector2Array( 12.1487, 16, 3.84906, 16, 3.84906, 9.35986, 12.1487, 9.35986 )
+
+[sub_resource type="ConvexPolygonShape2D" id=164]
+points = PoolVector2Array( 15.1987, 15.4559, 0.663269, 15.4559, 0.663269, 2.8046, 15.1987, 2.8046 )
+
+[sub_resource type="ConvexPolygonShape2D" id=165]
+points = PoolVector2Array( 15.5606, 15.5905, 0.75592, 15.5905, 0.75592, 3.20837, 15.5606, 3.20837 )
+
+[sub_resource type="ConvexPolygonShape2D" id=166]
+points = PoolVector2Array( 15.1987, 15.8177, 0.394104, 15.8177, 0.394104, 2.4935, 15.1987, 2.4935 )
+
+[sub_resource type="ConvexPolygonShape2D" id=167]
+points = PoolVector2Array( 15.2914, 15.2794, 0.486755, 15.2794, 0.486755, 2.62811, 15.2914, 2.62811 )
+
+[sub_resource type="ConvexPolygonShape2D" id=168]
+points = PoolVector2Array( 15.4768, 15.2794, 0.806641, 15.2794, 0.806641, 1.95514, 15.4768, 1.95514 )
+
+[sub_resource type="ConvexPolygonShape2D" id=169]
+points = PoolVector2Array( 15.5695, 15.1448, 0.360962, 15.1448, 0.360962, 2.08972, 15.5695, 2.08972 )
 
 [sub_resource type="ConvexPolygonShape2D" id=37]
 points = PoolVector2Array( 0, 0, 0, 16, 16, 16, 16, 0 )
@@ -1320,6 +1470,500 @@ points = PoolVector2Array( 0, 0, 0, 16, 16, 16, 16, 0 )
 16/shape_one_way_margin = 0.0
 16/shapes = [  ]
 16/z_index = 0
+17/name = "roguelikeCity_magenta.png 17"
+17/texture = ExtResource( 2 )
+17/tex_offset = Vector2( 0, 0 )
+17/modulate = Color( 1, 1, 1, 1 )
+17/region = Rect2( 0, 272, 186, 50 )
+17/tile_mode = 2
+17/autotile/icon_coordinate = Vector2( 0, 0 )
+17/autotile/tile_size = Vector2( 16, 16 )
+17/autotile/spacing = 1
+17/autotile/occluder_map = [  ]
+17/autotile/navpoly_map = [  ]
+17/autotile/priority_map = [  ]
+17/autotile/z_index_map = [  ]
+17/occluder_offset = Vector2( 0, 0 )
+17/navigation_offset = Vector2( 0, 0 )
+17/shape_offset = Vector2( 0, 0 )
+17/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+17/shape = SubResource( 109 )
+17/shape_one_way = false
+17/shape_one_way_margin = 1.0
+17/shapes = [ {
+"autotile_coord": Vector2( 0, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 109 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 110 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 111 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 112 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 113 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 114 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 115 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 116 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 117 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 118 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 119 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 120 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 121 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 122 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 7, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 123 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 7, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 124 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 7, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 125 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 7, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 126 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 8, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 127 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 8, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 128 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 8, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 129 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 6, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 130 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 6, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 131 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+17/z_index = 0
+18/name = "roguelikeCity_magenta.png 18"
+18/texture = ExtResource( 2 )
+18/tex_offset = Vector2( 0, 0 )
+18/modulate = Color( 1, 1, 1, 1 )
+18/region = Rect2( 153, 306, 101, 16 )
+18/tile_mode = 2
+18/autotile/icon_coordinate = Vector2( 0, 0 )
+18/autotile/tile_size = Vector2( 16, 16 )
+18/autotile/spacing = 1
+18/autotile/occluder_map = [  ]
+18/autotile/navpoly_map = [  ]
+18/autotile/priority_map = [  ]
+18/autotile/z_index_map = [  ]
+18/occluder_offset = Vector2( 0, 0 )
+18/navigation_offset = Vector2( 0, 0 )
+18/shape_offset = Vector2( 0, 0 )
+18/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+18/shape = SubResource( 135 )
+18/shape_one_way = false
+18/shape_one_way_margin = 1.0
+18/shapes = [ {
+"autotile_coord": Vector2( 3, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 135 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 136 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 155 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 156 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 157 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+18/z_index = 0
+19/name = "roguelikeCity_magenta.png 19"
+19/texture = ExtResource( 2 )
+19/tex_offset = Vector2( 0, 0 )
+19/modulate = Color( 1, 1, 1, 1 )
+19/region = Rect2( 204, 255, 50, 50 )
+19/tile_mode = 2
+19/autotile/icon_coordinate = Vector2( 0, 0 )
+19/autotile/tile_size = Vector2( 16, 16 )
+19/autotile/spacing = 1
+19/autotile/occluder_map = [  ]
+19/autotile/navpoly_map = [  ]
+19/autotile/priority_map = [  ]
+19/autotile/z_index_map = [  ]
+19/occluder_offset = Vector2( 0, 0 )
+19/navigation_offset = Vector2( 0, 0 )
+19/shape_offset = Vector2( 0, 0 )
+19/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+19/shape = SubResource( 170 )
+19/shape_one_way = false
+19/shape_one_way_margin = 1.0
+19/shapes = [ {
+"autotile_coord": Vector2( 0, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 170 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 171 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 172 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 173 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 174 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+19/z_index = 0
+20/name = "roguelikeCity_magenta.png 20"
+20/texture = ExtResource( 2 )
+20/tex_offset = Vector2( 0, 0 )
+20/modulate = Color( 1, 1, 1, 1 )
+20/region = Rect2( 527, 170, 101, 67 )
+20/tile_mode = 2
+20/autotile/icon_coordinate = Vector2( 0, 0 )
+20/autotile/tile_size = Vector2( 16, 16 )
+20/autotile/spacing = 1
+20/autotile/occluder_map = [  ]
+20/autotile/navpoly_map = [  ]
+20/autotile/priority_map = [  ]
+20/autotile/z_index_map = [  ]
+20/occluder_offset = Vector2( 0, 0 )
+20/navigation_offset = Vector2( 0, 0 )
+20/shape_offset = Vector2( 0, 0 )
+20/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+20/shape = SubResource( 150 )
+20/shape_one_way = false
+20/shape_one_way_margin = 1.0
+20/shapes = [ {
+"autotile_coord": Vector2( 1, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 150 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 151 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 152 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 153 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 154 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 158 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 159 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 160 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 161 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 162 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 163 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+20/z_index = 0
+21/name = "roguelikeCity_magenta.png 21"
+21/texture = ExtResource( 2 )
+21/tex_offset = Vector2( 0, 0 )
+21/modulate = Color( 1, 1, 1, 1 )
+21/region = Rect2( 391, 153, 135, 84 )
+21/tile_mode = 2
+21/autotile/icon_coordinate = Vector2( 0, 0 )
+21/autotile/tile_size = Vector2( 16, 16 )
+21/autotile/spacing = 1
+21/autotile/occluder_map = [  ]
+21/autotile/navpoly_map = [  ]
+21/autotile/priority_map = [  ]
+21/autotile/z_index_map = [  ]
+21/occluder_offset = Vector2( 0, 0 )
+21/navigation_offset = Vector2( 0, 0 )
+21/shape_offset = Vector2( 0, 0 )
+21/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+21/shape_one_way = false
+21/shape_one_way_margin = 0.0
+21/shapes = [  ]
+21/z_index = 0
+22/name = "roguelikeCity_magenta.png 22"
+22/texture = ExtResource( 2 )
+22/tex_offset = Vector2( 0, 0 )
+22/modulate = Color( 1, 1, 1, 1 )
+22/region = Rect2( 544, 0, 84, 67 )
+22/tile_mode = 2
+22/autotile/icon_coordinate = Vector2( 0, 0 )
+22/autotile/tile_size = Vector2( 16, 16 )
+22/autotile/spacing = 1
+22/autotile/occluder_map = [  ]
+22/autotile/navpoly_map = [  ]
+22/autotile/priority_map = [  ]
+22/autotile/z_index_map = [  ]
+22/occluder_offset = Vector2( 0, 0 )
+22/navigation_offset = Vector2( 0, 0 )
+22/shape_offset = Vector2( 0, 0 )
+22/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+22/shape_one_way = false
+22/shape_one_way_margin = 0.0
+22/shapes = [  ]
+22/z_index = 0
+23/name = "roguelikeCity_magenta.png 23"
+23/texture = ExtResource( 2 )
+23/tex_offset = Vector2( 0, 0 )
+23/modulate = Color( 1, 1, 1, 1 )
+23/region = Rect2( 340, 357, 152, 84 )
+23/tile_mode = 2
+23/autotile/icon_coordinate = Vector2( 0, 0 )
+23/autotile/tile_size = Vector2( 16, 16 )
+23/autotile/spacing = 1
+23/autotile/occluder_map = [  ]
+23/autotile/navpoly_map = [  ]
+23/autotile/priority_map = [  ]
+23/autotile/z_index_map = [  ]
+23/occluder_offset = Vector2( 0, 0 )
+23/navigation_offset = Vector2( 0, 0 )
+23/shape_offset = Vector2( 0, 0 )
+23/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+23/shape_one_way = false
+23/shape_one_way_margin = 0.0
+23/shapes = [  ]
+23/z_index = 0
+24/name = "roguelikeCity_magenta.png 24"
+24/texture = ExtResource( 2 )
+24/tex_offset = Vector2( 0, 0 )
+24/modulate = Color( 1, 1, 1, 1 )
+24/region = Rect2( 340, 442, 186, 33 )
+24/tile_mode = 2
+24/autotile/icon_coordinate = Vector2( 0, 0 )
+24/autotile/tile_size = Vector2( 16, 16 )
+24/autotile/spacing = 1
+24/autotile/occluder_map = [  ]
+24/autotile/navpoly_map = [  ]
+24/autotile/priority_map = [  ]
+24/autotile/z_index_map = [  ]
+24/occluder_offset = Vector2( 0, 0 )
+24/navigation_offset = Vector2( 0, 0 )
+24/shape_offset = Vector2( 0, 0 )
+24/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+24/shape_one_way = false
+24/shape_one_way_margin = 0.0
+24/shapes = [  ]
+24/z_index = 0
+25/name = "roguelikeCity_magenta.png 25"
+25/texture = ExtResource( 2 )
+25/tex_offset = Vector2( 0, 0 )
+25/modulate = Color( 1, 1, 1, 1 )
+25/region = Rect2( 527, 238, 101, 33 )
+25/tile_mode = 2
+25/autotile/icon_coordinate = Vector2( 0, 0 )
+25/autotile/tile_size = Vector2( 16, 16 )
+25/autotile/spacing = 1
+25/autotile/occluder_map = [  ]
+25/autotile/navpoly_map = [  ]
+25/autotile/priority_map = [  ]
+25/autotile/z_index_map = [  ]
+25/occluder_offset = Vector2( 0, 0 )
+25/navigation_offset = Vector2( 0, 0 )
+25/shape_offset = Vector2( 0, 0 )
+25/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+25/shape = SubResource( 164 )
+25/shape_one_way = false
+25/shape_one_way_margin = 1.0
+25/shapes = [ {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 164 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 165 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 166 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 167 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 168 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 169 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+25/z_index = 0
 script = ExtResource( 3 )
 dryrun = false
 run_gen_collisions = false

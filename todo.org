@@ -68,9 +68,17 @@ CLOSED: [2022-07-13 Wed 14:59]
 - [X] player punch, kick
 - [X] death sound?
 - [X] add new sounds
-* [ ] drop in art/some shapes
-trees, mushrooms
-lamp posts
+* [X] drop in art/some shapes
+CLOSED: [2022-07-14 Thu 09:04]
+** [X] buildings
+CLOSED: [2022-07-14 Thu 08:45]
+** [X] street
+CLOSED: [2022-07-14 Thu 08:45]
+** [X] trees, mushrooms
+CLOSED: [2022-07-14 Thu 09:03]
+* [X] camera fixes
+CLOSED: [2022-07-14 Thu 09:04]
+fixed (static) for now
 * [ ] UI fixes
 - spread across screen size properly
 * [ ] improved char status UI
@@ -97,6 +105,7 @@ with music - late night radio
 * [ ] controls screen
 with music - late night radio
 * [ ] credits screen
-with music - canon in D
 ** [ ] include font attributions in game/credits
 * [ ] game jam branding
+* [ ] lighting?
+** [ ] lamp posts
