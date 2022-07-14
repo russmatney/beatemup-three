@@ -30,6 +30,8 @@ onready var music_no_more_waves = $MusicNoMoreWaves
 onready var music_fight = $MusicFight
 onready var music_background = $MusicBackground
 
+var goon_parent
+
 ### ready #####################################################################
 
 func _ready():
@@ -116,7 +118,13 @@ func create_and_add_goon(opts = null):
   goons.append(goon_node)
 
   # add goon
-  add_child(goon_node)
+  if not goon_parent:
+    goon_parent = get_parent().get_parent()
+
+  if goon_parent:
+    goon_parent.add_child(goon_node)
+  else:
+    add_child(goon_node)
 
   # add behavior tree to goon (after it has a node_path)
   add_behavior_tree(goon_node)
