@@ -141,7 +141,7 @@ _global_script_class_icons={
 [application]
 
 config/name="BeatEmUpThree"
-run/main_scene="res://src/demos/WavesDemo.tscn"
+run/main_scene="res://src/demos/CityDemo.tscn"
 config/icon="res://icon.png"
 
 [autoload]
