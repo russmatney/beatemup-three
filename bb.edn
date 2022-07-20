@@ -4,8 +4,11 @@
  {:requires ([bb-godot.tasks :as tasks])
   :enter    (println "Running task:" (:name (current-task)))
 
-  watch  tasks/watch
-  pixels tasks/pixels
+  watch      tasks/watch
+  pixels     tasks/pixels
+  build-web  tasks/build-web
+  deploy-web (tasks/deploy-web "s3://beatemup3.russmatney.com")
+  zip        tasks/zip
 
   install-addons
   (tasks/install-addons
