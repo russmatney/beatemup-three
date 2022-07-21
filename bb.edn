@@ -12,7 +12,9 @@
 
   install-addons
   (tasks/install-addons
-    {"behavior_tree" "kagenash1/godot-behavior-tree/addons/behavior_tree"})
+    {"behavior_tree" "kagenash1/godot-behavior-tree/addons/behavior_tree"
+     "trolley"       "russmatney/godot-extras/addons/trolley"
+     "navi"          "russmatney/godot-extras/addons/navi"})
 
   install-script-templates
   (tasks/install-script-templates

@@ -65,7 +65,7 @@ func _ready():
 
 func get_intended_move_vector():
   if is_player:
-    return Trols.move_dir()
+    return Trolley.move_dir()
   elif move_in_dir:
     return move_in_dir.normalized()
   else:
@@ -174,7 +174,7 @@ func _physics_process(delta):
 
 
 func _unhandled_input(event):
-  if is_player and Trols.is_attack(event):
+  if is_player and Trolley.is_attack(event):
     attack()
 
 ### sound #################################################################

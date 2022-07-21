@@ -146,9 +146,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Trols="*res://src/autoloads/Trols.gd"
 HUD="*res://src/autoloads/HUD.gd"
 Util="*res://src/autoloads/Util.gd"
+Trolley="*res://addons/trolley/Trolley.gd"
 
 [display]
 
