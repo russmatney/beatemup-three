@@ -3,6 +3,12 @@
  :tasks
  {:requires ([bb-godot.tasks :as tasks])
   :enter    (println "Running task:" (:name (current-task)))
+  :init
+  (do
+    (def addons-map
+      {:trolley :russmatney/dino
+       :navi    :russmatney/dino
+       :beehive :russmatney/dino}))
 
   watch      tasks/watch
   pixels     tasks/pixels
@@ -10,12 +16,5 @@
   deploy-web (tasks/deploy-web "s3://beatemup3.russmatney.com")
   zip        tasks/zip
 
-  install-addons
-  (tasks/install-addons
-    {:behavior_tree :kagenash1/godot-behavior-tree
-     :trolley       :russmatney/dino
-     :navi          :russmatney/dino})
-
-  install-script-templates
-  (tasks/install-script-templates
-    #{"kagenash1/godot-behavior-tree/script_templates"})}}
+  addons         (tasks/addons addons-map)
+  install-addons (tasks/install-addons addons-map)}}

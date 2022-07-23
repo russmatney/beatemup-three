@@ -30,9 +30,9 @@ onready var wave_timer = $WaveTimer
 onready var next_wave_ui_timer = $NextWaveUITimer
 export(float) var wave_break_time = 2.0
 
-onready var blackboard = $Blackboard
+# onready var blackboard = $Blackboard
 onready var goon_scene = preload("res://src/Char.tscn")
-onready var goon_behavior_tree = preload("res://src/behaviors/GoonBehaviorTree.tscn")
+# onready var goon_behavior_tree = preload("res://src/behaviors/GoonBehaviorTree.tscn")
 
 onready var sound_new_wave = $SoundNewWave
 onready var sound_spawn_goon = $SoundSpawnGoon
@@ -146,8 +146,8 @@ func create_and_add_goon(opts = null):
 	else:
 		add_child(goon_node)
 
-	# add behavior tree to goon (after it has a node_path)
-	add_behavior_tree(goon_node)
+	# # add behavior tree to goon (after it has a node_path)
+	# add_behavior_tree(goon_node)
 
 	sound_spawn_goon.play()
 
@@ -160,12 +160,11 @@ func _on_goon_died(goon):
 	if goons.size() <= 0:
 		queue_wave()
 
+# func add_behavior_tree(goon):
+# 	# add behavior tree
+# 	var bt = goon_behavior_tree.instance()
+# 	bt._blackboard = blackboard.get_path()
+# 	bt._agent = goon.get_path()
+# 	goon.add_child(bt)
 
-func add_behavior_tree(goon):
-	# add behavior tree
-	var bt = goon_behavior_tree.instance()
-	bt._blackboard = blackboard.get_path()
-	bt._agent = goon.get_path()
-	goon.add_child(bt)
-
-	bt.is_active = true
+# 	bt.is_active = true
