@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/sounds/191630__dwsd__jhd-hat-3.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/sounds/266566__gowlermusic__gong-hit.wav" type="AudioStream" id=2]
 [ext_resource path="res://src/GoonSquad.gd" type="Script" id=4]
 [ext_resource path="res://assets/music/Canon In D For 8 Bit Synths.mp3" type="AudioStream" id=5]
-[ext_resource path="res://assets/music/SCP-x3x.mp3" type="AudioStream" id=6]
 [ext_resource path="res://assets/music/Bleeping Demo.mp3" type="AudioStream" id=7]
 
 [node name="GoonSquad" type="Node2D"]
@@ -30,10 +29,6 @@ volume_db = -12.0
 [node name="MusicFight" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -12.0
-
-[node name="MusicBackground" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-volume_db = -6.0
 
 [connection signal="timeout" from="WaveTimer" to="." method="_on_WaveTimer_timeout"]
 [connection signal="timeout" from="NextWaveUITimer" to="." method="_on_NextWaveUITimer_timeout"]

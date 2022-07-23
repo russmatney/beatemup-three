@@ -39,7 +39,6 @@ onready var sound_spawn_goon = $SoundSpawnGoon
 
 onready var music_no_more_waves = $MusicNoMoreWaves
 onready var music_fight = $MusicFight
-onready var music_background = $MusicBackground
 
 var goon_parent
 
@@ -48,8 +47,6 @@ var goon_parent
 
 func _ready():
 	queue_wave()
-
-	music_background.play()
 
 
 func queue_wave():
@@ -60,7 +57,6 @@ func queue_wave():
 		sound_new_wave.play()
 	else:
 		music_fight.stop()
-		music_background.stop()
 		HUD.banner("No more waves!")
 		HUD.banner("You did it!", 7)
 		music_no_more_waves.play()
