@@ -9,7 +9,6 @@
 
 [node name="GoonSquad" type="Node2D"]
 script = ExtResource( 4 )
-wave_break_time = null
 
 [node name="WaveTimer" type="Timer" parent="."]
 one_shot = true

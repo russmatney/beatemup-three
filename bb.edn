@@ -6,9 +6,12 @@
   :init
   (do
     (def addons-map
-      {:trolley :russmatney/dino
-       :navi    :russmatney/dino
-       :beehive :russmatney/dino}))
+      {:trolley             :russmatney/dino
+       :navi                :russmatney/dino
+       :beehive             :russmatney/dino
+       :gut                 :bitwes/Gut
+       :lospec_palette_list :hiulit/Lospec-Palette-List
+       :MaxSizeContainer    :MattUV/godot-MaxSizeContainer}))
 
   watch      tasks/watch
   pixels     tasks/pixels

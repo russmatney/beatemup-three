@@ -17,10 +17,10 @@ var chester = {
 }
 
 var waves = [
-	{"name": "Wave 1", "goon_count": 3, "goon_opts": [chuck, chester, charlie]},
-	{"name": "Wave 2", "goon_count": 2, "goon_opts": [chuck, charlie, chester]},
-	{"name": "Wave 3", "goon_count": 3, "goon_opts": [chester, chuck]},
-	{"name": "Wave 4", "goon_count": 5, "goon_opts": [chuck, charlie, chester]},
+	{"name": "Wave 1", "goon_count": 1, "goon_opts": [chuck, chester, charlie]},
+	{"name": "Wave 2", "goon_count": 1, "goon_opts": [chuck, charlie, chester]},
+	{"name": "Wave 3", "goon_count": 1, "goon_opts": [chester, chuck]},
+	{"name": "Wave 4", "goon_count": 1, "goon_opts": [chuck, charlie, chester]},
 ]
 
 var next_wave_idx = 0
@@ -28,10 +28,10 @@ var goons = []
 
 onready var wave_timer = $WaveTimer
 onready var next_wave_ui_timer = $NextWaveUITimer
-export(float) var wave_break_time = 2.0
+var wave_break_time = 2.0
 
 # onready var blackboard = $Blackboard
-onready var goon_scene = preload("res://src/Char.tscn")
+onready var goon_scene = preload("res://src/char/Char.tscn")
 # onready var goon_behavior_tree = preload("res://src/behaviors/GoonBehaviorTree.tscn")
 
 onready var sound_new_wave = $SoundNewWave

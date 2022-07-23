@@ -2,7 +2,7 @@
 
 [ext_resource path="res://resources/SimpleTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://src/DetectableTileMap.gd" type="Script" id=2]
-[ext_resource path="res://src/Char.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/char/Char.tscn" type="PackedScene" id=3]
 
 [node name="MovementDemo" type="Node2D"]
 

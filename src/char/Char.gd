@@ -30,7 +30,6 @@ func attack_slots():
 
 
 onready var animated_sprite = $AnimatedSprite
-onready var facing_detector = $FacingDetector
 
 onready var punchbox = $Punchbox
 onready var kickbox = $Kickbox
@@ -51,6 +50,9 @@ signal died
 signal combo
 signal combo_lost
 
+onready var machine = $Machine
+onready var state_label = $StateLabel
+
 ### ready #####################################################################
 
 
@@ -61,11 +63,18 @@ func _ready():
 	if is_player:
 		HUD.set_player_status(self)
 
+	machine.connect("transitioned", self, "_on_state_transition")
+
 	connect("punch", self, "_on_punch_landed")
 	connect("kick", self, "_on_kick_landed")
 	connect("death", self, "_on_death")
 	connect("combo", self, "_on_combo")
 	connect("combo_lost", self, "_on_combo_lost")
+
+
+func _on_state_transition(new_state):
+	if state_label:
+		state_label.bbcode_text = "[center]" + new_state + "[/center]"
 
 
 func get_intended_move_vector():
@@ -113,7 +122,6 @@ func update_facing(dir: int):
 	facing = dir
 	animated_sprite.flip_h = facing == face_dir.LEFT
 	flip_transform(animated_sprite)
-	flip_transform(facing_detector)
 	flip_transform(punchbox)
 	flip_transform(kickbox)
 	flip_transform(hurtbox)
@@ -361,7 +369,7 @@ func take_punch(attacker):
 	stunned = true
 	# TODO consider only knocking back on punch if they are close
 	# i.e. don't punch them out of punch-range
-	apply_attack(attacker, attacker.PUNCH_FORCE, attacker.punch_damage)
+	apply_attack(attacker, stunned_time, attacker.PUNCH_FORCE, attacker.punch_damage)
 	yield(get_tree().create_timer(stunned_time), "timeout")
 	stunned = false
 
@@ -371,12 +379,12 @@ func take_kick(attacker):
 	reset_combo()
 	face_attacker(attacker)
 	knocked_back = true
-	apply_attack(attacker, attacker.KICK_FORCE, attacker.kick_damage)
+	apply_attack(attacker, knocked_back_time, attacker.KICK_FORCE, attacker.kick_damage)
 	yield(get_tree().create_timer(knocked_back_time), "timeout")
 	knocked_back = false
 
 
-func apply_attack(attacker, attack_force, attack_damage):
+func apply_attack(attacker, time, attack_force, attack_damage):
 	current_health -= attack_damage
 
 	if attacker.is_player:
@@ -396,7 +404,9 @@ func apply_attack(attacker, attack_force, attack_damage):
 	if attacker.get_global_position().x > get_global_position().x:
 		# attacker is on the right, so x should be negative
 		force = force * -1
-	velocity += force
+
+	machine.transit("KnockedBack", {"force": force, "time": time})
+	# velocity += force
 
 	if current_health <= 0:
 		start_dying()
