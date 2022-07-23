@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/char/Idle.gd" type="Script" id=1]
 [ext_resource path="res://src/char/Char.gd" type="Script" id=2]
@@ -15,8 +15,11 @@
 [ext_resource path="res://src/char/KnockedBack.gd" type="Script" id=13]
 [ext_resource path="res://src/char/Attack.gd" type="Script" id=14]
 [ext_resource path="res://src/char/Approach.gd" type="Script" id=15]
+[ext_resource path="res://src/char/Resurrected.gd" type="Script" id=16]
 [ext_resource path="res://src/char/DukesUp.gd" type="Script" id=17]
 [ext_resource path="res://src/char/Walk.gd" type="Script" id=18]
+[ext_resource path="res://src/char/Dying.gd" type="Script" id=19]
+[ext_resource path="res://src/char/Dead.gd" type="Script" id=20]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 24, 16 )
@@ -51,7 +54,6 @@ position = Vector2( 0, 10 )
 scale = Vector2( 1.4, 1.4 )
 frames = ExtResource( 12 )
 animation = "dukes_up"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -126,13 +128,6 @@ shape = SubResource( 35 )
 wait_time = 3.0
 one_shot = true
 
-[node name="DeathTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="RebirthTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
 [node name="SoundPunch" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 
@@ -175,6 +170,15 @@ script = ExtResource( 17 )
 [node name="Walk" type="Node" parent="Machine"]
 script = ExtResource( 18 )
 
+[node name="Dying" type="Node" parent="Machine"]
+script = ExtResource( 19 )
+
+[node name="Dead" type="Node" parent="Machine"]
+script = ExtResource( 20 )
+
+[node name="Resurrected" type="Node" parent="Machine"]
+script = ExtResource( 16 )
+
 [node name="StateLabel" type="RichTextLabel" parent="."]
 margin_left = -40.0
 margin_top = -72.0
@@ -193,5 +197,3 @@ text = "state"
 [connection signal="area_entered" from="Detectbox" to="." method="_on_Detectbox_area_entered"]
 [connection signal="area_exited" from="Detectbox" to="." method="_on_Detectbox_area_exited"]
 [connection signal="timeout" from="ScoreComboTimer" to="." method="_on_ScoreComboTimer_timeout"]
-[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
-[connection signal="timeout" from="RebirthTimer" to="." method="_on_RebornTimer_timeout"]

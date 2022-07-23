@@ -2,6 +2,8 @@ extends State
 
 
 func enter(msg = {}):
+	owner.animated_sprite.animation = "walk"
+
 	var player = msg.get("player")
 
 	if player:
