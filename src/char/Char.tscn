@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/char/Idle.gd" type="Script" id=1]
 [ext_resource path="res://src/char/Char.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://src/char/Approach.gd" type="Script" id=15]
 [ext_resource path="res://src/char/CheckForPlayer.gd" type="Script" id=16]
 [ext_resource path="res://src/char/DukesUp.gd" type="Script" id=17]
+[ext_resource path="res://src/char/Walk.gd" type="Script" id=18]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 24, 16 )
@@ -51,6 +52,7 @@ position = Vector2( 0, 10 )
 scale = Vector2( 1.4, 1.4 )
 frames = ExtResource( 12 )
 animation = "dukes_up"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -173,6 +175,9 @@ script = ExtResource( 13 )
 
 [node name="DukesUp" type="Node" parent="Machine"]
 script = ExtResource( 17 )
+
+[node name="Walk" type="Node" parent="Machine"]
+script = ExtResource( 18 )
 
 [node name="StateLabel" type="RichTextLabel" parent="."]
 margin_left = -40.0

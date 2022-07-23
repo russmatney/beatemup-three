@@ -5,11 +5,12 @@ var char_name
 var velocity = Vector2()
 var speed = 200
 
-var move_in_dir = Vector2()
+# direction the AI wants to move in
+var ai_move_in_dir = Vector2()
 var patrol_points = []
 
 enum face_dir { LEFT, RIGHT }
-var facing = face_dir.LEFT
+export(face_dir) var facing = face_dir.RIGHT
 
 export(bool) var is_player = false
 
@@ -82,8 +83,8 @@ func _on_state_transition(new_state):
 func get_intended_move_vector():
 	if is_player:
 		return Trolley.move_dir()
-	elif move_in_dir:
-		return move_in_dir.normalized()
+	elif ai_move_in_dir:
+		return ai_move_in_dir.normalized()
 	else:
 		return Vector2()
 
@@ -104,11 +105,11 @@ func assign_target(new_target):
 var target_closest_slot
 
 
-func approach_target(position = null):
+func direction_to_target(position = null):
 	if position:
-		move_in_dir = get_global_position().direction_to(position).normalized()
+		return get_global_position().direction_to(position).normalized()
 	elif target_closest_slot and is_instance_valid(target_closest_slot):
-		move_in_dir = get_global_position().direction_to(target_closest_slot.get_global_position()).normalized()
+		return get_global_position().direction_to(target_closest_slot.get_global_position()).normalized()
 	elif target and is_instance_valid(target):
 		if not target_closest_slot:
 			var slots = target.attack_slots()
@@ -116,7 +117,7 @@ func approach_target(position = null):
 				# TODO calc this
 				target_closest_slot = slots[0]
 			else:
-				move_in_dir = get_global_position().direction_to(target.get_global_position()).normalized()
+				return get_global_position().direction_to(target.get_global_position()).normalized()
 
 
 ### process #####################################################################
@@ -140,16 +141,16 @@ func update_facing(dir: int):
 
 
 func _process(_delta):
-	var move_vector: Vector2 = get_intended_move_vector()
-	var old_facing = facing
-	var new_facing = facing
-	if move_vector.x > 0:
-		new_facing = face_dir.RIGHT
-	elif move_vector.x < 0:
-		new_facing = face_dir.LEFT
+	# var move_vector: Vector2 = get_intended_move_vector()
+	# var old_facing = facing
+	# var new_facing = facing
+	# if move_vector.x > 0:
+	# 	new_facing = face_dir.RIGHT
+	# elif move_vector.x < 0:
+	# 	new_facing = face_dir.LEFT
 
-	if old_facing != new_facing:
-		update_facing(new_facing)
+	# if old_facing != new_facing:
+	# 	update_facing(new_facing)
 
 	# if just_reborn:
 	# 	print("just-reborn")
@@ -170,10 +171,10 @@ func _process(_delta):
 		animated_sprite.animation = "kick"
 	elif punching:
 		animated_sprite.animation = "punch"
-	elif move_vector.length() > 0:
-		animated_sprite.animation = "walk"
-	else:
-		animated_sprite.animation = "idle"
+	# elif move_vector.length() > 0:
+	# 	animated_sprite.animation = "walk"
+	# else:
+	# 	animated_sprite.animation = "idle"
 
 
 ### physics_process #####################################################################
@@ -181,25 +182,43 @@ func _process(_delta):
 const DECELERATION = 100
 
 
-func can_move_with_intent():
-	return not (stunned or knocked_back or dead or dying or punching or kicking)
+func face(move_dir: Vector2):
+	var old_facing = facing
+	var new_facing = facing
+	if move_dir.x > 0:
+		new_facing = face_dir.RIGHT
+	elif move_dir.x < 0:
+		new_facing = face_dir.LEFT
 
+	if old_facing != new_facing:
+		update_facing(new_facing)
 
-func _physics_process(delta):
-	var intended_move_vector: Vector2 = get_intended_move_vector()
+func walk(move_dir: Vector2, delta: float):
+	# note, constant velocity here
+	velocity = move_dir * speed
 
-	if can_move_with_intent():
-		# only move with intent when not stunned/blocked
-		# note, constant velocity here
-		velocity = intended_move_vector * speed
+	# decelerate
+	velocity = velocity.move_toward(Vector2(), DECELERATION * delta)
+	velocity = move_and_slide(velocity)
 
-	if dead:
-		velocity = Vector2.ZERO
-	else:
-		# decelerate
-		velocity = velocity.move_toward(Vector2(), DECELERATION * delta)
+# func can_move_with_intent():
+# 	return not (stunned or knocked_back or dead or dying or punching or kicking)
 
-		velocity = move_and_slide(velocity)
+# func _physics_process(delta):
+# 	var intended_move_vector: Vector2 = get_intended_move_vector()
+
+# 	if can_move_with_intent():
+# 		# only move with intent when not stunned/blocked
+# 		# note, constant velocity here
+# 		velocity = intended_move_vector * speed
+
+# 	if dead:
+# 		velocity = Vector2.ZERO
+# 	else:
+# 		# decelerate
+# 		velocity = velocity.move_toward(Vector2(), DECELERATION * delta)
+
+# 		velocity = move_and_slide(velocity)
 
 
 ### unhandled_input #####################################################################

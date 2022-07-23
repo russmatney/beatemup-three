@@ -10,11 +10,15 @@ func enter(msg = {}):
 		owner.face_attacker(player)
 
 
-func process(_delta: float):
-	owner.approach_target()
+func process(delta: float):
+	var move_dir = owner.direction_to_target()
+	if move_dir:
+		owner.face(move_dir)
 
-	# TODO probably not quite stable
-	# might want to get a bit closer first
 	if owner.target in owner.in_punchbox:
-		owner.move_in_dir = Vector2.ZERO
 		transit("DukesUp")
+
+func physics_process(delta: float):
+	var move_dir = owner.direction_to_target()
+	if move_dir:
+		owner.walk(move_dir, delta)
