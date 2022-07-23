@@ -82,7 +82,7 @@ _global_script_class_icons={
 
 config/name="BeatEmUpThree"
 run/main_scene="res://src/demos/CityDemo.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/icon.png"
 
 [autoload]
 
