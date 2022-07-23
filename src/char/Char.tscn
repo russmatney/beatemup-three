@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/char/Idle.gd" type="Script" id=1]
 [ext_resource path="res://src/char/Char.gd" type="Script" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://src/char/KnockedBack.gd" type="Script" id=13]
 [ext_resource path="res://src/char/Attack.gd" type="Script" id=14]
 [ext_resource path="res://src/char/Approach.gd" type="Script" id=15]
-[ext_resource path="res://src/char/CheckForPlayer.gd" type="Script" id=16]
 [ext_resource path="res://src/char/DukesUp.gd" type="Script" id=17]
 [ext_resource path="res://src/char/Walk.gd" type="Script" id=18]
 
@@ -52,7 +51,7 @@ position = Vector2( 0, 10 )
 scale = Vector2( 1.4, 1.4 )
 frames = ExtResource( 12 )
 animation = "dukes_up"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -163,9 +162,6 @@ script = ExtResource( 1 )
 
 [node name="Approach" type="Node" parent="Machine"]
 script = ExtResource( 15 )
-
-[node name="CheckForPlayer" type="Node" parent="Machine"]
-script = ExtResource( 16 )
 
 [node name="Attack" type="Node" parent="Machine"]
 script = ExtResource( 14 )

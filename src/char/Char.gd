@@ -193,6 +193,7 @@ func face(move_dir: Vector2):
 	if old_facing != new_facing:
 		update_facing(new_facing)
 
+
 func walk(move_dir: Vector2, delta: float):
 	# note, constant velocity here
 	velocity = move_dir * speed
@@ -200,6 +201,7 @@ func walk(move_dir: Vector2, delta: float):
 	# decelerate
 	velocity = velocity.move_toward(Vector2(), DECELERATION * delta)
 	velocity = move_and_slide(velocity)
+
 
 # func can_move_with_intent():
 # 	return not (stunned or knocked_back or dead or dying or punching or kicking)
@@ -220,14 +222,11 @@ func walk(move_dir: Vector2, delta: float):
 
 # 		velocity = move_and_slide(velocity)
 
-
 ### unhandled_input #####################################################################
 
-
-func _unhandled_input(event):
-	if is_player and Trolley.is_attack(event):
-		attack()
-
+# func _unhandled_input(event):
+# 	if is_player and Trolley.is_attack(event):
+# 		attack()
 
 ### sound #################################################################
 
@@ -316,7 +315,6 @@ func attack():
 			kick()
 		else:
 			combo_count += 1
-			print("starting punch")
 			punch()
 			combo_timer.start(combo_timeout)
 	else:
@@ -349,7 +347,13 @@ func reset_combo():
 
 
 func can_take_hit(ch):
-	return not ch.dying and not ch.dead and not ch.stunned and not ch.knocked_back and not ch.just_reborn
+	return (
+		not ch.dying
+		and not ch.dead
+		and not ch.stunned
+		and not ch.knocked_back
+		and not ch.just_reborn
+	)
 
 
 func punch():

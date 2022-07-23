@@ -4,13 +4,10 @@ extends State
 func enter(msg = {}):
 	if not owner.is_connected("attack_complete", self, "_on_attack_complete"):
 		owner.connect("attack_complete", self, "_on_attack_complete")
-	print("start attack")
 	owner.attack()
 
 
 func _on_attack_complete():
-	print("attack complete")
-
 	# go round again
 	transit("DukesUp")
 
