@@ -311,8 +311,6 @@ func attack():
 		else:
 			print("some other dead input on attack", self)
 
-	emit_signal("attack_complete")
-
 
 func _on_ComboTimer_timeout():
 	reset_combo()
@@ -351,6 +349,7 @@ func punch():
 
 	yield(get_tree().create_timer(punch_cooldown), "timeout")
 	punching = false
+	emit_signal("attack_complete")
 	if attack_queue > 0:
 		attack_queue -= 1
 		attack()
@@ -372,6 +371,7 @@ func kick():
 			emit_signal("kick")
 
 	yield(get_tree().create_timer(kick_cooldown), "timeout")
+	emit_signal("attack_complete")
 	kicking = false
 
 
