@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/char/Idle.gd" type="Script" id=1]
 [ext_resource path="res://src/char/Char.gd" type="Script" id=2]
@@ -11,11 +11,12 @@
 [ext_resource path="res://assets/sounds/191613__dwsd__jhd-bd-10.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/fonts/Born2bSportyV2.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://addons/beehive/machine.gd" type="Script" id=11]
-[ext_resource path="res://src/resources/Char.tres" type="SpriteFrames" id=12]
+[ext_resource path="res://src/resources/Goon.tres" type="SpriteFrames" id=12]
 [ext_resource path="res://src/char/KnockedBack.gd" type="Script" id=13]
 [ext_resource path="res://src/char/Attack.gd" type="Script" id=14]
 [ext_resource path="res://src/char/Approach.gd" type="Script" id=15]
 [ext_resource path="res://src/char/CheckForPlayer.gd" type="Script" id=16]
+[ext_resource path="res://src/char/DukesUp.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 24, 16 )
@@ -24,13 +25,13 @@ extents = Vector2( 24, 16 )
 extents = Vector2( 30, 24 )
 
 [sub_resource type="RectangleShape2D" id=19]
-extents = Vector2( 35.75, 18 )
+extents = Vector2( 52, 28 )
 
 [sub_resource type="RectangleShape2D" id=21]
-extents = Vector2( 36, 18 )
+extents = Vector2( 56, 28 )
 
 [sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 256, 192 )
+extents = Vector2( 384, 192 )
 
 [sub_resource type="RectangleShape2D" id=34]
 extents = Vector2( 10, 12 )
@@ -49,7 +50,7 @@ script = ExtResource( 2 )
 position = Vector2( 0, 10 )
 scale = Vector2( 1.4, 1.4 )
 frames = ExtResource( 12 )
-animation = "kick"
+animation = "dukes_up"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -74,6 +75,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Punchbox"]
 modulate = Color( 0.921569, 0.47742, 0.0666667, 1 )
 self_modulate = Color( 0.921569, 0.478431, 0.0666667, 1 )
+position = Vector2( -5, -3 )
 shape = SubResource( 19 )
 
 [node name="Kickbox" type="Area2D" parent="."]
@@ -85,15 +87,16 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kickbox"]
 modulate = Color( 0.956863, 0.0588235, 0.0588235, 1 )
 self_modulate = Color( 0.976471, 0.0901961, 0.0901961, 1 )
+position = Vector2( 8, 10 )
 shape = SubResource( 21 )
 
 [node name="ComboTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="Detectbox" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detectbox"]
+position = Vector2( 128, 0 )
 shape = SubResource( 33 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -167,6 +170,9 @@ script = ExtResource( 14 )
 
 [node name="KnockedBack" type="Node" parent="Machine"]
 script = ExtResource( 13 )
+
+[node name="DukesUp" type="Node" parent="Machine"]
+script = ExtResource( 17 )
 
 [node name="StateLabel" type="RichTextLabel" parent="."]
 margin_left = -40.0

@@ -39,11 +39,12 @@ format = 1
 tile_data = PoolIntArray( -327685, 8, 196612, -327684, 8, 196613, -262154, 8, 262148, -262153, 8, 262149, -196609, 18, 1, -262144, 18, 2, -262143, 18, 0, -11, 19, 65536, -4, 19, 65537, -3, 19, 131074 )
 
 [node name="Player" parent="MapYSort" groups=["player"] instance=ExtResource( 2 )]
+position = Vector2( -20, -18 )
 is_player = true
 total_health = 10
 
 [node name="GoonSquad" parent="MapYSort" instance=ExtResource( 3 )]
-position = Vector2( 28, -126 )
+position = Vector2( -584, -17 )
 
 [node name="Tree" type="Node2D" parent="MapYSort"]
 position = Vector2( -763, -114 )

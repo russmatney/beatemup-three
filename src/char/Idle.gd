@@ -2,7 +2,7 @@ extends State
 
 
 func enter(arg = {}):
-	pass
+	owner.animated_sprite.animation = "idle"
 
 
 export(float) var check_for_player_every_t := 1.0

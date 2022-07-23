@@ -65,6 +65,8 @@ func _ready():
 
 	machine.connect("transitioned", self, "_on_state_transition")
 
+	machine.should_log = not is_in_group("player")
+
 	connect("punch", self, "_on_punch_landed")
 	connect("kick", self, "_on_kick_landed")
 	connect("death", self, "_on_death")
@@ -93,18 +95,28 @@ func assign_target(new_target):
 		# maybe need some other way to deal with this
 		existing_target.targetted_by.erase(self)
 
+	target_closest_slot = null
+
 	target = new_target
 	new_target.targetted_by.append(self)
+
+
+var target_closest_slot
 
 
 func approach_target(position = null):
 	if position:
 		move_in_dir = get_global_position().direction_to(position).normalized()
-	elif target:
-		# if target is valid
-		move_in_dir = get_global_position().direction_to(target.get_global_position()).normalized()
-	else:
-		print("no target to approach!")
+	elif target_closest_slot and is_instance_valid(target_closest_slot):
+		move_in_dir = get_global_position().direction_to(target_closest_slot.get_global_position()).normalized()
+	elif target and is_instance_valid(target):
+		if not target_closest_slot:
+			var slots = target.attack_slots()
+			if slots.size() > 0:
+				# TODO calc this
+				target_closest_slot = slots[0]
+			else:
+				move_in_dir = get_global_position().direction_to(target.get_global_position()).normalized()
 
 
 ### process #####################################################################
@@ -139,11 +151,14 @@ func _process(_delta):
 	if old_facing != new_facing:
 		update_facing(new_facing)
 
-	if just_reborn:
-		print("just-reborn")
+	# if just_reborn:
+	# 	print("just-reborn")
 	# TODO color/effect
 
-	if dying:
+	# maintaining these for the player animations for now
+	if machine.state.name in ["DukesUp", "Attack", "KnockedBack", "Idle"]:
+		pass
+	elif dying:
 		animated_sprite.animation = "dying"
 	elif dead:
 		animated_sprite.animation = "dead"
@@ -272,6 +287,8 @@ func can_attack():
 
 var attack_queue = 0
 
+signal attack_complete
+
 
 func attack():
 	if can_attack():
@@ -280,6 +297,7 @@ func attack():
 			kick()
 		else:
 			combo_count += 1
+			print("starting punch")
 			punch()
 			combo_timer.start(combo_timeout)
 	else:
@@ -292,6 +310,8 @@ func attack():
 			print("dead input, attack input while stunned/knocked_back", self)
 		else:
 			print("some other dead input on attack", self)
+
+	emit_signal("attack_complete")
 
 
 func _on_ComboTimer_timeout():
@@ -311,6 +331,10 @@ func reset_combo():
 	attack_queue = 0
 
 
+func can_take_hit(ch):
+	return not ch.dying and not ch.dead and not ch.stunned and not ch.knocked_back and not ch.just_reborn
+
+
 func punch():
 	punching = true
 	yield(get_tree().create_timer(punch_windup), "timeout")
@@ -318,7 +342,7 @@ func punch():
 	if not stunned and not knocked_back:
 		var landed = false
 		for ch in in_punchbox:
-			if ch.has_method("take_punch"):
+			if ch.has_method("take_punch") and can_take_hit(ch):
 				ch.take_punch(self)
 				landed = true
 
@@ -340,7 +364,7 @@ func kick():
 		var landed = false
 		for ch in in_kickbox:
 			# TODO only punch targetted groups?
-			if ch.has_method("take_kick"):
+			if ch.has_method("take_kick") and can_take_hit(ch):
 				ch.take_kick(self)
 				landed = true
 

@@ -1,17 +1,17 @@
 extends Node2D
 
 var chuck = {
-	"total_health": 4,
+	"total_health": 7,
 	"char_name": "Chuck",
 	modulate = Color(125.0 / 255.0, 252.0 / 255.0, 170.0 / 255.0, 1)
 }
 var charlie = {
-	"total_health": 5,
+	"total_health": 8,
 	"char_name": "Charlie",
 	modulate = Color(252.0 / 255.0, 14.0 / 255.0, 14.0 / 255.0, 1)
 }
 var chester = {
-	"total_health": 1,
+	"total_health": 5,
 	"char_name": "Chester",
 	modulate = Color(205.0 / 255.0, 125.0 / 255.0, 252.0 / 255.0, 1)
 }
@@ -126,6 +126,7 @@ func create_and_add_goon(opts = null):
 				goon_node[k] = opts[k]
 
 	# TODO pick spawn points
+	goon_node.position = get_global_position()
 
 	# connect to goon death
 	goon_node.connect("died", self, "_on_goon_died", [goon_node])

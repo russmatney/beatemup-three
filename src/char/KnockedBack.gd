@@ -18,3 +18,8 @@ func enter(msg = {}):
 
 func process(_delta: float):
 	owner.knocked_back = true
+
+	if owner.knocked_back:
+		owner.animated_sprite.animation = "knocked_back"
+	elif owner.stunned:
+		owner.animated_sprite.animation = "stunned"
